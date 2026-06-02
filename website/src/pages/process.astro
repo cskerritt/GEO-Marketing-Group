@@ -1,0 +1,122 @@
+---
+import Base from '../layouts/Base.astro';
+import CTA from '../components/CTA.astro';
+import FAQ from '../components/FAQ.astro';
+
+const stages = [
+  {
+    n: '01',
+    name: 'Calibrate',
+    duration: '5 business days',
+    desc: 'A productized GEO Audit. We measure your firm\'s current AI visibility across ChatGPT, Claude, Perplexity, Google AI Overviews, and Gemini. Citation gap analysis, schema audit, content citability scoring, competitive analysis. You receive a written deliverable and a 60-minute walkthrough.',
+    deliverables: ['Citation baseline across 5 AI engines', 'Schema/structured data audit report', 'Content citability scoring (against the Aggarwal et al. methodology)', 'Competitive citation map', '30/60/90-day prioritized roadmap'],
+  },
+  {
+    n: '02',
+    name: 'Orient',
+    duration: 'Week 1',
+    desc: 'We map your firm\'s competitive citation landscape and identify the queries that matter most: the questions your buyers ask AI when they are looking for someone like you. This becomes the targeting plan for everything we publish.',
+    deliverables: ['Target query list (50–150 questions)', 'Competitive content gap analysis', 'Persona-mapped publication priorities'],
+  },
+  {
+    n: '03',
+    name: 'Mark',
+    duration: 'Weeks 2–6',
+    desc: 'We build the citable content infrastructure: schema.org markup across the right entity types (Organization, LegalService, FAQPage, Person, Article), llms.txt configuration, FAQ scaffolding, semantic HTML, performance optimization. If you need a new website, we build it on this foundation from day one.',
+    deliverables: ['Full schema.org coverage', 'llms.txt published', 'FAQ blocks deployed', 'Lighthouse 95+ across all metrics', 'Optional: new website (12–15 pages, $7,500)'],
+  },
+  {
+    n: '04',
+    name: 'Publish',
+    duration: 'Weeks 6+ (ongoing)',
+    desc: 'Vertical-specific articles, case studies, and FAQ pages — written to be cited, not to fill a content calendar. Every piece is structured for AI lift: question-shaped headers, answer-first paragraphs, citable statistics with sources, dated and bylined. We publish to your site and selectively pitch to vertical media (Above the Law, RI Lawyers Weekly, Accounting Today, etc.).',
+    deliverables: ['4–8 articles/month depending on tier', 'Industry-specific deep-dive pages', 'Pitched bylined articles in vertical media'],
+  },
+  {
+    n: '05',
+    name: 'Amplify',
+    duration: 'Months 2+ (ongoing)',
+    desc: 'Authority signals beyond your own site: Reddit and community presence (Perplexity favors Reddit citations heavily), founder thought-leadership ghostwriting on LinkedIn and bylined columns, podcast pitch and prep, earned media. The goal is consistent entity references across the open web — the corroboration AI engines look for.',
+    deliverables: ['Founder LinkedIn cadence', 'Reddit/community engagement plan', 'Podcast pitch list and prep', 'Earned media placements'],
+  },
+  {
+    n: '06',
+    name: 'Steer',
+    duration: 'Monthly (ongoing)',
+    desc: 'AI citation tracking, monthly reporting, and quarterly strategy reviews. We watch how the engines respond to our work, double down on what\'s working, and pivot away from what isn\'t. We measure citation count, AI-referred sessions, and AI-attributed leads — the metrics that matter.',
+    deliverables: ['Monthly citation report (5 engines)', 'Quarterly strategy review', 'Annual strategic refresh'],
+  },
+];
+
+const processFaqs = [
+  {
+    q: 'How long until I see results?',
+    a: 'Initial citation movement typically appears in 2–4 weeks for Perplexity (which weights recency aggressively) and 6–8 weeks for ChatGPT (which favors authority and corroboration). Meaningful share-of-voice gains across multiple engines occur in 6–12 weeks. Most B2B categories reach competitive parity within 90 days.',
+  },
+  {
+    q: 'Do I need to write the content?',
+    a: 'No. Our default mode is full ghostwriting in your firm\'s voice, with you reviewing drafts before publication. We can also operate as editors if your firm has internal writers — but the discipline of "first 200 words must complete the answer" is harder than it looks; most internal teams need our structural framework even if they bring the subject-matter expertise.',
+  },
+  {
+    q: 'What if I already have an SEO vendor?',
+    a: 'We coordinate with existing SEO work rather than replace it. GEO and SEO overlap meaningfully; the disciplines complement. We ensure no work is duplicated and that the schema/content we deploy doesn\'t conflict with your SEO vendor\'s priorities.',
+  },
+  {
+    q: 'How does compliance work for financial advisors?',
+    a: 'Every piece of content goes through your firm\'s compliance review (CCO or equivalent) before publication. We provide drafts in a format your CCO can mark up. We track and archive every disclosure required by SEC marketing rules. We have a documented compliance-friendly workflow specifically for fee-only RIAs and wealth management firms.',
+  },
+  {
+    q: 'Can I cancel?',
+    a: 'Retainers are month-to-month by default. 6-month and 12-month commitments earn discounts but you are never trapped. If we are not earning the relationship, we should not have the relationship.',
+  },
+];
+---
+
+<Base
+  title="Our process"
+  description="The Compass Method: Calibrate, Orient, Mark, Publish, Amplify, Steer. How GEO makes professional services firms citable to AI in 90 days."
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Process</p>
+      <h1 class="font-display text-hero mt-2 mb-8">The Compass Method.</h1>
+      <p class="text-2xl text-ink/85 leading-snug max-w-3xl">
+        Six stages from invisible to cited. We have done this enough times to know exactly
+        what each stage costs you in time, what it produces, and what you should expect.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10">
+    <div class="container-default py-12">
+      {stages.map((s, i) => (
+        <div class={`grid md:grid-cols-12 gap-8 py-12 ${i !== stages.length - 1 ? 'border-b border-navy/10' : ''}`}>
+          <div class="md:col-span-3">
+            <p class="font-mono text-sm text-brass">{s.n}</p>
+            <h2 class="font-display text-3xl text-navy mt-2">{s.name}</h2>
+            <p class="font-mono text-xs uppercase tracking-wider text-slate mt-3">{s.duration}</p>
+          </div>
+          <div class="md:col-span-9">
+            <p class="text-lg text-ink/85 leading-relaxed">{s.desc}</p>
+            <ul class="mt-6 space-y-2">
+              {s.deliverables.map((d) => (
+                <li class="flex gap-3 items-start">
+                  <span class="text-brass mt-1.5 flex-shrink-0" aria-hidden="true">▪</span>
+                  <span class="text-ink/85">{d}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <FAQ items={processFaqs} eyebrow="Process FAQ" heading="Common questions about how we work." />
+
+  <CTA
+    heading="Start with the Calibrate stage."
+    body="$1,500 productized GEO Audit. 5 business days. No obligation. Audit fee credits toward any hybrid engagement."
+    primaryLabel="Get a Free GEO Audit"
+  />
+</Base>

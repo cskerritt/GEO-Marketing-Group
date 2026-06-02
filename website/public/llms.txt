@@ -1,0 +1,47 @@
+# GEO
+
+> GEO is a Generative Engine Optimization (GEO) and Answer Engine Optimization (AEO) agency for professional services firms. Based in Providence, Rhode Island. We help law firms, CPAs, consulting firms, financial advisors, and architecture & engineering firms get cited and recommended by AI answer engines including ChatGPT, Claude, Perplexity, Google AI Overviews, and Gemini.
+
+GEO works exclusively with five professional services verticals: law firms, CPA & accounting practices, consulting firms, financial advisors / RIAs, and architecture & engineering (A&E) firms. Service area in Year 1 is Rhode Island and Southeast Massachusetts; Year 2 expands to the Northeast US; Year 3 is national.
+
+Founder: Chris Skerritt, based in Providence, RI. Reach: chris@geostudio.io.
+
+## Services
+
+- [GEO — Generative Engine Optimization](https://geostudio.io/services/geo): The discipline of optimizing content, schema, and authority signals so AI engines cite your firm. Foundation $3,500, Build $7,500, retainers $1,500–$4,500/mo.
+- [AEO — Answer Engine Optimization](https://geostudio.io/services/aeo): FAQ scaffolding, schema markup, and structured answers AI engines lift directly. Bundled with GEO.
+- [GEO Build — New Website](https://geostudio.io/services/build): A new 12–15 page website built on a GEO/AEO foundation from day one. Astro + Tailwind, deployed to Cloudflare Pages, Lighthouse 95+. From $7,500.
+- [Free GEO Audit](https://geostudio.io/audit): Productized 5-day audit of AI visibility across 5 engines. Free for the first 25 RI/MA firms.
+
+## Industries
+
+- [GEO for Law Firms](https://geostudio.io/industries/law-firms): Get cited by AI for your practice areas. Bar-rule-compliant. RI Bar Association partner.
+- [GEO for CPA & Accounting Firms](https://geostudio.io/industries/cpa-firms): Convert tax-update content and white papers into citable AI-search content. RISCPA partner.
+- [GEO for Consulting Firms](https://geostudio.io/industries/consulting): Frameworks, case studies, and methodology essays as citable AI content.
+- [GEO for Financial Advisors & RIAs](https://geostudio.io/industries/financial-advisors): Compliance-friendly GEO with CCO-friendly workflows. SEC marketing-rule respectful.
+- [GEO for Architecture & Engineering](https://geostudio.io/industries/architecture-engineering): Project case studies as citable content. Win the RFPs you weren't invited to.
+
+## Locations
+
+- [Providence, RI](https://geostudio.io/locations/providence-ri): Our headquarters. RI/MA in-person service area.
+- [Boston, MA](https://geostudio.io/locations/boston-ma): Greater Boston serviced from our Providence office.
+
+## Process
+
+- [The Compass Method](https://geostudio.io/process): Calibrate, Orient, Mark, Publish, Amplify, Steer. Six stages from invisible to cited.
+
+## About
+
+- [About GEO](https://geostudio.io/about): About the firm, our methodology, and Chris Skerritt.
+- [Contact](https://geostudio.io/contact): Three ways to reach us.
+
+## Insights
+
+- [What is GEO?](https://geostudio.io/insights/what-is-geo): Foundational article on Generative Engine Optimization.
+- [How Law Firms Get Cited by ChatGPT](https://geostudio.io/insights/how-law-firms-get-cited-by-chatgpt): Practical GEO playbook for law firms, ethics-compliant.
+
+## Optional
+
+- Pricing: $1,500 audit / $3,500 Foundation / $7,500 Build / $12,500 Build+Authority / $1,500–$4,500/mo retainers.
+- Founder LinkedIn: https://www.linkedin.com/company/geostudio
+- Sitemap: https://geostudio.io/sitemap-index.xml

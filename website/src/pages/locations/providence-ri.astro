@@ -1,0 +1,96 @@
+---
+import Base from '../../layouts/Base.astro';
+import CTA from '../../components/CTA.astro';
+import FAQ from '../../components/FAQ.astro';
+import { localBusiness, breadcrumbs } from '../../lib/schema';
+
+const faqs = [
+  {
+    q: 'Are you actually based in Providence, RI?',
+    a: 'Yes. Our office is in Providence, Rhode Island. The founder lives in the area. We are members of the Greater Providence Chamber of Commerce, sponsors of RI Bar Association events, and partners of RISCPA. We meet RI and SE-MA clients in person.',
+  },
+  {
+    q: 'Do you only serve Providence?',
+    a: 'No. Providence is our headquarters and Year-1 beachhead. We work with clients across Rhode Island, Southeast Massachusetts, and (selectively) the broader Northeast. By Year 3 we will serve clients nationally — but our office and team will stay in Providence.',
+  },
+  {
+    q: 'What RI-specific advantages do you offer?',
+    a: 'Three. (1) In-person availability for client meetings, executive briefings, and partner reviews. (2) Membership and active participation in RIBA, RISCPA, the Greater Providence Chamber, AIA RI, and ACEC RI. (3) Familiarity with RI-specific market dynamics — the legal market, the CPA market, the A&E market, and the financial advisory market each have distinct local characteristics we know.',
+  },
+];
+---
+
+<Base
+  title="GEO in Providence, RI"
+  description="GEO is a Generative Engine Optimization agency headquartered in Providence, Rhode Island. We serve professional services firms in RI, MA, and the Northeast."
+  schema={[
+    localBusiness(),
+    breadcrumbs([
+      { label: 'Home', href: '/' },
+      { label: 'Locations', href: '/locations/providence-ri' },
+      { label: 'Providence, RI', href: '/locations/providence-ri' },
+    ]),
+  ]}
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Location · Providence, RI</p>
+      <h1 class="font-display text-hero mt-2 mb-8">GEO in Providence.</h1>
+      <p class="text-2xl text-ink/85 leading-snug">
+        We are based in Providence, Rhode Island. Our Year-1 client base is RI law firms, RI
+        CPAs, RI consulting firms, RI financial advisors, and RI A&amp;E firms. We meet you
+        in your office.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-prose prose prose-lg max-w-none">
+      <h2>Why Providence is the right beachhead for a national agency.</h2>
+      <p>
+        Rhode Island has the highest attorney density per capita in the United States. RI
+        professional services firms have roughly $1.3B in legal market revenue alone, plus
+        2,200+ RISCPA members, dense RIA and A&amp;E activity, and a high concentration of
+        consulting firms in the Providence/Cambridge corridor.
+      </p>
+      <p>
+        The state is small enough that the warm-network of managing partners, marketing
+        directors, and principals is essentially one room. Word travels fast. Reputation
+        compounds quickly. Driving time from our office to any RI/SE-MA client is under 60
+        minutes.
+      </p>
+      <p>
+        That density is the right launch market for a vertical-specialist GEO agency: deep
+        enough to fill a year of capacity, conservative enough to reward high-quality
+        execution, connected enough to compound referrals.
+      </p>
+
+      <h2>Our Providence partnerships</h2>
+      <ul>
+        <li><strong>Greater Providence Chamber of Commerce</strong> — member; sponsor of selected signature events</li>
+        <li><strong>Rhode Island Bar Association</strong> — CLE program participant and event sponsor</li>
+        <li><strong>RI Society of CPAs (RISCPA)</strong> — member-benefit GEO Audit program in development</li>
+        <li><strong>AIA Rhode Island</strong> — partnership in development</li>
+        <li><strong>ACEC Rhode Island</strong> — partnership in development</li>
+        <li><strong>Financial Planning Association (FPA) RI</strong> — speaker outreach in development</li>
+      </ul>
+
+      <h2>Service areas from Providence</h2>
+      <ul>
+        <li>Providence, Cranston, Warwick, Pawtucket, East Providence, Cumberland, Smithfield, North Kingstown, South Kingstown, Middletown, Newport — full Rhode Island coverage</li>
+        <li>Bristol County, Plymouth County, Cape Cod, MetroWest (Framingham, Natick, Wellesley) — Southeast Massachusetts</li>
+        <li>Boston, Cambridge — selected Year-1 clients; broader expansion in Year 2</li>
+        <li>Hartford CT, NYC — Year 2 targets</li>
+        <li>National — Year 3+</li>
+      </ul>
+    </div>
+  </section>
+
+  <FAQ items={faqs} heading="Common questions about our Providence presence." />
+
+  <CTA
+    heading="Free GEO Audit for the first 25 RI/MA firms."
+    body="Local meeting included. We come to your office."
+    primaryLabel="Get a Free GEO Audit"
+  />
+</Base>

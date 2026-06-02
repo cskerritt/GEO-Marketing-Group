@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import CTA from '../../components/CTA.astro';
+import { INDUSTRIES } from '../../lib/site';
+---
+
+<Base
+  title="Industries"
+  description="GEO works exclusively with five professional services verticals: law firms, CPAs, consulting, financial advisors, and architecture & engineering. Vertical depth is our moat."
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Industries</p>
+      <h1 class="font-display text-hero mt-2 mb-8">Five verticals. Depth, not breadth.</h1>
+      <p class="text-2xl text-ink/85 leading-snug">
+        Most agencies serve everyone. We don't. The deeper we go in your industry, the more
+        citable your firm becomes. We work with these five professional services verticals
+        — and only these five.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-default">
+      <div class="grid md:grid-cols-2 gap-8">
+        {INDUSTRIES.map((industry) => (
+          <a href={`/industries/${industry.slug}`} class="group block bg-white border border-navy/10 p-8 transition-all hover:border-brass">
+            <h2 class="font-display text-2xl text-navy group-hover:text-brass transition-colors">
+              {industry.title}
+            </h2>
+            <p class="mt-4 text-ink/80 leading-relaxed">{industry.description}</p>
+            <p class="mt-6 font-mono text-sm text-brass">Read the playbook →</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Want a vertical-specific GEO Audit?"
+    body="The free audit is tailored to your industry's playbook. Law firms get a different audit than CPAs."
+    primaryLabel="Get a Free GEO Audit"
+  />
+</Base>

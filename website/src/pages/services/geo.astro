@@ -1,0 +1,115 @@
+---
+import Base from '../../layouts/Base.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import { service as serviceSchema } from '../../lib/schema';
+
+const faqs = [
+  {
+    q: 'What is Generative Engine Optimization (GEO)?',
+    a: 'GEO is the discipline of optimizing your firm\'s content, schema, and authority signals so that AI engines — ChatGPT, Claude, Perplexity, Google AI Overviews, and Gemini — cite and recommend your firm when buyers ask questions in your industry. The term was coined in the 2023 Princeton/Georgia Tech paper "GEO: Generative Engine Optimization" by Aggarwal et al.',
+  },
+  {
+    q: 'How does GEO actually work mechanically?',
+    a: 'AI engines use Retrieval-Augmented Generation (RAG). When a user asks a question, the engine first searches its knowledge base for semantically similar documents, then scores and reranks candidates on relevance, authority, and structural quality. The top-scoring documents are inserted into the LLM\'s prompt before the answer is generated, with citation markers structurally assigned at that stage. GEO optimizes for the reranker — making your content win the citation slot before the LLM ever sees it.',
+  },
+  {
+    q: 'What deliverables come with GEO?',
+    a: 'A typical GEO engagement covers: full schema.org markup (Organization, LocalBusiness, Service, FAQPage, Person, Article, plus industry-specific types), llms.txt configuration, FAQ scaffolding on every key page, content rewrites for "answer-first" structure, citable statistics with sources and dates, author byline and credential markup (E-E-A-T), internal entity linking discipline, and Core Web Vitals optimization. We deliver this as a one-time foundation ($3,500), as part of a new Build ($7,500), or as ongoing work in a retainer.',
+  },
+  {
+    q: 'How do you measure GEO success?',
+    a: 'Three metrics, reported monthly: (1) citation count across 5 AI engines, (2) AI-referred sessions in GA4 (visitors arriving via AI links), (3) AI-attributed leads (we ask "how did you hear about us?" on every form, with explicit AI options). We give you a baseline reading at the audit and report month-over-month change.',
+  },
+  {
+    q: 'How long until citations appear?',
+    a: 'Initial citations on Perplexity in 2–4 weeks (it weights recency aggressively). ChatGPT in 6–8 weeks (more authority-driven). Most B2B categories reach competitive parity within 90 days of consistent publication.',
+  },
+  {
+    q: 'Will GEO work if my firm\'s SEO is already strong?',
+    a: 'Yes — and faster. Strong SEO foundations make GEO easier; many of the same authority and content signals overlap. But strong SEO is necessary, not sufficient: only 11% of domains cited by ChatGPT are also cited by Perplexity, and Google\'s ranking algorithm differs significantly from how AI engines select sources.',
+  },
+  {
+    q: 'What if my firm has very technical content (legal opinions, tax memos, audit reports)?',
+    a: 'Technical content is often the most citable — but only when properly structured. We add schema, dates, attribution, and FAQ wrappers around your technical content. AI engines prefer dated, sourced, technical claims to vague generalities.',
+  },
+  {
+    q: 'Do you work with firms outside professional services?',
+    a: 'No. We work with five verticals only: law firms, CPA & accounting practices, consulting firms, financial advisors / RIAs, and architecture & engineering firms. Vertical depth is our moat.',
+  },
+];
+
+const includes = [
+  'Full schema.org JSON-LD coverage (Organization, LocalBusiness, Service, FAQPage, Person, Article, industry-specific)',
+  'llms.txt configuration for AI crawlers',
+  'FAQ scaffolding on every service and industry page',
+  'Content rewrites for "answer-first" structure (first 200 words complete the answer)',
+  'Citable statistics with sources, dates, and attribution',
+  'Author byline and credential markup (E-E-A-T)',
+  'Internal entity linking discipline (consistent name patterns)',
+  'Semantic HTML and Core Web Vitals optimization (Lighthouse 95+)',
+  'Sitemap and robots.txt configured for AI crawlers',
+  'Open Graph and Twitter card metadata',
+];
+---
+
+<Base
+  title="GEO — Generative Engine Optimization"
+  description="GEO is the discipline of getting your firm cited and recommended by AI engines. We deliver schema, citable content, and authority infrastructure for professional services firms."
+  schema={serviceSchema({
+    name: 'Generative Engine Optimization',
+    description: 'Make professional services firms citable to ChatGPT, Claude, Perplexity, Google AI Overviews, and Gemini.',
+    price: '1500.00',
+  })}
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Service · GEO</p>
+      <h1 class="font-display text-hero mt-2 mb-8">Generative Engine Optimization</h1>
+      <p class="text-2xl text-ink/85 leading-snug">
+        Make your content citable by ChatGPT, Claude, Perplexity, and Google AI Overviews. The
+        AI-search counterpart to traditional SEO — but with a different ranking mechanism, a
+        different structural discipline, and a different success metric.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-prose">
+      <h2 class="font-display text-display-md mb-8">What's included</h2>
+      <ul class="space-y-3">
+        {includes.map((item) => (
+          <li class="flex gap-3 items-start">
+            <span class="text-brass mt-1.5 flex-shrink-0" aria-hidden="true">▪</span>
+            <span class="text-lg text-ink/85">{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-16 grid md:grid-cols-3 gap-6">
+        <div class="bg-white border border-navy/10 p-6">
+          <p class="eyebrow">Foundation</p>
+          <p class="font-display text-3xl text-navy mt-2">$3,500</p>
+          <p class="text-sm text-ink/70 mt-2">Existing site, optimized.</p>
+        </div>
+        <div class="bg-white border border-navy/10 p-6">
+          <p class="eyebrow">Build</p>
+          <p class="font-display text-3xl text-navy mt-2">$7,500</p>
+          <p class="text-sm text-ink/70 mt-2">New 12–15 page site, GEO-native.</p>
+        </div>
+        <div class="bg-white border border-navy/10 p-6">
+          <p class="eyebrow">Retainer</p>
+          <p class="font-display text-3xl text-navy mt-2">$1.5K–$4.5K/mo</p>
+          <p class="text-sm text-ink/70 mt-2">Ongoing publication, monitoring, iteration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqs} heading="Frequently asked about GEO." />
+
+  <CTA
+    heading="See where your firm stands."
+    primaryLabel="Get a Free GEO Audit"
+  />
+</Base>

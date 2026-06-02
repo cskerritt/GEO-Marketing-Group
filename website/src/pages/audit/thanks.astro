@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE } from '../../lib/site';
+---
+
+<Base
+  title="Thank you — Audit request received"
+  description="Your audit request was received. We'll respond within 1 business day."
+  noIndex={true}
+>
+  <section class="section">
+    <div class="container-prose text-center">
+      <p class="eyebrow">Received</p>
+      <h1 class="font-display text-hero mt-4 mb-8">Thank you. We'll be in touch.</h1>
+      <p class="text-2xl text-ink/85 leading-snug max-w-2xl mx-auto">
+        Your GEO Audit request has been received. We respond to every audit request within
+        1 business day. The audit itself is delivered within 5 business days of kickoff.
+      </p>
+
+      <div class="mt-12 bg-cream-light border-l-2 border-brass p-8 text-left">
+        <h2 class="font-display text-2xl text-navy mb-3">What happens next</h2>
+        <ol class="space-y-3 text-lg text-ink/85 list-decimal list-inside">
+          <li>You'll get an email confirmation within an hour.</li>
+          <li>Within 1 business day, we send a calendar link to schedule a 30-minute kickoff call.</li>
+          <li>The audit is delivered as a written PDF in 5 business days, with a 60-minute walkthrough call.</li>
+        </ol>
+      </div>
+
+      <div class="mt-12 text-base text-slate">
+        <p>
+          Need to reach us sooner? Email{' '}
+          <a href={`mailto:${SITE.email}`} class="text-brass underline underline-offset-4 hover:text-brass-light">
+            {SITE.email}
+          </a>
+        </p>
+      </div>
+
+      <div class="mt-12">
+        <a href="/" class="btn-secondary">Return home</a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,32 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  source?: string;
+  sourceUrl?: string;
+}
+
+const { value, label, source, sourceUrl } = Astro.props;
+---
+
+<figure class="relative pl-6 py-2">
+  <span class="absolute left-0 top-2 bottom-2 w-px bg-gradient-brand" aria-hidden="true"></span>
+  <div class="stat-num text-5xl md:text-6xl leading-none">
+    {value}
+  </div>
+  <figcaption class="mt-3 text-base text-ink/80 max-w-sm">
+    {label}
+    {source && (
+      <span class="block mt-2 text-xs font-mono text-slate">
+        Source:{' '}
+        {sourceUrl ? (
+          <a href={sourceUrl} class="text-electric hover:text-violet underline underline-offset-4 transition-colors" target="_blank" rel="noopener">
+            {source}
+          </a>
+        ) : (
+          source
+        )}
+      </span>
+    )}
+  </figcaption>
+</figure>

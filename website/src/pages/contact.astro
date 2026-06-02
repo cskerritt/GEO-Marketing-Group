@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../lib/site';
+---
+
+<Base
+  title="Contact"
+  description="Reach GEO directly. Free audit form, direct email, and the founder's contact details."
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Contact</p>
+      <h1 class="font-display text-hero mt-2 mb-8">Three ways to reach us.</h1>
+
+      <div class="space-y-12 mt-12">
+        <div class="bg-cream-light border-l-2 border-brass p-8">
+          <p class="eyebrow">For prospective clients</p>
+          <h2 class="font-display text-2xl text-navy mt-2 mb-3">Free GEO Audit</h2>
+          <p class="text-lg text-ink/85 mb-4">
+            The simplest first step. 5 business days, written deliverable, 60-minute
+            walkthrough call. No obligation. Free for the first 25 RI/MA firms.
+          </p>
+          <a href="/audit" class="btn-primary">Request the audit →</a>
+        </div>
+
+        <div class="bg-cream-light border-l-2 border-navy/30 p-8">
+          <p class="eyebrow">For everything else</p>
+          <h2 class="font-display text-2xl text-navy mt-2 mb-3">Direct email</h2>
+          <p class="text-lg text-ink/85 mb-2">
+            Press, partnerships, speaking, podcast invitations, anything not-quite-an-audit:
+          </p>
+          <p class="text-lg">
+            <a href={`mailto:${SITE.email}`} class="text-brass underline underline-offset-4 hover:text-brass-light">
+              {SITE.email}
+            </a>
+          </p>
+          <p class="mt-4 text-base text-slate">We respond within 1 business day.</p>
+        </div>
+
+        <div class="bg-cream-light border-l-2 border-navy/30 p-8">
+          <p class="eyebrow">Founder direct</p>
+          <h2 class="font-display text-2xl text-navy mt-2 mb-3">{SITE.founder.name}</h2>
+          <p class="text-lg">
+            <a href={`mailto:${SITE.founder.email}`} class="text-brass underline underline-offset-4 hover:text-brass-light">
+              {SITE.founder.email}
+            </a>
+          </p>
+          <p class="mt-2 text-lg">
+            <a href={SITE.social.linkedin} target="_blank" rel="noopener" class="text-brass underline underline-offset-4 hover:text-brass-light">
+              LinkedIn →
+            </a>
+          </p>
+        </div>
+
+        <div class="text-center pt-8">
+          <p class="font-mono text-xs uppercase tracking-wider text-slate">Office</p>
+          <p class="mt-2 text-lg text-ink/85">
+            Providence, Rhode Island
+          </p>
+          <p class="text-base text-slate">By appointment</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,71 @@
+---
+import { SITE, INDUSTRIES, SERVICES } from '../lib/site';
+import Logo from './Logo.astro';
+const year = new Date().getFullYear();
+---
+
+<footer class="relative mt-32 bg-navy-deep text-white/85 overflow-hidden">
+  {/* Top gradient accent rule */}
+  <div class="h-px w-full bg-gradient-brand" aria-hidden="true"></div>
+
+  {/* Subtle mesh atmosphere */}
+  <div class="absolute inset-0 bg-gradient-mesh opacity-40 pointer-events-none" aria-hidden="true"></div>
+
+  <div class="container-default relative py-16 md:py-20">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-10">
+      <div class="col-span-2">
+        <a href="/" class="inline-flex items-center" aria-label={`${SITE.name} home`}>
+          <Logo variant="lockup" tone="white" size={42} showTagline />
+        </a>
+        <p class="mt-6 text-sm leading-relaxed text-white/65 max-w-xs">
+          {SITE.tagline}
+        </p>
+        <p class="mt-4 text-sm text-white/55">
+          {SITE.address.streetAddress} · {SITE.address.addressRegion}
+        </p>
+        <p class="mt-1 text-sm text-white/55">
+          <a href={`mailto:${SITE.email}`} class="hover:text-cyan transition-colors">{SITE.email}</a>
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan mb-4">Services</h2>
+        <ul class="space-y-2.5 text-sm">
+          {SERVICES.map((s) => (
+            <li><a href={`/services/${s.slug}`} class="text-white/75 hover:text-white transition-colors">{s.label}</a></li>
+          ))}
+          <li><a href="/audit" class="text-white/75 hover:text-white transition-colors">Free Audit</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan mb-4">Industries</h2>
+        <ul class="space-y-2.5 text-sm">
+          {INDUSTRIES.map((i) => (
+            <li><a href={`/industries/${i.slug}`} class="text-white/75 hover:text-white transition-colors">{i.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan mb-4">Firm</h2>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="/about" class="text-white/75 hover:text-white transition-colors">About</a></li>
+          <li><a href="/process" class="text-white/75 hover:text-white transition-colors">Process</a></li>
+          <li><a href="/insights" class="text-white/75 hover:text-white transition-colors">Insights</a></li>
+          <li><a href="/locations/providence-ri" class="text-white/75 hover:text-white transition-colors">Providence</a></li>
+          <li><a href="/contact" class="text-white/75 hover:text-white transition-colors">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between gap-4 text-xs text-white/50">
+      <p>© {year} {SITE.legalName}. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="/llms.txt" class="hover:text-cyan font-mono transition-colors">/llms.txt</a>
+        <a href="/sitemap-index.xml" class="hover:text-cyan font-mono transition-colors">/sitemap.xml</a>
+        <a href="/robots.txt" class="hover:text-cyan font-mono transition-colors">/robots.txt</a>
+      </div>
+    </div>
+  </div>
+</footer>

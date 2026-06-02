@@ -1,0 +1,118 @@
+/* Fonts (Space Grotesk + JetBrains Mono) are loaded via <link> in Base.astro */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-navy: 11 19 43;          /* #0B132B */
+    --color-navy-deep: 5 11 26;      /* #050B1A */
+    --color-electric: 37 99 235;     /* #2563EB */
+    --color-violet: 124 58 237;      /* #7C3AED */
+    --color-cyan: 34 211 238;        /* #22D3EE */
+    --color-fog: 229 231 235;        /* #E5E7EB */
+    --color-cream: 255 255 255;      /* #FFFFFF (legacy alias) */
+    --color-ink: 11 19 43;
+  }
+
+  html {
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-ink font-sans antialiased;
+    font-feature-settings: "ss01", "ss02";
+    background-image:
+      radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.06) 0px, transparent 45%),
+      radial-gradient(at 100% 0%, rgba(124, 58, 237, 0.05) 0px, transparent 45%);
+  }
+
+  ::selection {
+    background-color: rgb(var(--color-electric));
+    color: #fff;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-navy;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    @apply transition-colors duration-150;
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-electric));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Primary CTA — solid navy with subtle gradient sheen on hover */
+  .btn-primary {
+    @apply relative inline-flex items-center gap-2 px-6 py-3 rounded-full bg-navy text-white font-medium tracking-tight transition-all duration-200 hover:bg-navy-deep hover:shadow-glow-blue;
+  }
+
+  /* Secondary — outlined navy */
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full bg-transparent text-navy border border-navy/25 font-medium tracking-tight transition-all duration-200 hover:bg-navy/[0.04] hover:border-navy;
+  }
+
+  /* Brass (now: electric blue) — used inside dark sections */
+  .btn-brass {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-brand text-white font-medium tracking-tight transition-all duration-200 hover:shadow-glow-violet;
+  }
+
+  .container-default {
+    @apply max-w-6xl mx-auto px-6 sm:px-8;
+  }
+
+  .container-prose {
+    @apply max-w-prose mx-auto px-6 sm:px-8;
+  }
+
+  .section {
+    @apply py-20 md:py-28;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.22em] text-electric;
+  }
+
+  .rule-brass {
+    @apply h-px w-12 bg-gradient-brand;
+  }
+
+  /* Numeric / stat block helper */
+  .stat-num {
+    @apply font-display font-bold tracking-tight bg-gradient-brand bg-clip-text text-transparent;
+  }
+
+  /* Subtle grid backdrop */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(11, 19, 43, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(11, 19, 43, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+}

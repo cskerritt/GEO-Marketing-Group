@@ -1,0 +1,85 @@
+---
+import Base from '../../layouts/Base.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import { service as serviceSchema, breadcrumbs } from '../../lib/schema';
+
+const faqs = [
+  {
+    q: 'Is GEO compliant with SEC marketing rules?',
+    a: 'Yes — when done correctly. GEO is structural content optimization, not solicitation. We do not pay for placement. We do not create fake testimonials. We do not make performance claims. Every piece of content runs through your firm\'s CCO review before publication, and we maintain documented archives of every published asset for SEC marketing-rule compliance. We provide a written compliance memo at engagement start.',
+  },
+  {
+    q: 'How does GEO handle the SEC Marketing Rule (Rule 206(4)-1)?',
+    a: 'The SEC Marketing Rule governs testimonials, endorsements, and performance claims. GEO content is informational and educational — it explains topics like financial planning, tax strategy, retirement income — and is structured so AI engines cite the content. It is not a testimonial, endorsement, or performance claim. We work within your firm\'s existing disclosure framework: every piece of content includes the disclosures your CCO requires, and we adapt the workflow to whatever review process your firm uses.',
+  },
+  {
+    q: 'Will my CCO block this?',
+    a: 'In our experience, no — once the CCO understands what GEO is. The work looks more like SEO and content marketing (which most CCOs are familiar with) than like advertising or solicitation. We routinely attend the first compliance review meeting with our clients to walk the CCO through the workflow.',
+  },
+  {
+    q: 'My firm has SEC, FINRA, and state-level overlapping rules. How do you handle that?',
+    a: 'Carefully. We work within your existing disclosure framework — every piece of content includes the disclosures your CCO requires. We do not invent new disclosure language or override your existing review process. Our role is to optimize for AI citation within whatever rules apply.',
+  },
+  {
+    q: 'What\'s a typical engagement?',
+    a: 'Audit ($1,500) → Foundation ($3,500) → Growth retainer with CCO-friendly content workflow ($2,500/mo). RIAs typically prefer Foundation over Build because their existing sites are usually compliant; we add structure and content rather than replace. Annual value: ~$35,000.',
+  },
+];
+---
+
+<Base
+  title="GEO for Financial Advisors & RIAs"
+  description="Compliance-friendly Generative Engine Optimization for fee-only RIAs and wealth management firms. Get cited by AI without violating SEC marketing rules."
+  schema={[
+    serviceSchema({
+      name: 'GEO for Financial Advisors & RIAs',
+      description: 'Compliance-friendly GEO for SEC-registered investment advisors.',
+      schemaType: 'FinancialService',
+    }),
+    breadcrumbs([
+      { label: 'Home', href: '/' },
+      { label: 'Industries', href: '/industries' },
+      { label: 'Financial Advisors', href: '/industries/financial-advisors' },
+    ]),
+  ]}
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Industry · Financial Advisors</p>
+      <h1 class="font-display text-hero mt-2 mb-8">GEO for Financial Advisors &amp; RIAs</h1>
+      <p class="text-2xl text-ink/85 leading-snug">
+        Compliance-friendly GEO for fee-only RIAs and wealth management firms. Get cited by AI
+        without violating SEC marketing rules.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-prose prose prose-lg max-w-none">
+      <p class="eyebrow not-prose">Why now</p>
+      <h2>The compliance landscape is the moat — and the constraint.</h2>
+      <p>
+        Most national GEO agencies are SaaS-and-tech-trained; they don't speak compliance
+        fluently and produce content that requires extensive CCO rework. Most generic content
+        agencies produce SEC-violating content with one careless adjective.
+      </p>
+      <p>
+        We sit in the middle: GEO discipline applied to RIA content workflows. Every piece of
+        content runs through your firm's CCO review using a documented checklist. Every piece
+        is archived for SEC audit trails. We do not invent new disclosures; we work within
+        yours.
+      </p>
+      <p>
+        For the conservative-buyer end of our ICP, this is the most consequential differentiator.
+      </p>
+    </div>
+  </section>
+
+  <FAQ items={faqs} heading="Frequently asked by RIA founders and CCOs." />
+
+  <CTA
+    heading="A 5-day audit, CCO-friendly by design."
+    primaryLabel="Get a Free GEO Audit"
+  />
+</Base>

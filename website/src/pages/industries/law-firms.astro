@@ -1,0 +1,195 @@
+---
+import Base from '../../layouts/Base.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import CitableStat from '../../components/CitableStat.astro';
+import { service as serviceSchema, breadcrumbs } from '../../lib/schema';
+
+const faqs = [
+  {
+    q: 'What is GEO for law firms?',
+    a: 'GEO (Generative Engine Optimization) for law firms is the practice of optimizing your firm\'s website, content, and authority signals so that AI engines — ChatGPT, Claude, Perplexity, Google AI Overviews, and Gemini — cite and recommend your firm when prospective clients ask AI for legal counsel in your practice areas. It is the AI-search counterpart to traditional law-firm SEO.',
+  },
+  {
+    q: 'Why do law firms need GEO specifically?',
+    a: 'Three reasons. First, 37% of B2B buyers (and a growing share of consumers) now ask AI before Google when researching legal counsel. Second, only 11% of domains are cited by both ChatGPT and Perplexity — winning Google does not automatically win AI search. Third, law firms have particularly strong authority signals (bar admissions, published opinions, court records) that AI engines respect — but only when properly structured with schema. Most law firms have the raw material; few have it formatted for AI lift.',
+  },
+  {
+    q: 'How does GEO interact with Bar advertising rules?',
+    a: 'GEO does not violate Bar advertising rules in any state we have reviewed (RI, MA, CT, NY, NJ, CA). What we do — adding schema, structuring FAQ content, optimizing for citation — is mechanical SEO work, not solicitation. We do not create fake reviews, fake referrals, or pay-for-placement arrangements. We provide a written compliance memo addressing your state\'s specific rules at the start of every engagement and route content through your firm\'s ethics counsel if you have one.',
+  },
+  {
+    q: 'Will AI cite my firm if it has bad reviews or controversial cases?',
+    a: 'AI engines weight authority and corroboration heavily. Negative public information can suppress citation. We address this in two ways: (1) the audit identifies any visibility-suppressing signals; (2) we build the citable content infrastructure that overwhelms minor negative noise. We do not promise to remove negative content — we promise to build enough positive citable substance that AI engines have abundant alternatives.',
+  },
+  {
+    q: 'How long until ChatGPT recommends my firm?',
+    a: 'For Perplexity (which weights recency aggressively), 2–4 weeks for initial movement. For ChatGPT, 6–10 weeks because it favors more established authority signals. Most law firms reach competitive citation parity in their practice area within 90 days of consistent publication.',
+  },
+  {
+    q: 'What if my firm has multiple practice areas?',
+    a: 'We treat each practice area as its own GEO target. The audit covers all of them; the content plan typically prioritizes 2–3 practice areas in the first 90 days based on revenue contribution and competitive opportunity. Each practice area gets its own citable content stack: dedicated FAQ pages, schema markup, and queries-to-target list.',
+  },
+  {
+    q: 'Do you work with solo practitioners?',
+    a: 'Selectively. Most solo practices fall below our ICP threshold ($500K+ annual revenue). If you\'re a solo with a strong niche (e.g., specialized commercial litigation, complex estate planning) and the budget for a $1,500 audit + retainer, we\'ll consider it. If you\'re a general-practice solo, we\'re not your fit.',
+  },
+  {
+    q: 'How do you measure success for a law firm engagement?',
+    a: 'Three metrics, reported monthly: (1) citation count across 5 AI engines for your priority practice-area queries; (2) AI-referred sessions to your site (measurable in GA4); (3) AI-attributed leads — we add "ChatGPT / Perplexity / AI search" as an option on your contact-form "How did you hear about us?" field. We also track defensive metrics: citations of competitor firms in your practice area, so you know who you\'re competing against in the AI answer.',
+  },
+  {
+    q: 'What\'s the typical engagement structure?',
+    a: 'Audit ($1,500, 5 days) → Foundation or Build ($3,500–$7,500, 4–6 weeks) → Growth retainer ($2,500/mo, ongoing). Annual value: ~$39,000. The audit converts into a credit applied to the foundation/build, so the audit is effectively free for clients we are right for.',
+  },
+  {
+    q: 'Can you give a concrete example of GEO work for a law firm?',
+    a: 'A typical first 30 days for a 12-attorney commercial litigation firm in RI: (1) full schema.org markup deployed across all practice-area pages, including LegalService and Person schema for partners; (2) 25 FAQ entries written and schema-marked across the top 5 practice areas; (3) llms.txt deployed at root; (4) 4 articles published targeting high-intent queries ("How does business breach-of-contract litigation work in Rhode Island?", "When should a Providence small business retain commercial counsel?", etc.); (5) baseline AI citation reading taken across ChatGPT, Claude, Perplexity, AI Overviews, Gemini. Month 2 onward: 4 articles/month, FAQ refresh, monitoring, founder LinkedIn cadence.',
+  },
+];
+
+const playbook = [
+  {
+    n: '1',
+    title: 'Practice-area-mapped citable content',
+    desc: 'Every practice area gets a dedicated page with: clear plain-English overview, 8–10 FAQ entries (schema-marked), a citable case-result snapshot (anonymized), and a defined scope. AI engines cite well-structured practice-area pages disproportionately.',
+  },
+  {
+    n: '2',
+    title: 'LegalService and Person schema',
+    desc: 'JSON-LD markup for LegalService (per practice area) and Person (per attorney, with bar admissions, education, areas of practice, awards). Establishes the entity coherence AI engines look for.',
+  },
+  {
+    n: '3',
+    title: 'Bar Journal and trade media bylines',
+    desc: 'Bylined articles in Rhode Island Lawyers Weekly, RI Bar Journal, ABA practice-area sections, and (regionally) Massachusetts Lawyers Weekly. Earned authority that compounds.',
+  },
+  {
+    n: '4',
+    title: 'CLE talks transcribed and republished',
+    desc: 'Every CLE talk you give becomes a video, a transcript, an article, and an FAQ block. One talk → eight citable assets.',
+  },
+  {
+    n: '5',
+    title: 'Reviews architecture (compliance-friendly)',
+    desc: 'Avvo, Justia, Google Business Profile, Martindale-Hubbell — kept current and consistent. AI engines triangulate across these directories. We do not solicit fake reviews; we ensure existing reviews are properly indexed and discovered.',
+  },
+  {
+    n: '6',
+    title: 'Compliance memo on Bar ad rules',
+    desc: 'Every engagement starts with a written memo addressing your state\'s specific advertising rules. Revisited annually or whenever rules change.',
+  },
+  {
+    n: '7',
+    title: 'Local entity reinforcement',
+    desc: 'Consistent firm-name and address (NAP) data across the open web. AI engines downweight entities with inconsistent variant names.',
+  },
+];
+---
+
+<Base
+  title="GEO for Law Firms"
+  description="Generative Engine Optimization for law firms in Rhode Island, Massachusetts, and the Northeast. Get cited by ChatGPT, Claude, Perplexity, and Google AI Overviews — without violating Bar advertising rules."
+  schema={[
+    serviceSchema({
+      name: 'GEO for Law Firms',
+      description: 'Generative Engine Optimization specifically for law firms.',
+      schemaType: 'LegalService',
+    }),
+    breadcrumbs([
+      { label: 'Home', href: '/' },
+      { label: 'Industries', href: '/industries' },
+      { label: 'Law Firms', href: '/industries/law-firms' },
+    ]),
+  ]}
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Industry · Law</p>
+      <h1 class="font-display text-hero mt-2 mb-8">GEO for Law Firms</h1>
+      <p class="text-2xl text-ink/85 leading-snug">
+        When a prospective client asks ChatGPT for a [practice area] attorney in [your city],
+        you should be the answer. Most managing partners haven't checked. Most have peers who
+        already have.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-default">
+      <div class="grid md:grid-cols-3 gap-8">
+        <CitableStat
+          value="3,815"
+          label="licensed attorneys in Rhode Island — one of America's highest densities."
+          source="Ramp Top Law Firms RI Report"
+          sourceUrl="https://ramp.com/blog/top-law-firms-rhode-island"
+        />
+        <CitableStat
+          value="$1.3B"
+          label="annual revenue in the Rhode Island legal market."
+          source="Ramp Top Law Firms RI Report"
+          sourceUrl="https://ramp.com/blog/top-law-firms-rhode-island"
+        />
+        <CitableStat
+          value="70%"
+          label="of RI legal establishments are in Providence County — within driving distance of our office."
+          source="Ramp Top Law Firms RI Report"
+          sourceUrl="https://ramp.com/blog/top-law-firms-rhode-island"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Why now</p>
+      <h2 class="font-display text-display-lg mt-2 mb-6">
+        Law-firm referral economics are shifting under your feet.
+      </h2>
+      <div class="prose prose-lg max-w-none">
+        <p>
+          Law firms have always been referral-led. The good ones still are. But the *path* to
+          a referral is changing. A managing partner who used to recommend a peer firm directly
+          now sends an email saying *"check ChatGPT for the right business litigator in
+          Providence and let me know if you want me to make an intro to one of them."*
+        </p>
+        <p>
+          The firms that show up in that ChatGPT response will compound those referrals.
+          The firms that don't will see their referral pipeline thin gradually — for reasons
+          that look like "the market is just slower" — until they realize what's happened.
+        </p>
+        <p>
+          GEO is how you stay in the answer. We have built a playbook specifically for law
+          firms that respects Bar advertising rules in all 50 states and works with — not
+          against — the way conservative law-firm partners think about marketing.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy text-cream section">
+    <div class="container-default">
+      <p class="eyebrow text-brass-light">The law-firm GEO playbook</p>
+      <h2 class="font-display text-display-lg mt-2 mb-12 text-cream max-w-2xl">
+        Seven plays we run on every law-firm engagement.
+      </h2>
+      <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+        {playbook.map((p) => (
+          <div>
+            <p class="font-mono text-sm text-brass-light">Play {p.n}</p>
+            <h3 class="font-display text-2xl text-cream mt-2">{p.title}</h3>
+            <p class="mt-3 text-cream/80 leading-relaxed">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqs} heading="Frequently asked by law-firm partners." />
+
+  <CTA
+    heading="See where your firm shows up in AI search."
+    body="A productized GEO Audit for your firm — across all your practice areas — delivered in 5 business days. $1,500. Free for the first 25 RI/MA firms."
+    primaryLabel="Get a Free GEO Audit"
+  />
+</Base>

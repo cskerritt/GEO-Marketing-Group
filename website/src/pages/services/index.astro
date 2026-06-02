@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import CTA from '../../components/CTA.astro';
+import { SERVICES } from '../../lib/site';
+---
+
+<Base
+  title="Services"
+  description="Three productized GEO/AEO services for professional services firms: GEO, AEO, and Build. Fixed price, fixed scope, predictable outcomes."
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Services</p>
+      <h1 class="font-display text-hero mt-2 mb-8">Three services. Productized. Predictable.</h1>
+      <p class="text-2xl text-ink/85 leading-snug">
+        We sell three things, and we sell them in fixed scopes at fixed prices. No hourly
+        billing. No mystery scope. You always know what you're paying for.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10">
+    <div class="container-default py-20">
+      <div class="grid md:grid-cols-3 gap-8">
+        {SERVICES.map((service) => (
+          <a href={`/services/${service.slug}`} class="group block bg-white border border-navy/10 p-8 transition-all hover:border-brass hover:-translate-y-1">
+            <p class="eyebrow">{service.label}</p>
+            <h2 class="font-display text-2xl mt-3 text-navy group-hover:text-brass transition-colors">
+              {service.title}
+            </h2>
+            <p class="mt-4 text-ink/80 leading-relaxed">{service.description}</p>
+            <p class="mt-8 font-mono text-sm text-brass">{service.price} →</p>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-16 prose prose-lg max-w-prose mx-auto">
+        <h2>Most clients buy a hybrid.</h2>
+        <p>
+          The most common engagement looks like this: a $1,500 GEO Audit, followed by a $7,500
+          GEO Build (or a $3,500 Foundation if your existing site is good enough), followed by a
+          $2,500/month Growth retainer. Total Year-1 client value is about $39,000.
+        </p>
+        <p>
+          Audits convert to hybrids about 30% of the time. The audit fee credits toward the
+          hybrid if you commit within 30 days, so the audit is effectively free for the client
+          we are right for.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Start with a Calibrate audit."
+    body="$1,500. 5 business days. We tell you exactly where your firm stands."
+    primaryLabel="Get a Free GEO Audit"
+  />
+</Base>

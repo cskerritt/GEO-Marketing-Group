@@ -1,0 +1,86 @@
+---
+import Base from '../../layouts/Base.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import { service as serviceSchema, breadcrumbs } from '../../lib/schema';
+
+const faqs = [
+  {
+    q: 'What is GEO for consulting firms?',
+    a: 'GEO for consulting firms is the practice of converting the firm\'s strongest intellectual property — frameworks, case studies, methodology essays, sector reports — into citable AI-search content. Most boutique consulting firms have first-rate IP locked inside slide decks, internal memos, and unpublished founder essays. GEO publishes that IP in the structural format AI engines reward.',
+  },
+  {
+    q: 'My consulting firm has 14 people. Are we too small?',
+    a: 'No — boutique consulting firms are an excellent GEO fit. Your IP-to-headcount ratio is typically very high; you have more substance to publish than you have time to publish it. The Authority retainer ($4,500/mo) explicitly solves this by ghostwriting in the founder\'s voice.',
+  },
+  {
+    q: 'How does GEO interact with confidentiality and client NDAs?',
+    a: 'We never publish anything that violates client confidentiality. Case studies are anonymized to industry, scale, and timeframe rather than firm-specific details. Frameworks are published in their generic form, not their client-specific application. We work with your existing NDA discipline.',
+  },
+  {
+    q: 'I already write LinkedIn posts. Why do I need an agency?',
+    a: 'Most founder LinkedIn posts get ~200 reads, drive zero AI citations, and don\'t compound. GEO is structurally different work: citable articles with FAQ schema, sector-specific case studies, methodology essays formatted as answer-first content. We write what you don\'t have time to write, in your voice, in the structural format AI engines reward.',
+  },
+  {
+    q: 'What\'s the typical engagement?',
+    a: 'Audit ($1,500) → Foundation ($3,500) → Authority retainer ($4,500/mo). The Authority tier (founder ghostwriting) is the unlock for consulting firms — it converts your founder\'s thinking into citable content at the rate AI compounding requires. Annual value: ~$59,000.',
+  },
+];
+---
+
+<Base
+  title="GEO for Consulting Firms"
+  description="Generative Engine Optimization for management, strategy, and IT consulting firms. Turn your frameworks, case studies, and methodology essays into citable AI-search content."
+  schema={[
+    serviceSchema({
+      name: 'GEO for Consulting Firms',
+      description: 'Generative Engine Optimization for boutique consulting practices.',
+    }),
+    breadcrumbs([
+      { label: 'Home', href: '/' },
+      { label: 'Industries', href: '/industries' },
+      { label: 'Consulting', href: '/industries/consulting' },
+    ]),
+  ]}
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Industry · Consulting</p>
+      <h1 class="font-display text-hero mt-2 mb-8">GEO for Consulting Firms</h1>
+      <p class="text-2xl text-ink/85 leading-snug">
+        Your IP is hiding inside the firm. AI search is recommending whoever publishes theirs.
+        We turn your best frameworks, case studies, and methodology essays into the citable
+        content the next decade of new clients will find first.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-prose prose prose-lg max-w-none">
+      <p class="eyebrow not-prose">Why now</p>
+      <h2>Consulting buyers research differently now.</h2>
+      <p>
+        A senior operations executive considering a $200K engagement used to ask their network
+        for recommendations and Google a few candidates. Now, increasingly, they ask ChatGPT
+        for "the best operations consultancies for mid-market manufacturers in the Northeast"
+        — and the firms in that ChatGPT response get the meeting.
+      </p>
+      <p>
+        Boutique consulting firms have an unusually strong GEO opportunity because they
+        produce *thinking*, not *deliverables* — and AI engines preferentially cite original
+        thinking when it's properly structured. The constraint is not having the IP; it's
+        getting the IP out of slide decks and into the citable format AI engines reward.
+      </p>
+      <p>
+        That's the work we do. Your founder reviews the draft. We handle the discipline.
+      </p>
+    </div>
+  </section>
+
+  <FAQ items={faqs} heading="Frequently asked by consulting-firm founders." />
+
+  <CTA
+    heading="See where AI engines cite your firm — and where they don't."
+    primaryLabel="Get a Free GEO Audit"
+  />
+</Base>

@@ -1,0 +1,158 @@
+---
+import Base from '../layouts/Base.astro';
+import { INDUSTRIES } from '../lib/site';
+---
+
+<Base
+  title="Free GEO Audit"
+  description="Free GEO Audit for the first 25 professional services firms in RI and MA. 5-day delivery, no obligation. Citation analysis across ChatGPT, Claude, Perplexity, Google AI Overviews, and Gemini."
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Free for the first 25 firms</p>
+      <h1 class="font-display text-hero mt-2 mb-8">Free GEO Audit.</h1>
+      <p class="text-2xl text-ink/85 leading-snug mb-12">
+        Five business days. We measure your firm's AI visibility across ChatGPT, Claude,
+        Perplexity, Google AI Overviews, and Gemini, deliver a written report and a 30/60/90
+        roadmap, and walk you through the findings on a 60-minute call.
+      </p>
+
+      <div class="prose prose-lg max-w-none mb-16">
+        <h2>What you get</h2>
+        <ul>
+          <li>Citation baseline reading across 5 AI engines</li>
+          <li>Schema and structured-data audit (what's missing, what's broken)</li>
+          <li>Content citability scoring against the Aggarwal et al. methodology</li>
+          <li>Competitive citation map (which peer firms are getting cited)</li>
+          <li>30/60/90-day prioritized roadmap with effort and impact estimates</li>
+          <li>60-minute walkthrough call with the founder</li>
+          <li>ROI projection for visits, citations, and AI-attributed leads</li>
+        </ul>
+
+        <h2>Who qualifies</h2>
+        <ul>
+          <li>Professional services firms in our 5 verticals (law, CPA, consulting, financial advisors, A&amp;E)</li>
+          <li>$1M–$25M annual revenue</li>
+          <li>Located in Rhode Island or Massachusetts (priority); other Northeast states accepted</li>
+          <li>Decision-maker available for the 60-minute walkthrough</li>
+        </ul>
+
+        <p class="text-base text-slate italic">
+          Audit is normally $1,500 — free for the first 25 RI/MA firms. After 25, we close
+          the founding tier.
+        </p>
+      </div>
+    </div>
+
+    <div class="container-prose">
+      <form
+        method="POST"
+        action="/api/audit"
+        class="bg-cream-light border border-navy/10 p-8 md:p-12 space-y-6"
+      >
+        <h2 class="font-display text-display-md">Request your audit.</h2>
+
+        <input type="text" name="hp_field" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <label class="block">
+            <span class="font-mono text-xs uppercase tracking-wider text-navy">Your name</span>
+            <input
+              type="text"
+              name="name"
+              required
+              autocomplete="name"
+              class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
+            />
+          </label>
+          <label class="block">
+            <span class="font-mono text-xs uppercase tracking-wider text-navy">Email</span>
+            <input
+              type="email"
+              name="email"
+              required
+              autocomplete="email"
+              class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
+            />
+          </label>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <label class="block">
+            <span class="font-mono text-xs uppercase tracking-wider text-navy">Firm name</span>
+            <input
+              type="text"
+              name="firm"
+              required
+              autocomplete="organization"
+              class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
+            />
+          </label>
+          <label class="block">
+            <span class="font-mono text-xs uppercase tracking-wider text-navy">Firm website</span>
+            <input
+              type="url"
+              name="website"
+              required
+              placeholder="https://"
+              class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
+            />
+          </label>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <label class="block">
+            <span class="font-mono text-xs uppercase tracking-wider text-navy">Industry</span>
+            <select
+              name="industry"
+              required
+              class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
+            >
+              <option value="">Select…</option>
+              {INDUSTRIES.map((i) => (
+                <option value={i.slug}>{i.label}</option>
+              ))}
+              <option value="other">Other (we'll review)</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="font-mono text-xs uppercase tracking-wider text-navy">Firm size</span>
+            <select
+              name="size"
+              required
+              class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
+            >
+              <option value="">Select…</option>
+              <option>1–4 people</option>
+              <option>5–15 people</option>
+              <option>16–40 people</option>
+              <option>41–75 people</option>
+              <option>76+ people</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="block">
+          <span class="font-mono text-xs uppercase tracking-wider text-navy">
+            What's making you ask now?
+          </span>
+          <textarea
+            name="context"
+            rows="4"
+            placeholder="A peer firm getting recommended? Lost referral traffic? Heard about GEO at an event?"
+            class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
+          ></textarea>
+        </label>
+
+        <button type="submit" class="btn-primary w-full justify-center">
+          Request the Audit →
+        </button>
+
+        <p class="text-xs text-slate text-center">
+          By submitting, you agree to receive a one-time follow-up email from GEO. We do not
+          add you to a marketing list. We respond within 1 business day.
+        </p>
+      </form>
+    </div>
+  </section>
+</Base>

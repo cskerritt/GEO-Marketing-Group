@@ -1,0 +1,39 @@
+# https://geostudio.io
+# We welcome AI crawlers. The point of this entire site is to be cited by them.
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Major AI engines — explicit allows for clarity
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+Sitemap: https://geostudio.io/sitemap-index.xml

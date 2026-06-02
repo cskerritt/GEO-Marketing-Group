@@ -1,0 +1,52 @@
+---
+interface Props {
+  heading: string;
+  body?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  variant?: 'navy' | 'cream';
+}
+
+const {
+  heading,
+  body,
+  primaryLabel = 'Get a Free GEO Audit',
+  primaryHref = '/audit',
+  secondaryLabel,
+  secondaryHref,
+  variant = 'navy',
+} = Astro.props;
+
+const isNavy = variant === 'navy';
+---
+
+<section class={`section relative overflow-hidden ${isNavy ? 'bg-navy-deep text-white' : 'bg-cream-light'}`}>
+  {isNavy && (
+    <>
+      <div class="absolute inset-0 bg-gradient-mesh opacity-50 pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute inset-x-0 top-0 h-px bg-gradient-brand" aria-hidden="true"></div>
+    </>
+  )}
+  <div class="container-default relative text-center">
+    <h2 class={`font-display text-display-lg max-w-3xl mx-auto ${isNavy ? 'text-white' : 'text-navy'}`}>
+      {heading}
+    </h2>
+    {body && (
+      <p class={`mt-5 text-lg max-w-2xl mx-auto leading-relaxed ${isNavy ? 'text-white/75' : 'text-ink/75'}`}>
+        {body}
+      </p>
+    )}
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+      <a href={primaryHref} class={isNavy ? 'btn-brass' : 'btn-primary'}>
+        {primaryLabel} →
+      </a>
+      {secondaryLabel && secondaryHref && (
+        <a href={secondaryHref} class={isNavy ? 'btn-secondary !border-white/25 !text-white hover:!bg-white/[0.06] hover:!border-white/50' : 'btn-secondary'}>
+          {secondaryLabel}
+        </a>
+      )}
+    </div>
+  </div>
+</section>

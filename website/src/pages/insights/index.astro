@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import CTA from '../../components/CTA.astro';
+
+const posts = (await getCollection('insights', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+function formatDate(d: Date): string {
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<Base
+  title="Insights"
+  description="Articles on Generative Engine Optimization, Answer Engine Optimization, and AI search for professional services firms. Citable analysis from GEO in Providence, RI."
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Insights</p>
+      <h1 class="font-display text-hero mt-2 mb-8">GEO &amp; AEO writing for professional services.</h1>
+      <p class="text-2xl text-ink/85 leading-snug">
+        We publish what we know about getting professional services firms cited and recommended
+        by AI. Citation-rich, dated, sourced. The kind of content we recommend our clients
+        publish.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-prose">
+      {posts.length === 0 && (
+        <p class="text-lg text-slate">No posts yet. The first launch wave is in production.</p>
+      )}
+      <ul class="space-y-12">
+        {posts.map((post) => (
+          <li>
+            <article class="group">
+              <p class="font-mono text-xs uppercase tracking-wider text-brass">
+                {formatDate(post.data.pubDate)}
+                {post.data.industry !== 'general' && ` · ${post.data.industry.toUpperCase()}`}
+              </p>
+              <h2 class="font-display text-3xl text-navy mt-2 group-hover:text-brass transition-colors">
+                <a href={`/insights/${post.slug}`}>{post.data.title}</a>
+              </h2>
+              <p class="mt-3 text-lg text-ink/80 leading-relaxed">{post.data.description}</p>
+              <p class="mt-4">
+                <a href={`/insights/${post.slug}`} class="text-brass hover:text-brass-light underline underline-offset-4 font-medium">
+                  Read the article →
+                </a>
+              </p>
+            </article>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <CTA
+    heading="Want this kind of content for your firm?"
+    body="Citable, dated, sourced articles in your voice — published in the structural format AI engines reward."
+    primaryLabel="Get a Free GEO Audit"
+  />
+</Base>

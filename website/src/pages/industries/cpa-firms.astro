@@ -1,0 +1,118 @@
+---
+import Base from '../../layouts/Base.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import { service as serviceSchema, breadcrumbs } from '../../lib/schema';
+
+const faqs = [
+  {
+    q: 'What is GEO for CPA firms?',
+    a: 'GEO for CPA firms is the practice of optimizing your firm\'s tax-update articles, white papers, advisory content, and structured data so AI engines cite your content when buyers ask accounting and tax questions. It works alongside traditional CPA-firm SEO; it is not a replacement.',
+  },
+  {
+    q: 'Why do CPA firms need GEO?',
+    a: 'Two converging trends. First, mid-market companies and high-net-worth individuals increasingly ask ChatGPT and Perplexity tax and advisory questions before they call a CPA — research that used to land at your firm\'s website now happens inside an AI conversation. Second, CPA firms produce vast amounts of technical content (tax updates, GAAP commentary, audit insights) that should be highly citable but typically isn\'t — because it lacks the schema markup, FAQ structure, and answer-first formatting that AI engines reward.',
+  },
+  {
+    q: 'How does GEO interact with AICPA marketing rules?',
+    a: 'GEO is mechanical content optimization, not marketing solicitation. It does not violate AICPA Code of Conduct or state-specific CPA marketing rules. We do not create false claims, fake reviews, or misleading client testimonials. We provide a written compliance memo at engagement start.',
+  },
+  {
+    q: 'Will my partners block this?',
+    a: 'Sometimes. We provide a partner-friendly one-page summary specifically designed for CPA firm leadership: short, evidence-rich, ROI-framed. Most marketing directors find their partners more skeptical of "social media stuff" than of structural content optimization, which sounds appropriately unsexy.',
+  },
+  {
+    q: 'How does this fit with HubSpot or our existing CRM?',
+    a: 'Cleanly. GEO operates upstream of your CRM — we make AI engines send qualified buyers to your site; your existing nurture and pipeline tools handle them from there. We do not require you to switch CRM, email, or marketing automation tools.',
+  },
+  {
+    q: 'What\'s the typical engagement structure?',
+    a: 'Audit ($1,500) → Build + Authority ($12,500) → Growth or Authority retainer ($2,500–$4,500/mo). CPA firms tend toward the higher tier because the technical content depth justifies the founder ghostwriting in the Authority tier. Annual value: $50,000–$70,000.',
+  },
+];
+
+const playbook = [
+  { title: 'Tax-update content restructured for citability', desc: 'Your existing tax-update articles get answer-first restructuring, FAQ scaffolding, and AccountingService schema. Existing technical depth becomes citation gold once formatted properly.' },
+  { title: 'Service-specific schema markup', desc: 'AccountingService schema per service line (audit, tax, advisory, outsourced accounting). Person schema per partner with credentials, specialties, awards.' },
+  { title: 'Industry-vertical content (you serve their vertical, you should publish for it)', desc: 'If you serve manufacturers, write for manufacturers. If you serve nonprofits, write for nonprofits. Vertical-specific content compounds disproportionately.' },
+  { title: 'Bylined content in CPA Today, Accounting Today, JofA', desc: 'Trade-media bylines build the authority signals AI engines triangulate against.' },
+  { title: 'RISCPA partnership and speaking', desc: 'For Rhode Island firms specifically — leveraged RISCPA member benefits, speaking slots, and newsletter inclusions.' },
+  { title: 'Compliance-friendly review workflow', desc: 'Every piece of content runs through a documented review checklist before publication. Archived for AICPA and state board audit trails.' },
+];
+---
+
+<Base
+  title="GEO for CPA & Accounting Firms"
+  description="Generative Engine Optimization for CPA and accounting firms. Convert your tax-update articles, white papers, and advisory content into citable AI-search content."
+  schema={[
+    serviceSchema({
+      name: 'GEO for CPA & Accounting Firms',
+      description: 'Generative Engine Optimization specifically for CPAs.',
+      schemaType: 'AccountingService',
+    }),
+    breadcrumbs([
+      { label: 'Home', href: '/' },
+      { label: 'Industries', href: '/industries' },
+      { label: 'CPA & Accounting', href: '/industries/cpa-firms' },
+    ]),
+  ]}
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Industry · CPA &amp; Accounting</p>
+      <h1 class="font-display text-hero mt-2 mb-8">GEO for CPA &amp; Accounting Firms</h1>
+      <p class="text-2xl text-ink/85 leading-snug">
+        Your white papers don't get cited. Your competitors' do. The difference isn't the
+        content — it's the structure, the schema, and the answer-first formatting that AI
+        engines reward.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-prose prose prose-lg max-w-none">
+      <p class="eyebrow not-prose">Why now</p>
+      <h2>Mid-market buyers are asking ChatGPT before they call a CPA.</h2>
+      <p>
+        The path from need to engagement at a mid-market CPA firm used to be: trigger event
+        (acquisition, audit, tax notice) → web search → website visit → contact form. Now,
+        increasingly, it's: trigger event → ChatGPT or Perplexity → AI-generated shortlist →
+        contact form at one of the named firms.
+      </p>
+      <p>
+        If your firm is not in the AI-generated shortlist, you are losing the very buyers your
+        existing content was written to attract. GEO is how you re-enter that shortlist.
+      </p>
+      <p>
+        For RISCPA member firms, we offer a free GEO Audit as a member benefit. The audit
+        gives you a baseline reading across five AI engines and a 30/60/90-day roadmap.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-navy text-cream section">
+    <div class="container-default">
+      <p class="eyebrow text-brass-light">The CPA-firm GEO playbook</p>
+      <h2 class="font-display text-display-lg mt-2 mb-12 text-cream max-w-2xl">
+        Six plays we run on every CPA-firm engagement.
+      </h2>
+      <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+        {playbook.map((p, i) => (
+          <div>
+            <p class="font-mono text-sm text-brass-light">Play {i + 1}</p>
+            <h3 class="font-display text-2xl text-cream mt-2">{p.title}</h3>
+            <p class="mt-3 text-cream/80 leading-relaxed">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqs} heading="Frequently asked by CPA-firm marketing leaders." />
+
+  <CTA
+    heading="See your firm's AI visibility in 5 days."
+    body="Free GEO Audit for the first 25 RISCPA member firms. No commitment."
+    primaryLabel="Get a Free GEO Audit"
+  />
+</Base>

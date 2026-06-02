@@ -1,0 +1,48 @@
+---
+import { NAV, SITE } from '../lib/site';
+import Logo from './Logo.astro';
+const path = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-40 border-b border-navy/8 bg-white/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/65">
+  <div class="container-default flex items-center justify-between h-16 md:h-20">
+    <a href="/" class="flex items-center" aria-label={`${SITE.name} home`}>
+      <Logo variant="lockup" tone="navy" size={32} />
+    </a>
+
+    <nav aria-label="Primary" class="hidden md:flex items-center gap-8">
+      {NAV.map((item) => {
+        const active = path === item.href || (item.href !== '/' && path.startsWith(item.href));
+        return (
+          <a
+            href={item.href}
+            class={`relative font-sans text-sm font-medium tracking-tight transition-colors ${active ? 'text-navy' : 'text-navy/65 hover:text-navy'}`}
+            aria-current={path === item.href ? 'page' : undefined}
+          >
+            {item.label}
+            {active && (
+              <span class="absolute -bottom-[22px] left-0 right-0 h-px bg-gradient-brand" aria-hidden="true"></span>
+            )}
+          </a>
+        );
+      })}
+      <a href="/audit" class="btn-primary text-sm">Free GEO Audit →</a>
+    </nav>
+
+    <details class="md:hidden relative">
+      <summary class="list-none cursor-pointer p-2 -mr-2" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-navy">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </summary>
+      <nav class="absolute right-0 top-full mt-2 w-64 bg-white border border-navy/10 rounded-2xl shadow-xl shadow-navy/5 p-6 space-y-4" aria-label="Mobile">
+        {NAV.map((item) => (
+          <a href={item.href} class="block text-sm font-medium text-navy hover:text-electric">{item.label}</a>
+        ))}
+        <a href="/audit" class="btn-primary text-sm w-full justify-center">Free GEO Audit →</a>
+      </nav>
+    </details>
+  </div>
+</header>

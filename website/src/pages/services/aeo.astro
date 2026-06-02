@@ -1,0 +1,95 @@
+---
+import Base from '../../layouts/Base.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import { service as serviceSchema } from '../../lib/schema';
+
+const faqs = [
+  {
+    q: 'What is Answer Engine Optimization (AEO)?',
+    a: 'AEO is the discipline of structuring your content as direct answers to specific questions, so AI answer engines can lift those answers verbatim into their generated responses. It overlaps with GEO but emphasizes the formatting layer: question-shaped headers, FAQ schema, answer-first paragraphs, citable bullet lists.',
+  },
+  {
+    q: 'How is AEO different from GEO?',
+    a: 'GEO is the umbrella discipline. AEO is the formatting and structural layer within it. Most clients buy them together — we use "AEO" specifically when emphasizing the answer-engineering work (FAQ scaffolding, schema markup, structural rewrites) and "GEO" when emphasizing the broader content/authority strategy.',
+  },
+  {
+    q: 'What deliverables come with AEO?',
+    a: 'FAQ scaffolding (10–25 citable Q&A entries per page, schema-marked), structural content rewrites (question-form headers, answer-first paragraphs), schema.org FAQPage markup validated against Google\'s Rich Results Test, citable statistics formatted for lift, and an internal "answer library" your team can extend.',
+  },
+  {
+    q: 'Why does FAQ schema matter so much?',
+    a: 'AI engines preferentially cite content with FAQ schema for question-shaped queries. Sites with proper structured data receive 2–3× higher weight in the citation reranker, and FAQ schema specifically wins disproportionately in many B2B verticals. Properly marking up your FAQ pages is one of the highest-ROI tactics in the discipline.',
+  },
+  {
+    q: 'Do my buyers actually use voice/AI for professional services questions?',
+    a: 'Yes — and increasingly so. 73% of B2B buyers now use AI tools in research, with 37% consulting AI before Google. Professional services queries are increasingly question-shaped ("who\'s a good X attorney in Y?"), which is exactly the format AEO optimizes for.',
+  },
+  {
+    q: 'Can AEO work without a full content rewrite?',
+    a: 'Partially. We can add FAQ scaffolding and schema to existing pages and see meaningful citation lift. But the highest-impact work usually involves restructuring at least your top 5–10 pages so the first 200 words complete the answer to the primary query. The Aggarwal et al. paper found "front-loaded specificity" produced 20–40% relative lift.',
+  },
+];
+
+const includes = [
+  'FAQPage schema on every service and industry page',
+  '10–25 citable Q&A entries per page, structured for AI lift',
+  'Question-shaped header rewrites (highest-ROI single change)',
+  'Answer-first paragraph restructuring for top pages',
+  'Citable statistics with attribution, dates, and source links',
+  'Validation against Google Rich Results Test',
+  'Internal "answer library" your team can maintain and extend',
+];
+---
+
+<Base
+  title="AEO — Answer Engine Optimization"
+  description="AEO structures your content as direct, citable answers. FAQ scaffolding, schema markup, and structural rewrites that get your firm quoted by AI engines."
+  schema={serviceSchema({
+    name: 'Answer Engine Optimization',
+    description: 'Structure professional services content as citable answers for AI engines.',
+    price: '1500.00',
+  })}
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Service · AEO</p>
+      <h1 class="font-display text-hero mt-2 mb-8">Answer Engine Optimization</h1>
+      <p class="text-2xl text-ink/85 leading-snug">
+        FAQ scaffolding, schema markup, and structured answers that AI engines lift directly.
+        The formatting discipline that turns your content into the kind of answer ChatGPT
+        wants to quote.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-prose">
+      <h2 class="font-display text-display-md mb-8">What's included</h2>
+      <ul class="space-y-3">
+        {includes.map((item) => (
+          <li class="flex gap-3 items-start">
+            <span class="text-brass mt-1.5 flex-shrink-0" aria-hidden="true">▪</span>
+            <span class="text-lg text-ink/85">{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-12 bg-white border-l-2 border-brass p-6">
+        <p class="eyebrow">Most often bundled</p>
+        <p class="text-lg text-ink/85 mt-2">
+          AEO is rarely sold standalone. It's almost always part of GEO Foundation ($3,500),
+          GEO Build ($7,500), or a Growth retainer ($2,500/mo). Ask for AEO specifically when
+          you want emphasis on the FAQ/structural layer.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqs} heading="Frequently asked about AEO." />
+
+  <CTA
+    heading="See your AEO opportunity in 5 days."
+    primaryLabel="Get a Free GEO Audit"
+  />
+</Base>

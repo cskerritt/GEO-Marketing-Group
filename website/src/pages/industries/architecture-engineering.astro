@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import { service as serviceSchema, breadcrumbs } from '../../lib/schema';
+
+const faqs = [
+  {
+    q: 'What is GEO for A&E firms?',
+    a: 'GEO for architecture and engineering firms is the practice of converting your project case studies, technical methodology, and discipline-specific expertise into citable AI-search content. Most A&E firms have impressive project portfolios but limited published thinking about their methodology — and AI engines cite firms whose thinking is published in citable form.',
+  },
+  {
+    q: 'How does GEO help A&E firms win RFPs?',
+    a: 'Two ways. First: when an owner or developer asks ChatGPT for "the best A&E firms for [project type] in [region]," your firm needs to be in the answer. That AI-generated shortlist increasingly informs the RFP invitation list. Second: once invited, your firm\'s online substance is part of how the selection committee evaluates you. Citable thought leadership beats marketing brochures in selection committee reviews.',
+  },
+  {
+    q: 'My firm\'s project work is confidential or under NDA.',
+    a: 'We work within your NDAs. Case studies are anonymized to project type, scale, and discipline rather than client-specific details. We frequently publish "how we approach [project type]" content that demonstrates methodology without revealing specific projects.',
+  },
+  {
+    q: 'How does GEO interact with A&E professional licensure rules?',
+    a: 'GEO does not require firms to make claims they cannot substantiate. Licensure rules require accuracy in claims about credentials and experience — GEO content is built on those rules, not against them. We never invent expertise; we structure existing expertise so AI engines cite it.',
+  },
+  {
+    q: 'What\'s a typical engagement for an A&E firm?',
+    a: 'Audit ($1,500) → Build or Foundation ($3,500–$7,500) → Growth retainer ($2,500/mo). A&E firms typically benefit from a Build because their existing sites tend to be portfolio-heavy and content-light; we restructure around discipline-specific content. Annual value: ~$39,000.',
+  },
+];
+---
+
+<Base
+  title="GEO for Architecture & Engineering Firms"
+  description="Generative Engine Optimization for architecture and engineering firms. Win RFPs you weren't invited to. Project case studies become citable content."
+  schema={[
+    serviceSchema({
+      name: 'GEO for Architecture & Engineering Firms',
+      description: 'Generative Engine Optimization for A&E firms.',
+    }),
+    breadcrumbs([
+      { label: 'Home', href: '/' },
+      { label: 'Industries', href: '/industries' },
+      { label: 'Architecture & Engineering', href: '/industries/architecture-engineering' },
+    ]),
+  ]}
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Industry · Architecture &amp; Engineering</p>
+      <h1 class="font-display text-hero mt-2 mb-8">GEO for A&amp;E Firms</h1>
+      <p class="text-2xl text-ink/85 leading-snug">
+        Win the RFPs you weren't invited to. Project case studies become citable content.
+        Discipline-specific expertise becomes the answer when owners ask AI for the best
+        firms in your region.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-prose prose prose-lg max-w-none">
+      <p class="eyebrow not-prose">Why now</p>
+      <h2>RFP shortlists are increasingly AI-mediated.</h2>
+      <p>
+        Owners, developers, and public-sector procurement officers are using AI to compile
+        initial shortlists of A&amp;E firms — particularly for project types they don't
+        regularly procure. Whether your firm appears in those shortlists depends almost
+        entirely on what you've published, in what format, with what schema and authority
+        signals.
+      </p>
+      <p>
+        Most A&amp;E firms have spent decades producing extraordinary project work and
+        publishing relatively little about it. GEO converts your existing project portfolio
+        into the kind of citable substance AI engines reward.
+      </p>
+    </div>
+  </section>
+
+  <FAQ items={faqs} heading="Frequently asked by A&E firm principals." />
+
+  <CTA
+    heading="Show up where the next RFP is decided."
+    primaryLabel="Get a Free GEO Audit"
+  />
+</Base>

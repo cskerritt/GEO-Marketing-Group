@@ -1,0 +1,107 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CTA from '../../components/CTA.astro';
+import { article as articleSchema, breadcrumbs } from '../../lib/schema';
+import { SITE } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('insights');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'insights'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+function formatDate(d: Date): string {
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+const isoDate = (d: Date): string => d.toISOString();
+---
+
+<Base
+  title={post.data.title}
+  description={post.data.description}
+  schema={[
+    articleSchema({
+      title: post.data.title,
+      description: post.data.description,
+      slug: post.slug,
+      datePublished: isoDate(post.data.pubDate),
+      dateModified: post.data.updatedDate ? isoDate(post.data.updatedDate) : isoDate(post.data.pubDate),
+      authorName: post.data.author,
+    }),
+    breadcrumbs([
+      { label: 'Home', href: '/' },
+      { label: 'Insights', href: '/insights' },
+      { label: post.data.title, href: `/insights/${post.slug}` },
+    ]),
+  ]}
+>
+  <article class="section">
+    <div class="container-prose">
+      <p class="font-mono text-xs uppercase tracking-wider text-brass mb-4">
+        <a href="/insights" class="hover:text-brass-light">← All insights</a>
+      </p>
+
+      <header class="mb-12">
+        <h1 class="font-display text-display-lg md:text-hero text-navy mb-6">
+          {post.data.title}
+        </h1>
+        <p class="text-2xl text-ink/85 leading-snug max-w-3xl">
+          {post.data.description}
+        </p>
+        <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 items-center text-sm text-slate font-mono">
+          <span>By <a href="/about" class="text-brass hover:text-brass-light underline">{post.data.author}</a></span>
+          <span aria-hidden="true">·</span>
+          <time datetime={isoDate(post.data.pubDate)}>{formatDate(post.data.pubDate)}</time>
+          {post.data.updatedDate && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>Updated {formatDate(post.data.updatedDate)}</span>
+            </>
+          )}
+        </div>
+      </header>
+
+      <div class="prose prose-lg max-w-none">
+        <Content />
+      </div>
+
+      {post.data.citations.length > 0 && (
+        <section class="mt-16 pt-8 border-t border-navy/15">
+          <h2 class="font-display text-2xl text-navy mb-6">Sources</h2>
+          <ol class="space-y-2 text-base">
+            {post.data.citations.map((c, i) => (
+              <li>
+                <span class="font-mono text-brass">[{i + 1}]</span>{' '}
+                <a href={c.url} target="_blank" rel="noopener" class="text-brass hover:text-brass-light underline underline-offset-4">
+                  {c.label}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      <section class="mt-16 pt-8 border-t border-navy/15 bg-cream-light p-8 -mx-6 sm:-mx-8 md:-mx-0 md:rounded-none">
+        <p class="eyebrow">About the author</p>
+        <h2 class="font-display text-2xl text-navy mt-2 mb-3">{post.data.author}</h2>
+        <p class="text-ink/85 leading-relaxed">{SITE.founder.bioShort}</p>
+      </section>
+    </div>
+  </article>
+
+  <CTA
+    heading="Want a free GEO audit on your firm?"
+    primaryLabel="Get a Free GEO Audit"
+  />
+</Base>
