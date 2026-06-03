@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import CTA from '../components/CTA.astro';
+
+const steps = [
+  { k: '01', name: 'Audit & baseline', desc: 'We measure your current visibility across AI answer engines and traditional search, map competitors, and find the gaps worth closing first.' },
+  { k: '02', name: 'Strategy & scope', desc: 'A prioritized plan across GEO, SEO, web, and paid — sequenced by impact and effort, with clear deliverables and no mystery scope.' },
+  { k: '03', name: 'Build & publish', desc: 'We execute: structured citation-ready content, technical and on-page SEO, conversion-built pages, and targeted campaigns.' },
+  { k: '04', name: 'Measure & iterate', desc: 'Monthly reporting on citations, rankings, traffic, and qualified leads — then we double down on what moves the needle.' },
+];
+
+const principles = [
+  { name: 'One team, one outcome', desc: 'Every channel is run by the same team and reinforces the others. No silos, no finger-pointing.' },
+  { name: 'Citation-ready by default', desc: 'The content that ranks in Google is the content AI engines quote. We build for both from the start.' },
+  { name: 'Measured on leads, not clicks', desc: 'We report on qualified pipeline and cost per lead — the numbers that actually matter to a firm.' },
+  { name: 'Honest about fit', desc: 'If a channel is not right for your goals or margins, we say so. We would rather keep a client than sell a service.' },
+];
+---
+
+<Base
+  title="Work & Results"
+  description="How GEO Marketing Group works: a proven audit-to-iterate methodology across GEO, SEO, web, and paid for professional-services firms."
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Work &amp; Results</p>
+      <h1 class="font-display text-hero mt-2 mb-8">How we get firms found.</h1>
+      <p class="text-2xl text-ink/85 leading-snug">
+        We're a new firm with a clear method — built from years of getting professional-services
+        clients cited and recommended. Here's exactly how we work, and how we'll prove it on your numbers.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-default">
+      <p class="eyebrow">The engagement</p>
+      <h2 class="font-display text-display-md mt-3 mb-12">A four-phase method.</h2>
+      <ol class="grid md:grid-cols-2 gap-8">
+        {steps.map((s) => (
+          <li class="relative rounded-2xl bg-white border border-navy/10 p-8">
+            <span class="stat-num text-3xl">{s.k}</span>
+            <h3 class="font-display text-xl text-navy mt-3">{s.name}</h3>
+            <p class="mt-2 text-ink/75 leading-relaxed">{s.desc}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-default">
+      <p class="eyebrow">How we work</p>
+      <h2 class="font-display text-display-md mt-3 mb-12 max-w-2xl">Principles we don't bend on.</h2>
+      <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+        {principles.map((p) => (
+          <div class="flex gap-5">
+            <span class="flex-shrink-0 rule-brass mt-3"></span>
+            <div>
+              <h3 class="font-display text-xl text-navy">{p.name}</h3>
+              <p class="mt-2 text-ink/75 leading-relaxed">{p.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="mt-14 text-base text-slate italic max-w-prose">
+        We're transparent about being early: rather than show borrowed logos or invented numbers,
+        we show our method — and we'll set measurable baselines with you from day one, so the
+        results are yours and real.
+      </p>
+    </div>
+  </section>
+
+  <CTA
+    heading="See the method on your own numbers."
+    body="A free GEO Audit is the first phase — no obligation, real findings."
+    primaryLabel="Get a Free GEO Audit"
+    secondaryLabel="Explore services"
+    secondaryHref="/services"
+  />
+</Base>
