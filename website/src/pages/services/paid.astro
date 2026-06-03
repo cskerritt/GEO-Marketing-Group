@@ -1,0 +1,74 @@
+---
+import Base from '../../layouts/Base.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import { service as serviceSchema } from '../../lib/schema';
+
+const faqs = [
+  {
+    q: 'Which platforms do you run ads on?',
+    a: 'Primarily Google Search (high-intent buyers actively looking for your service) and LinkedIn (precise firmographic and title targeting for B2B professional services). We recommend the mix based on where your buyers actually decide — not a one-size template.',
+  },
+  {
+    q: 'How do you keep paid spend efficient?',
+    a: 'Tight intent-based keyword and audience targeting, conversion tracking wired to real leads (not just clicks), landing pages built to convert, and weekly optimization. We report on cost per qualified lead, not vanity metrics.',
+  },
+  {
+    q: 'Do you build the landing pages too?',
+    a: 'Yes. Paid traffic converts on focused, fast landing pages — which is exactly what our Web team builds. Ads and the pages they point to are designed together, so the message matches from click to conversion.',
+  },
+  {
+    q: 'Is paid right for a professional-services firm?',
+    a: 'Often, yes — especially to win high-value, high-intent searches while your organic and AI visibility compounds. We are candid when paid is not the right lever for your goals or margins, and will tell you so in the audit.',
+  },
+];
+---
+
+<Base
+  title="Paid Ads & Lead Gen"
+  description="Google and LinkedIn advertising for professional-services firms — targeted campaigns measured on qualified leads, with conversion-built landing pages."
+  schema={serviceSchema({
+    name: 'Paid Ads & Lead Gen',
+    description: 'Paid search and social advertising for professional-services firms, measured on cost per qualified lead.',
+  })}
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Service · Paid Ads &amp; Lead Gen</p>
+      <h1 class="font-display text-hero mt-2 mb-8">Paid Ads &amp; Lead Gen</h1>
+      <p class="text-2xl text-ink/85 leading-snug">
+        Targeted Google and LinkedIn campaigns that fill the pipeline with qualified,
+        ready-to-talk prospects — measured on cost per lead, not clicks.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-prose prose prose-lg max-w-none">
+      <h2>What's included</h2>
+      <ul>
+        <li>Channel strategy across Google Search and LinkedIn</li>
+        <li>Intent-based keyword and firmographic audience targeting</li>
+        <li>Conversion-built landing pages (with our Web team)</li>
+        <li>Conversion tracking wired to real leads, not just form fills</li>
+        <li>Weekly optimization and budget pacing</li>
+        <li>Reporting on cost per qualified lead and pipeline contribution</li>
+      </ul>
+      <h2>Built to compound, not just spend</h2>
+      <p>
+        Paid wins the high-intent searches today while your SEO, content, and AI visibility build
+        durable, lower-cost demand over time. We run paid as part of that whole — not in a silo.
+      </p>
+    </div>
+  </section>
+
+  <FAQ items={faqs} heading="Frequently asked about Paid Ads & Lead Gen." />
+
+  <CTA
+    heading="Ready to fill the pipeline?"
+    body="Start with a free audit. We'll tell you whether paid is the right next lever — honestly."
+    primaryLabel="Get a Free GEO Audit"
+    secondaryLabel="See all services"
+    secondaryHref="/services"
+  />
+</Base>
