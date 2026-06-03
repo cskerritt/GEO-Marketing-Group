@@ -28,7 +28,7 @@ export const SITE = {
   foundingYear: '2026',
   logo: 'https://geomarketinggroup.org/og-default.png',
   email: 'hello@geomarketinggroup.org',
-  phone: '+1-401-555-0100',
+  phone: '+1-203-605-2814',
   social: {
     linkedin: 'https://www.linkedin.com/company/geomarketinggroup',
     twitter: 'https://twitter.com/geomktgroup',
