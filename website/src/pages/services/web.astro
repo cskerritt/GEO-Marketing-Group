@@ -1,0 +1,108 @@
+---
+import Base from '../../layouts/Base.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import { service as serviceSchema } from '../../lib/schema';
+
+const faqs = [
+  {
+    q: 'What kind of website do you build?',
+    a: 'A 12–15 page website built on a GEO/AEO foundation from day one. We use Astro — a modern static-site framework that produces blazing-fast HTML output (the format AI crawlers prefer). Tailwind CSS for design. Content as Markdown so you can edit easily. Deployed to Cloudflare Pages.',
+  },
+  {
+    q: 'Why Astro and not WordPress?',
+    a: 'Three reasons. (1) AI crawlers prefer static HTML — Astro produces the cleanest possible output with no JavaScript-rendered content. (2) Core Web Vitals are a known GEO ranking signal — Astro sites typically score 95+ on Lighthouse out of the box, where WordPress sites struggle without aggressive optimization. (3) Maintenance: WordPress requires ongoing security patches, plugin updates, and hosting fees that Astro doesn\'t. If you have a WordPress site you want to keep, we work with that too — but for new builds, Astro is the right tool.',
+  },
+  {
+    q: 'What pages does the standard Build include?',
+    a: 'Home, About, Process/Methodology, Services overview + 3 service detail pages, 2–3 Industry pages (your top verticals), 2 Location pages (your home market + an expansion market), Contact, Insights/Blog scaffolding with 5 launch articles, and a Free Audit lead form. The structure is designed for both SEO and GEO from the start.',
+  },
+  {
+    q: 'Can I add custom features?',
+    a: 'Yes — but most clients don\'t need to. The core build covers everything required for a credible, citable, professional services website. Common adds: client portal integration, Calendly embed for booking, custom integrations with your CRM. We discuss these in scoping.',
+  },
+  {
+    q: 'How long does a Build take?',
+    a: 'Six weeks from kickoff. Week 1: discovery and content brief. Weeks 2–4: design and content production. Week 5: review and revisions. Week 6: launch. We don\'t do six-month website projects. Discipline on scope keeps us on time.',
+  },
+  {
+    q: 'What about hosting and ongoing maintenance?',
+    a: 'Cloudflare Pages hosting is free for traffic levels typical of professional services firms. The domain runs you ~$30/year. The site itself is static — there is no database to maintain, no plugins to patch. Ongoing content updates are part of the retainer if you want them; otherwise you can edit Markdown files yourself.',
+  },
+  {
+    q: 'Can I keep my existing site instead?',
+    a: 'Often, yes. If your existing site is on a modern CMS (Webflow, Framer, Next.js, etc.) and the technical foundation is solid, we recommend GEO Foundation ($3,500) instead — we add schema, llms.txt, FAQ scaffolding, and content rewrites to your existing site. The Build is for cases where the existing site is dated, slow, or fundamentally not equipped for GEO.',
+  },
+];
+
+const phases = [
+  { week: 'Week 1', name: 'Discovery & content brief', desc: 'Audit findings reviewed, content priorities locked, sitemap finalized.' },
+  { week: 'Weeks 2–4', name: 'Design & content production', desc: 'Design system applied, all pages drafted, schema and infrastructure deployed.' },
+  { week: 'Week 5', name: 'Review & revisions', desc: 'Walkthrough, feedback round, polish.' },
+  { week: 'Week 6', name: 'Launch', desc: 'DNS, search console, sitemap submission, baseline AI citation reading.' },
+];
+---
+
+<Base
+  title="GEO Build — A New GEO-Native Website"
+  description="A new 12–15 page website, built on a GEO/AEO foundation from day one. Astro + Tailwind, deployed to Cloudflare Pages, Lighthouse 95+, schema-validated."
+  schema={serviceSchema({
+    name: 'GEO Build — New Website',
+    description: 'A new website for professional services firms, built on a GEO/AEO foundation.',
+    price: '7500.00',
+  })}
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Service · Web Design &amp; Development</p>
+      <h1 class="font-display text-hero mt-2 mb-8">Web Design &amp; Development</h1>
+      <p class="text-2xl text-ink/85 leading-snug">
+        A new 12–15 page website, built on a GEO/AEO foundation from day one. Astro + Tailwind,
+        deployed to Cloudflare Pages, six weeks from kickoff to launch.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-prose">
+      <h2 class="font-display text-display-md mb-8">Six-week timeline</h2>
+      <ol class="space-y-6">
+        {phases.map((p, i) => (
+          <li class="flex gap-6 items-start">
+            <div class="flex-shrink-0 font-mono text-sm text-brass w-24">{p.week}</div>
+            <div>
+              <h3 class="font-display text-xl text-navy">{p.name}</h3>
+              <p class="text-ink/80 mt-1">{p.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div class="mt-16 grid md:grid-cols-2 gap-6">
+        <div class="bg-white border border-navy/10 p-6">
+          <p class="eyebrow">GEO Build</p>
+          <p class="font-display text-3xl text-navy mt-2">$7,500</p>
+          <p class="text-sm text-ink/70 mt-2">12–15 pages, 8 launch articles, full GEO foundation.</p>
+        </div>
+        <div class="bg-white border border-navy/10 p-6">
+          <p class="eyebrow">GEO Build + Authority</p>
+          <p class="font-display text-3xl text-navy mt-2">$12,500</p>
+          <p class="text-sm text-ink/70 mt-2">Adds 5 industry deep-dive pages, 15 articles, founder authority program.</p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-base text-ink/70 italic">
+        Most Build clients pair the project with a $2,500/month Growth retainer for ongoing
+        publication, monitoring, and iteration. Total Year-1 client value runs ~$39,000.
+      </p>
+    </div>
+  </section>
+
+  <FAQ items={faqs} heading="Frequently asked about Build engagements." />
+
+  <CTA
+    heading="Start with an audit. Build with confidence."
+    body="The audit tells us — and you — whether a Foundation or a Build is the right next step."
+    primaryLabel="Get a Free GEO Audit"
+  />
+</Base>
