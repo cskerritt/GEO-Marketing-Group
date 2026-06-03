@@ -45,41 +45,41 @@ export const INDUSTRIES = [
   {
     slug: 'law-firms',
     label: 'Law firms',
-    title: 'GEO for Law Firms',
+    title: 'Marketing for Law Firms',
     description:
-      'Get cited by ChatGPT, Claude, and Perplexity for the practice areas you actually want to be hired for.',
+      'Win the clients who ask AI and Google for a firm like yours — bar-rule-compliant GEO, SEO, web, and paid.',
     schemaType: 'LegalService',
   },
   {
     slug: 'cpa-firms',
     label: 'CPA & accounting',
-    title: 'GEO for CPA & Accounting Firms',
+    title: 'Marketing for CPA & Accounting Firms',
     description:
-      'Convert your white papers and tax-update content into structured, citation-ready answers.',
+      'Turn your expertise into demand: citation-ready content, search rankings, and campaigns that reach the right businesses.',
     schemaType: 'AccountingService',
   },
   {
     slug: 'consulting',
     label: 'Consulting',
-    title: 'GEO for Consulting Firms',
+    title: 'Marketing for Consulting Firms',
     description:
-      'Turn your frameworks, case studies, and methodology essays into citable AI-search content.',
+      'Make your frameworks and case studies findable — in AI answers, in search, and in front of the buyers you want.',
     schemaType: 'ProfessionalService',
   },
   {
     slug: 'financial-advisors',
     label: 'Financial advisors',
-    title: 'GEO for Financial Advisors & RIAs',
+    title: 'Marketing for Financial Advisors & RIAs',
     description:
-      'Compliance-friendly GEO. Get cited by AI without violating SEC marketing rules.',
+      'Compliance-friendly marketing that grows AUM — without violating SEC marketing rules.',
     schemaType: 'FinancialService',
   },
   {
     slug: 'architecture-engineering',
     label: 'Architecture & engineering',
-    title: 'GEO for Architecture & Engineering Firms',
+    title: 'Marketing for Architecture & Engineering Firms',
     description:
-      'Win the RFPs you weren\'t invited to. Project case studies become citable content.',
+      'Win the RFPs you weren\'t invited to. Project work becomes citable, searchable, pipeline-building content.',
     schemaType: 'ProfessionalService',
   },
 ] as const;
