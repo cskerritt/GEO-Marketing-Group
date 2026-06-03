@@ -2,7 +2,10 @@
 import Base from '../layouts/Base.astro';
 import CTA from '../components/CTA.astro';
 import FAQ from '../components/FAQ.astro';
-import CitableStat from '../components/CitableStat.astro';
+import Reveal from '../components/fx/Reveal.astro';
+import CountUp from '../components/fx/CountUp.astro';
+import HeroCanvas from '../components/fx/HeroCanvas.astro';
+import AnswerDemo from '../components/fx/AnswerDemo.astro';
 import { SERVICES, INDUSTRIES, SITE } from '../lib/site';
 
 const homeFaqs = [
@@ -28,193 +31,235 @@ const homeFaqs = [
   },
 ];
 
-const engines = ['ChatGPT', 'Claude', 'Perplexity', 'Google AI Overviews', 'Gemini', 'Copilot'];
+const engines = ['ChatGPT', 'Claude', 'Perplexity', 'Google AI Overviews', 'Gemini', 'Copilot', 'DeepSeek', 'Grok'];
+
+const stats = [
+  { to: 73, suffix: '%', label: 'of B2B buyers now use AI tools in their research process.', source: 'Bain & Company, 2025', url: 'https://finance.yahoo.com/sectors/technology/articles/73-b2b-buyers-ai-tools-231200431.html' },
+  { to: 14.2, suffix: '%', decimals: 1, label: 'conversion rate from AI-search traffic — versus 2.8% from Google organic.', source: 'Superlines AI Search Report, 2026', url: 'https://www.superlines.io/articles/ai-search-statistics/' },
+  { to: 11, suffix: '%', label: 'of domains are cited by both ChatGPT and Perplexity. Winning one engine doesn\'t win the next.', source: 'upGrowth Citation Analysis, 2026', url: 'https://upgrowth.in/citation-algorithm-chatgpt-perplexity-gemini-ai-overviews-2026/' },
+];
+
+const steps = [
+  { k: '01', name: 'Audit & baseline', desc: 'We measure where you stand across AI engines and search, and map the gaps worth closing first.' },
+  { k: '02', name: 'Strategy & scope', desc: 'A prioritized plan across GEO, SEO, web, and paid — sequenced by impact, no mystery scope.' },
+  { k: '03', name: 'Build & publish', desc: 'Citation-ready content, technical SEO, conversion-built pages, and targeted campaigns.' },
+  { k: '04', name: 'Measure & iterate', desc: 'Monthly reporting on citations, rankings, traffic, and qualified leads — then we double down.' },
+];
 ---
 
 <Base title={SITE.name}>
-  <!-- HERO (Direction A — Authority Editorial) -->
-  <section class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-mesh opacity-70 pointer-events-none" aria-hidden="true"></div>
-    <div class="container-default relative pt-20 md:pt-28 pb-20 md:pb-24">
-      <div class="grid lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-16 items-center">
+  <!-- ░░░ HERO — cinematic, dark, interactive ░░░ -->
+  <section class="relative overflow-hidden bg-navy-deep text-white isolate">
+    <HeroCanvas class="opacity-60" />
+    <div class="aurora"></div>
+    <div class="absolute inset-0 bg-grid opacity-[0.12] [mask-image:radial-gradient(ellipse_70%_55%_at_50%_0%,#000_30%,transparent_80%)] pointer-events-none" aria-hidden="true"></div>
+
+    <div class="container-default relative pt-24 md:pt-32 pb-20 md:pb-28">
+      <div class="grid lg:grid-cols-[1.25fr_1fr] gap-14 lg:gap-12 items-center">
         <div>
-          <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/70 border border-navy/10 backdrop-blur text-[11px] font-mono uppercase tracking-[0.22em] text-electric">
-            <span class="w-1.5 h-1.5 rounded-full bg-gradient-brand animate-pulse"></span>
-            Full-Service Marketing · Professional Services
-          </span>
-          <h1 class="font-display text-hero font-bold text-navy mt-6">
-            Be the firm
-            <span class="bg-gradient-brand bg-clip-text text-transparent">AI recommends.</span>
+          <Reveal variant="fade">
+            <span class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/15 backdrop-blur text-[11px] font-mono uppercase tracking-[0.22em] text-cyan">
+              <span class="pulse-ring inline-block w-1.5 h-1.5 rounded-full bg-cyan text-cyan"></span>
+              Full-Service Marketing · Professional Services
+            </span>
+          </Reveal>
+
+          <h1 class="font-display font-bold text-hero mt-7 leading-[1.02]">
+            <Reveal variant="up" as="span" delay={60} class="block">Be the firm</Reveal>
+            <Reveal variant="up" as="span" delay={160} class="block text-gradient-animated">AI recommends.</Reveal>
           </h1>
-          <p class="mt-7 text-xl md:text-2xl text-ink/75 max-w-2xl leading-snug">
-            GEO, SEO, web &amp; paid — one accountable team that makes serious professional-services
-            firms impossible to overlook, online and in AI.
-          </p>
-          <div class="mt-10 flex flex-col sm:flex-row gap-4">
-            <a href="/audit" class="btn-primary">Get a free GEO audit →</a>
-            <a href="/work" class="btn-secondary">See how we work</a>
-          </div>
+
+          <Reveal variant="up" delay={260}>
+            <p class="mt-7 text-xl md:text-2xl text-white/70 max-w-2xl leading-snug">
+              GEO, SEO, web &amp; paid — one accountable team that makes serious
+              professional-services firms impossible to overlook, online and in AI.
+            </p>
+          </Reveal>
+
+          <Reveal variant="up" delay={360}>
+            <div class="mt-10 flex flex-col sm:flex-row gap-4">
+              <a href="/audit" data-magnetic class="btn-brass text-base shimmer">Get a free GEO audit →</a>
+              <a href="/work" class="btn-secondary !border-white/25 !text-white hover:!bg-white/[0.06] hover:!border-white/50">See how we work</a>
+            </div>
+          </Reveal>
+
+          <Reveal variant="fade" delay={460}>
+            <p class="mt-8 text-sm text-white/45 font-mono tracking-wide">
+              No obligation · 5-day turnaround · Providence-based, serving the Northeast
+            </p>
+          </Reveal>
         </div>
 
-        <div class="flex flex-col gap-8">
-          <div class="border-t-[3px] border-transparent [border-image:linear-gradient(120deg,#2563EB,#7C3AED,#22D3EE)_1] pt-5">
-            <div class="stat-num text-5xl md:text-6xl leading-none">37%</div>
-            <p class="mt-3 text-base text-ink/80 max-w-xs">of B2B research now starts in AI search — not Google.</p>
-          </div>
-          <div class="border-t border-navy/10 pt-5">
-            <div class="font-display font-bold tracking-tight text-navy text-5xl md:text-6xl leading-none">5</div>
-            <p class="mt-3 text-base text-ink/80 max-w-xs">disciplines, one accountable team.</p>
-          </div>
-          <div class="border-t border-navy/10 pt-5">
-            <div class="font-display font-bold tracking-tight text-navy text-4xl md:text-5xl leading-none">RI&nbsp;→&nbsp;NE</div>
-            <p class="mt-3 text-base text-ink/80 max-w-xs">Providence-based, serving the Northeast.</p>
-          </div>
-        </div>
+        <Reveal variant="scale" delay={300} class="relative">
+          <div class="absolute -inset-8 bg-gradient-brand opacity-20 blur-3xl rounded-full" aria-hidden="true"></div>
+          <div class="relative lg:ml-auto"><AnswerDemo /></div>
+        </Reveal>
       </div>
 
-      <!-- Engines strip -->
-      <div class="mt-20 md:mt-24 border-t border-navy/10 pt-8">
-        <p class="font-mono text-[10px] uppercase tracking-[0.28em] text-navy/45 mb-5">
-          We measure your visibility in
+      <!-- engine marquee -->
+      <div class="mt-20 md:mt-24 border-t border-white/10 pt-8">
+        <p class="font-mono text-[10px] uppercase tracking-[0.28em] text-white/40 mb-6">
+          We measure &amp; grow your visibility across
         </p>
-        <div class="flex flex-wrap items-center gap-x-10 gap-y-4">
-          {engines.map((e) => (
-            <span class="font-display font-semibold text-lg text-navy/55 hover:text-navy transition-colors">{e}</span>
-          ))}
+        <div class="marquee">
+          <div class="marquee__track">
+            {engines.map((e) => (
+              <span class="font-display font-semibold text-lg text-white/45">{e}</span>
+            ))}
+          </div>
+          <div class="marquee__track" aria-hidden="true">
+            {engines.map((e) => (
+              <span class="font-display font-semibold text-lg text-white/45">{e}</span>
+            ))}
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHY NOW / STATS -->
-  <section class="section relative overflow-hidden bg-cream-light border-y border-navy/10">
+  <!-- ░░░ WHY NOW / STATS ░░░ -->
+  <section class="section relative overflow-hidden bg-cream-light border-b border-navy/10">
     <div class="container-default">
-      <div class="max-w-3xl">
+      <Reveal class="max-w-3xl">
         <p class="eyebrow">Why now</p>
-        <h2 class="font-display text-display-lg mt-3 mb-6">
-          Strong SEO is no longer enough.
-        </h2>
+        <h2 class="font-display text-display-lg mt-3 mb-6">Strong SEO is no longer enough.</h2>
         <p class="text-lg text-ink/75 leading-relaxed">
-          Buyers who used to find you through Google referrals are now asking ChatGPT, Claude, and
-          Perplexity — and the firms those engines recommend are winning the shortlist. The fix is
-          marketing that works across search and AI at once.
+          The buyers who used to find you through Google referrals are now asking ChatGPT, Claude,
+          and Perplexity — and the firms those engines name are winning the shortlist before you
+          even know there was one.
         </p>
-      </div>
+      </Reveal>
 
-      <div class="mt-16 grid md:grid-cols-3 gap-12">
-        <CitableStat
-          value="73%"
-          label="of B2B buyers now use AI tools in their research process."
-          source="Bain & Company analysis, 2025"
-          sourceUrl="https://finance.yahoo.com/sectors/technology/articles/73-b2b-buyers-ai-tools-231200431.html"
-        />
-        <CitableStat
-          value="14.2%"
-          label="conversion rate from AI search traffic. Google's organic converts at 2.8%."
-          source="Superlines AI Search Report, 2026"
-          sourceUrl="https://www.superlines.io/articles/ai-search-statistics/"
-        />
-        <CitableStat
-          value="11%"
-          label="of domains are cited by both ChatGPT and Perplexity. The two engines almost never overlap."
-          source="upGrowth Citation Algorithm Analysis, 2026"
-          sourceUrl="https://upgrowth.in/citation-algorithm-chatgpt-perplexity-gemini-ai-overviews-2026/"
-        />
+      <div class="mt-16 grid md:grid-cols-3 gap-x-12 gap-y-14">
+        {stats.map((s, i) => (
+          <Reveal variant="up" delay={i * 120}>
+            <figure class="relative pl-6">
+              <span class="absolute left-0 top-1 bottom-1 w-px bg-gradient-brand" aria-hidden="true"></span>
+              <div class="stat-num text-5xl md:text-6xl leading-none">
+                <CountUp to={s.to} suffix={s.suffix} decimals={s.decimals ?? 0} />
+              </div>
+              <figcaption class="mt-4 text-base text-ink/80 max-w-sm">
+                {s.label}
+                <span class="block mt-2 text-xs font-mono text-slate">
+                  Source: <a href={s.url} target="_blank" rel="noopener" class="text-electric hover:text-violet underline underline-offset-4">{s.source}</a>
+                </span>
+              </figcaption>
+            </figure>
+          </Reveal>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- SERVICES (5, equal weight) -->
+  <!-- ░░░ SERVICES ░░░ -->
   <section class="section">
     <div class="container-default">
-      <p class="eyebrow">What we do</p>
-      <h2 class="font-display text-display-lg mt-3 mb-12 max-w-2xl">
-        Five disciplines. One accountable team.
-      </h2>
+      <Reveal>
+        <p class="eyebrow">What we do</p>
+        <h2 class="font-display text-display-lg mt-3 mb-3 max-w-2xl">Five disciplines. One accountable team.</h2>
+        <p class="text-lg text-ink/70 max-w-2xl mb-12 leading-relaxed">
+          Most firms stitch together a vendor per channel. We run them together, so every dollar compounds.
+        </p>
+      </Reveal>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {SERVICES.map((service, i) => (
-          <a href={`/services/${service.slug}`} class="group relative block rounded-2xl bg-white border border-navy/10 p-8 transition-all hover:border-electric/40 hover:-translate-y-1 hover:shadow-glow-blue overflow-hidden">
-            <div class="absolute -inset-px rounded-2xl bg-gradient-brand opacity-0 group-hover:opacity-[0.04] transition-opacity pointer-events-none"></div>
-            <div class="relative">
-              <p class="eyebrow">{(i + 1).toString().padStart(2, '0')} · {service.label}</p>
-              <h3 class="font-display text-2xl mt-3 text-navy group-hover:text-electric transition-colors">
-                {service.title}
-              </h3>
-              <p class="mt-3 text-ink/75 leading-relaxed">{service.description}</p>
-              <p class="mt-6 font-mono text-sm text-electric inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                {service.price ?? 'Explore'}
-                <span aria-hidden="true">→</span>
-              </p>
-            </div>
-          </a>
+          <Reveal variant="up" delay={(i % 3) * 90}>
+            <a href={`/services/${service.slug}`} class="group lift ring-gradient relative block h-full rounded-2xl bg-white border border-navy/10 p-8 hover:shadow-glow-blue overflow-hidden">
+              <div class="relative">
+                <p class="eyebrow">{(i + 1).toString().padStart(2, '0')} · {service.label}</p>
+                <h3 class="font-display text-2xl mt-3 text-navy group-hover:text-electric transition-colors">{service.title}</h3>
+                <p class="mt-3 text-ink/75 leading-relaxed">{service.description}</p>
+                <p class="mt-6 font-mono text-sm text-electric inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                  {service.price ?? 'Explore'}<span aria-hidden="true">→</span>
+                </p>
+              </div>
+            </a>
+          </Reveal>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- INDUSTRIES (kept, dark) -->
-  <section class="section relative overflow-hidden bg-navy-deep text-white">
-    <div class="absolute inset-0 bg-gradient-mesh opacity-50 pointer-events-none" aria-hidden="true"></div>
+  <!-- ░░░ HOW WE WORK (compact) ░░░ -->
+  <section class="section relative overflow-hidden bg-navy-deep text-white isolate">
+    <div class="aurora opacity-40"></div>
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-brand" aria-hidden="true"></div>
     <div class="container-default relative">
-      <p class="eyebrow !text-cyan">Industries we serve, deeply</p>
-      <h2 class="font-display text-display-lg mt-3 mb-4 text-white max-w-3xl">
-        We pick five verticals and own them.
-      </h2>
-      <p class="text-lg text-white/70 max-w-2xl mb-12 leading-relaxed">
-        Most agencies serve everyone. We don't. The deeper we go in your industry, the sharper
-        every campaign — and the more citable your firm becomes.
-      </p>
+      <Reveal>
+        <p class="eyebrow !text-cyan">How we work</p>
+        <h2 class="font-display text-display-lg mt-3 mb-12 text-white max-w-2xl">A method, not a mystery.</h2>
+      </Reveal>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {steps.map((s, i) => (
+          <Reveal variant="up" delay={i * 90}>
+            <div class="relative rounded-2xl border border-white/10 bg-white/[0.03] p-7 h-full lift hover:border-cyan/40">
+              <span class="font-display font-bold text-3xl text-gradient-animated">{s.k}</span>
+              <h3 class="font-display text-lg text-white mt-4">{s.name}</h3>
+              <p class="mt-2 text-sm text-white/65 leading-relaxed">{s.desc}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ INDUSTRIES ░░░ -->
+  <section class="section">
+    <div class="container-default">
+      <Reveal>
+        <p class="eyebrow">Industries we serve, deeply</p>
+        <h2 class="font-display text-display-lg mt-3 mb-4 max-w-3xl">We pick five verticals and own them.</h2>
+        <p class="text-lg text-ink/70 max-w-2xl mb-12 leading-relaxed">
+          Most agencies serve everyone. We don't. The deeper we go in your industry, the sharper
+          every campaign — and the more citable your firm becomes.
+        </p>
+      </Reveal>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {INDUSTRIES.map((industry) => (
-          <a href={`/industries/${industry.slug}`} class="group relative block rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all hover:border-cyan/40 hover:bg-white/[0.06]">
-            <h3 class="font-display text-xl text-white group-hover:text-cyan transition-colors">
-              {industry.title}
-            </h3>
-            <p class="mt-3 text-sm text-white/65 leading-relaxed">{industry.description}</p>
-            <p class="mt-5 text-xs font-mono text-cyan/80 inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-              Read more <span aria-hidden="true">→</span>
-            </p>
-          </a>
+        {INDUSTRIES.map((industry, i) => (
+          <Reveal variant="up" delay={(i % 3) * 80}>
+            <a href={`/industries/${industry.slug}`} class="group lift ring-gradient relative block h-full rounded-2xl border border-navy/10 bg-cream-light p-6 hover:shadow-glow-blue">
+              <h3 class="font-display text-xl text-navy group-hover:text-electric transition-colors">{industry.title}</h3>
+              <p class="mt-3 text-sm text-ink/70 leading-relaxed">{industry.description}</p>
+              <p class="mt-5 text-xs font-mono text-electric inline-flex items-center gap-1 group-hover:gap-2 transition-all">Read more <span aria-hidden="true">→</span></p>
+            </a>
+          </Reveal>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- FOUNDER / PROVIDENCE -->
-  <section class="section">
-    <div class="container-default grid md:grid-cols-2 gap-12 items-start">
-      <div>
+  <!-- ░░░ FOUNDER ░░░ -->
+  <section class="section bg-cream-light border-y border-navy/10">
+    <div class="container-default grid md:grid-cols-2 gap-12 items-center">
+      <Reveal variant="left">
         <p class="eyebrow">Providence-rooted</p>
-        <h2 class="font-display text-display-lg mt-3 mb-6">
-          Founded in Providence. Built for the Northeast. Designed to scale.
-        </h2>
+        <h2 class="font-display text-display-lg mt-3 mb-6">Founded in Providence. Built for the Northeast. Designed to scale.</h2>
         <p class="text-lg text-ink/75 leading-relaxed mb-4">
           We build long relationships, not transactions. In Year 1, most of our clients are within
           driving distance — firms that want a marketing partner who picks up the phone.
         </p>
         <p class="text-lg text-ink/75 leading-relaxed">
-          As our content authority compounds, our reach goes national. But the firm's gravity
-          stays here.
+          As our content authority compounds, our reach goes national. But the firm's gravity stays here.
         </p>
-      </div>
-      <div class="relative rounded-2xl bg-cream-light border border-navy/10 p-8 overflow-hidden">
-        <span class="absolute left-0 top-8 bottom-8 w-1 bg-gradient-brand rounded-r-full" aria-hidden="true"></span>
-        <p class="eyebrow mb-3">Founder</p>
-        <h3 class="font-display text-2xl text-navy mb-3">Chris Skerritt</h3>
-        <p class="text-ink/80 leading-relaxed">
-          Chris founded GEO Marketing Group after years building AI-search-ready websites for B2B
-          clients who specifically wanted ChatGPT and Perplexity to recommend them. GEO Marketing
-          Group brings that edge together with the full marketing stack professional-services firms
-          actually need.
-        </p>
-        <p class="mt-5">
-          <a href="/about" class="text-electric hover:text-violet underline underline-offset-4 transition-colors">
-            More about Chris →
-          </a>
-        </p>
-      </div>
+      </Reveal>
+      <Reveal variant="right" delay={120}>
+        <div class="relative rounded-2xl bg-white border border-navy/10 p-8 overflow-hidden lift">
+          <span class="absolute left-0 top-8 bottom-8 w-1 bg-gradient-brand rounded-r-full" aria-hidden="true"></span>
+          <p class="eyebrow mb-3">Founder</p>
+          <h3 class="font-display text-2xl text-navy mb-3">Chris Skerritt</h3>
+          <p class="text-ink/80 leading-relaxed">
+            Chris founded GEO Marketing Group after years building AI-search-ready websites for B2B
+            clients who specifically wanted ChatGPT and Perplexity to recommend them. GEO Marketing
+            Group brings that edge together with the full marketing stack professional-services
+            firms actually need.
+          </p>
+          <p class="mt-5">
+            <a href="/about" class="text-electric hover:text-violet underline underline-offset-4 transition-colors">More about Chris →</a>
+          </p>
+        </div>
+      </Reveal>
     </div>
   </section>
 

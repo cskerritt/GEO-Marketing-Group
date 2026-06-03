@@ -1,0 +1,26 @@
+---
+/**
+ * Animated count-up numeral. Renders the final formatted value as static
+ * fallback; motion.ts animates from 0 when scrolled into view.
+ */
+interface Props {
+  to: number;
+  prefix?: string;
+  suffix?: string;
+  decimals?: number;
+  class?: string;
+}
+const { to, prefix = '', suffix = '', decimals = 0, class: className = '' } = Astro.props;
+const display = `${prefix}${to.toLocaleString('en-US', {
+  minimumFractionDigits: decimals,
+  maximumFractionDigits: decimals,
+})}${suffix}`;
+---
+
+<span
+  data-countup
+  data-to={to}
+  data-prefix={prefix}
+  data-suffix={suffix}
+  data-decimals={decimals}
+  class={className}>{display}</span>

@@ -1,0 +1,204 @@
+/* ============================================================
+   GEO Marketing Group — Motion & Graphics System
+   Vanilla, dependency-free. Progressive enhancement + reduced-motion safe.
+   Loaded after global.css in Base.astro.
+   ============================================================ */
+
+/* ---- Progressive enhancement -------------------------------
+   Content is visible by default. Reveal animations only engage
+   when JS is present (html.js) AND motion is allowed. */
+.js [data-reveal] {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal="up"]    { transform: translateY(28px); }
+.js [data-reveal="fade"]  { transform: none; }
+.js [data-reveal="scale"] { transform: scale(0.96); }
+.js [data-reveal="left"]  { transform: translateX(-32px); }
+.js [data-reveal="right"] { transform: translateX(32px); }
+.js [data-reveal="blur"]  { transform: translateY(20px); filter: blur(10px); }
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* ---- Scroll progress bar ----------------------------------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(var(--scroll, 0));
+  background: linear-gradient(90deg, #2563eb, #7c3aed 60%, #22d3ee);
+  z-index: 60;
+  pointer-events: none;
+}
+
+/* ---- Film grain / noise overlay ---------------------------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- Animated gradient text -------------------------------- */
+.text-gradient-animated {
+  background: linear-gradient(110deg, #2563eb, #7c3aed 30%, #22d3ee 55%, #7c3aed 75%, #2563eb);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gm-gradient-pan 7s ease-in-out infinite;
+}
+
+@keyframes gm-gradient-pan {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* ---- Aurora / animated mesh blob backdrop ------------------ */
+.aurora {
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 120%;
+  pointer-events: none;
+  filter: blur(60px);
+  opacity: 0.55;
+  z-index: 0;
+}
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+.aurora::before {
+  width: 46vw; height: 46vw;
+  left: -6vw; top: -6vw;
+  background: radial-gradient(circle at 30% 30%, rgba(37, 99, 235, 0.55), transparent 60%);
+  animation: gm-float-a 18s ease-in-out infinite;
+}
+.aurora::after {
+  width: 40vw; height: 40vw;
+  right: -4vw; top: 2vw;
+  background: radial-gradient(circle at 60% 40%, rgba(124, 58, 237, 0.5), transparent 60%);
+  animation: gm-float-b 22s ease-in-out infinite;
+}
+
+@keyframes gm-float-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(6vw, 4vw) scale(1.12); }
+}
+@keyframes gm-float-b {
+  0%, 100% { transform: translate(0, 0) scale(1.05); }
+  50%      { transform: translate(-5vw, 5vw) scale(0.92); }
+}
+
+/* ---- Marquee (logo / engine strip) ------------------------- */
+.marquee {
+  display: flex;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marquee__track {
+  display: flex;
+  flex-shrink: 0;
+  gap: 3.5rem;
+  padding-right: 3.5rem;
+  animation: gm-marquee 28s linear infinite;
+}
+.marquee:hover .marquee__track { animation-play-state: paused; }
+@keyframes gm-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+/* ---- Shimmer sweep (used on cards/CTAs) -------------------- */
+.shimmer { position: relative; overflow: hidden; }
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.18) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.8s ease;
+}
+.shimmer:hover::after { transform: translateX(120%); }
+
+/* ---- Magnetic button (JS-driven translate) ----------------- */
+[data-magnetic] {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* ---- Tilt / lift card -------------------------------------- */
+.lift {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.lift:hover { transform: translateY(-6px); }
+
+/* ---- Gradient border ring ---------------------------------- */
+.ring-gradient {
+  position: relative;
+}
+.ring-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg, #2563eb, #7c3aed 60%, #22d3ee);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.ring-gradient:hover::before { opacity: 1; }
+
+/* ---- Blinking caret (typing demo) -------------------------- */
+.caret { display: inline-block; width: 2px; background: currentColor; animation: gm-blink 1s steps(1) infinite; }
+@keyframes gm-blink { 50% { opacity: 0; } }
+
+/* ---- Pulse ring (live dot) --------------------------------- */
+.pulse-ring { position: relative; }
+.pulse-ring::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  animation: gm-pulse-ring 2s ease-out infinite;
+}
+@keyframes gm-pulse-ring {
+  0%   { transform: scale(0.6); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ---- Count-up tabular alignment ---------------------------- */
+[data-countup] { font-variant-numeric: tabular-nums; }
+
+/* ---- Respect reduced motion -------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
+  .text-gradient-animated { animation: none; background-position: 0 50%; }
+  .aurora::before, .aurora::after,
+  .marquee__track { animation: none !important; }
+  .scroll-progress { display: none; }
+  .caret { animation: none; }
+  .pulse-ring::after { animation: none; opacity: 0; }
+}
