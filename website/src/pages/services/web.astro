@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTA from '../../components/CTA.astro';
+import Reveal from '../../components/fx/Reveal.astro';
 import { service as serviceSchema } from '../../lib/schema';
 
 const faqs = [
@@ -38,8 +39,8 @@ const faqs = [
 const phases = [
   { week: 'Week 1', name: 'Discovery & content brief', desc: 'Audit findings reviewed, content priorities locked, sitemap finalized.' },
   { week: 'Weeks 2–4', name: 'Design & content production', desc: 'Design system applied, all pages drafted, schema and infrastructure deployed.' },
-  { week: 'Week 5', name: 'Review & revisions', desc: 'Walkthrough, feedback round, polish.' },
-  { week: 'Week 6', name: 'Launch', desc: 'DNS, search console, sitemap submission, baseline AI citation reading.' },
+  { week: 'Week 5', name: 'Review & revisions', desc: 'Stakeholder walkthrough, feedback addressed, polish applied.' },
+  { week: 'Week 6', name: 'Launch', desc: 'DNS cutover, search console, sitemap submission, baseline AI citation reading taken.' },
 ];
 ---
 
@@ -54,47 +55,59 @@ const phases = [
 >
   <section class="section">
     <div class="container-prose">
-      <p class="eyebrow">Service · Web Design &amp; Development</p>
-      <h1 class="font-display text-hero mt-2 mb-8">Web Design &amp; Development</h1>
-      <p class="text-2xl text-ink/85 leading-snug">
-        A new 12–15 page website, built on a GEO/AEO foundation from day one. Astro + Tailwind,
-        deployed to Cloudflare Pages, six weeks from kickoff to launch.
-      </p>
+      <Reveal variant="up">
+        <p class="eyebrow">Service · Web Design &amp; Development</p>
+        <h1 class="font-display text-hero mt-2 mb-8">
+          A website built to <span class="text-gradient-animated">win in search and in AI</span> — from day one.
+        </h1>
+        <p class="text-2xl text-ink/85 leading-snug">
+          12–15 pages. GEO-native from the first line of code. Astro + Tailwind, deployed to
+          Cloudflare Pages, six weeks from kickoff to launch — not six months.
+        </p>
+      </Reveal>
     </div>
   </section>
 
   <section class="bg-cream-light border-y border-navy/10 section">
     <div class="container-prose">
-      <h2 class="font-display text-display-md mb-8">Six-week timeline</h2>
+      <Reveal variant="up">
+        <h2 class="font-display text-display-md mb-10">Six-week timeline</h2>
+      </Reveal>
       <ol class="space-y-6">
         {phases.map((p, i) => (
-          <li class="flex gap-6 items-start">
-            <div class="flex-shrink-0 font-mono text-sm text-brass w-24">{p.week}</div>
-            <div>
+          <Reveal variant="left" delay={i * 80} as="li" class="flex gap-6 items-start">
+            <div class="flex-shrink-0 font-mono text-sm text-brass w-24 pt-1">{p.week}</div>
+            <div class="bg-white border border-navy/10 rounded-xl p-5 flex-1 lift">
               <h3 class="font-display text-xl text-navy">{p.name}</h3>
               <p class="text-ink/80 mt-1">{p.desc}</p>
             </div>
-          </li>
+          </Reveal>
         ))}
       </ol>
 
       <div class="mt-16 grid md:grid-cols-2 gap-6">
-        <div class="bg-white border border-navy/10 p-6">
-          <p class="eyebrow">GEO Build</p>
-          <p class="font-display text-3xl text-navy mt-2">$7,500</p>
-          <p class="text-sm text-ink/70 mt-2">12–15 pages, 8 launch articles, full GEO foundation.</p>
-        </div>
-        <div class="bg-white border border-navy/10 p-6">
-          <p class="eyebrow">GEO Build + Authority</p>
-          <p class="font-display text-3xl text-navy mt-2">$12,500</p>
-          <p class="text-sm text-ink/70 mt-2">Adds 5 industry deep-dive pages, 15 articles, founder authority program.</p>
-        </div>
+        <Reveal variant="up" delay={0}>
+          <div class="bg-white border border-navy/10 rounded-2xl p-6 lift ring-gradient relative h-full">
+            <p class="eyebrow">GEO Build</p>
+            <p class="font-display text-3xl text-navy mt-2">$7,500</p>
+            <p class="text-sm text-ink/70 mt-2">12–15 pages, 8 launch articles, full GEO foundation.</p>
+          </div>
+        </Reveal>
+        <Reveal variant="up" delay={90}>
+          <div class="bg-white border border-navy/10 rounded-2xl p-6 lift ring-gradient relative h-full">
+            <p class="eyebrow">GEO Build + Authority</p>
+            <p class="font-display text-3xl text-navy mt-2">$12,500</p>
+            <p class="text-sm text-ink/70 mt-2">Adds 5 industry deep-dive pages, 15 articles, founder authority program.</p>
+          </div>
+        </Reveal>
       </div>
 
-      <p class="mt-8 text-base text-ink/70 italic">
-        Most Build clients pair the project with a $2,500/month Growth retainer for ongoing
-        publication, monitoring, and iteration. Total Year-1 client value runs ~$39,000.
-      </p>
+      <Reveal variant="fade" delay={150}>
+        <p class="mt-8 text-base text-ink/70 italic">
+          Most Build clients pair the project with a $2,500/month Growth retainer for ongoing
+          publication, monitoring, and iteration. Total Year-1 investment runs ~$39,000.
+        </p>
+      </Reveal>
     </div>
   </section>
 
@@ -102,7 +115,7 @@ const phases = [
 
   <CTA
     heading="Start with an audit. Build with confidence."
-    body="The audit tells us — and you — whether a Foundation or a Build is the right next step."
+    body="The audit tells you — and us — whether a Foundation or a Build is the right next step. No guesswork, no oversell."
     primaryLabel="Get a Free GEO Audit"
   />
 </Base>

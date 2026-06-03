@@ -1,19 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
 import CTA from '../components/CTA.astro';
+import Reveal from '../components/fx/Reveal.astro';
 
 const steps = [
-  { k: '01', name: 'Audit & baseline', desc: 'We measure your current visibility across AI answer engines and traditional search, map competitors, and find the gaps worth closing first.' },
-  { k: '02', name: 'Strategy & scope', desc: 'A prioritized plan across GEO, SEO, web, and paid — sequenced by impact and effort, with clear deliverables and no mystery scope.' },
-  { k: '03', name: 'Build & publish', desc: 'We execute: structured citation-ready content, technical and on-page SEO, conversion-built pages, and targeted campaigns.' },
-  { k: '04', name: 'Measure & iterate', desc: 'Monthly reporting on citations, rankings, traffic, and qualified leads — then we double down on what moves the needle.' },
+  { k: '01', name: 'Audit & baseline', desc: 'We measure your current visibility across AI answer engines and traditional search, map competitors, and identify the gaps worth closing first. No guesswork — every recommendation is grounded in your actual numbers.' },
+  { k: '02', name: 'Strategy & scope', desc: 'A prioritized plan across GEO, SEO, web, and paid — sequenced by impact and effort, with clear deliverables and no mystery scope. You approve the roadmap before we spend a billable hour on execution.' },
+  { k: '03', name: 'Build & publish', desc: 'We execute: structured citation-ready content, technical and on-page SEO, conversion-built pages, and targeted campaigns — all by the same team, reinforcing the same visibility goals.' },
+  { k: '04', name: 'Measure & iterate', desc: 'Monthly reporting on citations, rankings, traffic, and qualified leads — then we double down on what moves the needle and deprioritize what doesn\'t. You own the data and the baseline we set together.' },
 ];
 
 const principles = [
-  { name: 'One team, one outcome', desc: 'Every channel is run by the same team and reinforces the others. No silos, no finger-pointing.' },
-  { name: 'Citation-ready by default', desc: 'The content that ranks in Google is the content AI engines quote. We build for both from the start.' },
-  { name: 'Measured on leads, not clicks', desc: 'We report on qualified pipeline and cost per lead — the numbers that actually matter to a firm.' },
-  { name: 'Honest about fit', desc: 'If a channel is not right for your goals or margins, we say so. We would rather keep a client than sell a service.' },
+  { name: 'One team, one outcome', desc: 'Every channel is run by the same team and reinforces the others. No silos, no finger-pointing, no passing the blame when traffic dips.' },
+  { name: 'Citation-ready by default', desc: 'The content that ranks in Google is the content AI engines quote. We build for both from the start — so every article earns double duty.' },
+  { name: 'Measured on leads, not clicks', desc: 'We report on qualified pipeline and cost per lead — the numbers that actually matter to a firm — not vanity metrics that feel good on a slide.' },
+  { name: 'Honest about fit', desc: 'If a channel is not right for your goals or margins, we say so upfront. We would rather keep a client for years than sell a service that underdelivers.' },
 ];
 ---
 
@@ -23,26 +24,33 @@ const principles = [
 >
   <section class="section">
     <div class="container-prose">
-      <p class="eyebrow">Work &amp; Results</p>
-      <h1 class="font-display text-hero mt-2 mb-8">How we get firms found.</h1>
-      <p class="text-2xl text-ink/85 leading-snug">
-        We're a new firm with a clear method — built from years of getting professional-services
-        clients cited and recommended. Here's exactly how we work, and how we'll prove it on your numbers.
-      </p>
+      <Reveal variant="up">
+        <p class="eyebrow">Work &amp; Results</p>
+        <h1 class="font-display text-hero mt-2 mb-8">
+          How we get firms <span class="text-gradient-animated">found</span>.
+        </h1>
+        <p class="text-2xl text-ink/85 leading-snug">
+          We're a new firm with a clear method — built from years of getting professional-services
+          clients cited and recommended. Here's exactly how we work, and how we'll prove it
+          on your numbers from day one.
+        </p>
+      </Reveal>
     </div>
   </section>
 
   <section class="bg-cream-light border-y border-navy/10 section">
     <div class="container-default">
-      <p class="eyebrow">The engagement</p>
-      <h2 class="font-display text-display-md mt-3 mb-12">A four-phase method.</h2>
+      <Reveal variant="up">
+        <p class="eyebrow">The engagement</p>
+        <h2 class="font-display text-display-md mt-3 mb-12">A four-phase method.</h2>
+      </Reveal>
       <ol class="grid md:grid-cols-2 gap-8">
-        {steps.map((s) => (
-          <li class="relative rounded-2xl bg-white border border-navy/10 p-8">
+        {steps.map((s, i) => (
+          <Reveal variant="up" delay={i * 90} as="li" class="relative rounded-2xl bg-white border border-navy/10 p-8 lift">
             <span class="stat-num text-3xl">{s.k}</span>
             <h3 class="font-display text-xl text-navy mt-3">{s.name}</h3>
             <p class="mt-2 text-ink/75 leading-relaxed">{s.desc}</p>
-          </li>
+          </Reveal>
         ))}
       </ol>
     </div>
@@ -50,24 +58,28 @@ const principles = [
 
   <section class="section">
     <div class="container-default">
-      <p class="eyebrow">How we work</p>
-      <h2 class="font-display text-display-md mt-3 mb-12 max-w-2xl">Principles we don't bend on.</h2>
+      <Reveal variant="up">
+        <p class="eyebrow">How we work</p>
+        <h2 class="font-display text-display-md mt-3 mb-12 max-w-2xl">Principles we don't bend on.</h2>
+      </Reveal>
       <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
-        {principles.map((p) => (
-          <div class="flex gap-5">
+        {principles.map((p, i) => (
+          <Reveal variant="up" delay={i * 90} class="flex gap-5">
             <span class="flex-shrink-0 rule-brass mt-3"></span>
             <div>
               <h3 class="font-display text-xl text-navy">{p.name}</h3>
               <p class="mt-2 text-ink/75 leading-relaxed">{p.desc}</p>
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
-      <p class="mt-14 text-base text-slate italic max-w-prose">
-        We're transparent about being early: rather than show borrowed logos or invented numbers,
-        we show our method — and we'll set measurable baselines with you from day one, so the
-        results are yours and real.
-      </p>
+      <Reveal variant="fade" delay={360}>
+        <p class="mt-14 text-base text-slate italic max-w-prose">
+          We're transparent about being early: rather than show borrowed logos or invented numbers,
+          we show our method — and we'll set measurable baselines with you from day one, so the
+          results are yours and real.
+        </p>
+      </Reveal>
     </div>
   </section>
 

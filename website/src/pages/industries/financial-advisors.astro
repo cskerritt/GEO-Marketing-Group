@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTA from '../../components/CTA.astro';
+import Reveal from '../../components/fx/Reveal.astro';
 import { service as serviceSchema, breadcrumbs } from '../../lib/schema';
 
 const faqs = [
@@ -26,11 +27,38 @@ const faqs = [
     a: 'Audit ($1,500) → Foundation ($3,500) → Growth retainer with CCO-friendly content workflow ($2,500/mo). RIAs typically prefer Foundation over Build because their existing sites are usually compliant; we add structure and content rather than replace. Annual value: ~$35,000.',
   },
 ];
+
+const plays = [
+  {
+    title: 'Compliance-first content architecture',
+    desc: 'Every content asset is built inside your firm\'s CCO workflow from day one — not retrofitted. Documented checklists, archived copies, and disclosure scaffolding that survives SEC audit.',
+  },
+  {
+    title: 'Educational content that earns AI citations',
+    desc: 'Financial planning topics, retirement income strategy, tax-aware investing — formatted as answer-first content with FAQ schema. The educational framing AI engines prefer, the compliance posture your CCO requires.',
+  },
+  {
+    title: 'FinancialService schema markup',
+    desc: 'Structured data that tells AI engines exactly who you are, what you offer, and who you serve — without performance claims or testimonials. Entity coherence that compounds.',
+  },
+  {
+    title: 'Organic search for high-intent planning queries',
+    desc: 'Prospective clients searching "fee-only financial advisor [city]" or "how to choose an RIA" are already in buying mode. We build the content and technical SEO that puts you in front of them.',
+  },
+  {
+    title: 'Paid search built for AUM growth',
+    desc: 'Precision campaigns targeting the HNW and mass-affluent buyers your firm is built for — with ad copy and landing pages designed to drive consultations, not just clicks.',
+  },
+  {
+    title: 'Referral-source visibility strategy',
+    desc: 'CPAs, attorneys, and estate planners who refer clients to RIAs increasingly search online before making introductions. We make sure your firm is the obvious answer when they look.',
+  },
+];
 ---
 
 <Base
-  title="GEO for Financial Advisors & RIAs"
-  description="Compliance-friendly Generative Engine Optimization for fee-only RIAs and wealth management firms. Get cited by AI without violating SEC marketing rules."
+  title="Marketing for Financial Advisors & RIAs"
+  description="Compliance-friendly full-service marketing for fee-only RIAs and wealth management firms. GEO, SEO, paid, and web — built to grow AUM without touching SEC marketing rules."
   schema={[
     serviceSchema({
       name: 'GEO for Financial Advisors & RIAs',
@@ -46,33 +74,66 @@ const faqs = [
 >
   <section class="section">
     <div class="container-prose">
-      <p class="eyebrow">Industry · Financial Advisors</p>
-      <h1 class="font-display text-hero mt-2 mb-8">Marketing for Financial Advisors &amp; RIAs</h1>
-      <p class="text-2xl text-ink/85 leading-snug">
-        Compliance-friendly GEO for fee-only RIAs and wealth management firms. Get cited by AI
-        without violating SEC marketing rules.
-      </p>
+      <Reveal variant="up">
+        <p class="eyebrow">Industry · Financial Advisors</p>
+        <h1 class="font-display text-hero mt-2 mb-8">
+          Marketing for <span class="text-gradient-animated">Financial Advisors</span> &amp; RIAs
+        </h1>
+        <p class="text-2xl text-ink/85 leading-snug">
+          Full-service marketing that grows AUM without touching your compliance posture.
+          We speak CCO fluently — so you spend less time explaining marketing to compliance
+          and more time closing the conversations that matter.
+        </p>
+      </Reveal>
     </div>
   </section>
 
   <section class="bg-cream-light border-y border-navy/10 section">
     <div class="container-prose prose prose-lg max-w-none">
-      <p class="eyebrow not-prose">Why now</p>
-      <h2>The compliance landscape is the moat — and the constraint.</h2>
-      <p>
-        Most national GEO agencies are SaaS-and-tech-trained; they don't speak compliance
-        fluently and produce content that requires extensive CCO rework. Most generic content
-        agencies produce SEC-violating content with one careless adjective.
-      </p>
-      <p>
-        We sit in the middle: GEO discipline applied to RIA content workflows. Every piece of
-        content runs through your firm's CCO review using a documented checklist. Every piece
-        is archived for SEC audit trails. We do not invent new disclosures; we work within
-        yours.
-      </p>
-      <p>
-        For the conservative-buyer end of our ICP, this is the most consequential differentiator.
-      </p>
+      <Reveal variant="fade">
+        <p class="eyebrow not-prose">Why now</p>
+        <h2>The compliance landscape is the moat — and the constraint.</h2>
+      </Reveal>
+      <Reveal variant="up" delay={80}>
+        <p>
+          Most national marketing agencies are SaaS-and-tech-trained. They don't speak
+          compliance fluently and produce content that requires extensive CCO rework — or worse,
+          creates risk. Most generic content agencies produce SEC-violating copy with one
+          careless adjective.
+        </p>
+        <p>
+          We sit in the middle: disciplined content optimization applied to RIA marketing
+          workflows. Every piece of content runs through your firm's CCO review using a
+          documented checklist. Every piece is archived for SEC audit trails. We don't invent
+          new disclosures; we work within yours.
+        </p>
+        <p>
+          The result is a marketing program that compounds — AI citations, organic rankings,
+          paid campaigns, and a website that converts — without introducing compliance drag.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <section class="bg-navy text-cream section">
+    <div class="container-default">
+      <Reveal variant="fade">
+        <p class="eyebrow text-brass-light">The RIA marketing playbook</p>
+        <h2 class="font-display text-display-lg mt-2 mb-12 text-cream max-w-2xl">
+          Six plays built for compliance-constrained growth.
+        </h2>
+      </Reveal>
+      <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+        {plays.map((p, i) => (
+          <Reveal variant="up" delay={(i % 3) * 80}>
+            <div>
+              <p class="font-mono text-sm text-brass-light">Play {i + 1}</p>
+              <h3 class="font-display text-2xl text-cream mt-2">{p.title}</h3>
+              <p class="mt-3 text-cream/80 leading-relaxed">{p.desc}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -80,6 +141,7 @@ const faqs = [
 
   <CTA
     heading="A 5-day audit, CCO-friendly by design."
-    primaryLabel="Get a Free GEO Audit"
+    body="Covers AI visibility, organic search gaps, paid opportunities, and conversion analysis. Every finding is compliance-reviewed before it reaches you."
+    primaryLabel="Get a Free Audit"
   />
 </Base>

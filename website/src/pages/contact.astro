@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Reveal from '../components/fx/Reveal.astro';
 import { SITE } from '../lib/site';
 ---
 
@@ -9,89 +10,107 @@ import { SITE } from '../lib/site';
 >
   <section class="section">
     <div class="container-prose">
-      <p class="eyebrow">Contact</p>
-      <h1 class="font-display text-hero mt-2 mb-8">Three ways to reach us.</h1>
+      <Reveal variant="fade">
+        <p class="eyebrow">Contact</p>
+        <h1 class="font-display text-hero mt-2 mb-8">Three ways to <span class="text-gradient-animated">reach us.</span></h1>
+      </Reveal>
 
-      <form
-        method="POST"
-        action="/api/contact"
-        class="bg-cream-light border border-navy/10 rounded-2xl p-8 md:p-10 space-y-6 mt-4"
-      >
-        <h2 class="font-display text-display-md">Send us a message.</h2>
-        <input type="text" name="hp_field" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-        <div class="grid md:grid-cols-2 gap-6">
+      <Reveal variant="up" delay={100}>
+        <form
+          method="POST"
+          action="/api/contact"
+          class="bg-cream-light border border-navy/10 rounded-2xl p-8 md:p-10 space-y-6 mt-4"
+        >
+          <h2 class="font-display text-display-md">Send us a message.</h2>
+          <input type="text" name="hp_field" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <div class="grid md:grid-cols-2 gap-6">
+            <label class="block">
+              <span class="font-mono text-xs uppercase tracking-wider text-navy">Your name</span>
+              <input type="text" name="name" required autocomplete="name"
+                class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-electric focus:outline-none rounded-sm" />
+            </label>
+            <label class="block">
+              <span class="font-mono text-xs uppercase tracking-wider text-navy">Email</span>
+              <input type="email" name="email" required autocomplete="email"
+                class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-electric focus:outline-none rounded-sm" />
+            </label>
+          </div>
           <label class="block">
-            <span class="font-mono text-xs uppercase tracking-wider text-navy">Your name</span>
-            <input type="text" name="name" required autocomplete="name"
+            <span class="font-mono text-xs uppercase tracking-wider text-navy">Firm (optional)</span>
+            <input type="text" name="firm" autocomplete="organization"
               class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-electric focus:outline-none rounded-sm" />
           </label>
           <label class="block">
-            <span class="font-mono text-xs uppercase tracking-wider text-navy">Email</span>
-            <input type="email" name="email" required autocomplete="email"
-              class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-electric focus:outline-none rounded-sm" />
+            <span class="font-mono text-xs uppercase tracking-wider text-navy">Message</span>
+            <textarea name="message" rows="5" required
+              class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-electric focus:outline-none rounded-sm"></textarea>
           </label>
-        </div>
-        <label class="block">
-          <span class="font-mono text-xs uppercase tracking-wider text-navy">Firm (optional)</span>
-          <input type="text" name="firm" autocomplete="organization"
-            class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-electric focus:outline-none rounded-sm" />
-        </label>
-        <label class="block">
-          <span class="font-mono text-xs uppercase tracking-wider text-navy">Message</span>
-          <textarea name="message" rows="5" required
-            class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-electric focus:outline-none rounded-sm"></textarea>
-        </label>
-        <button type="submit" class="btn-primary w-full justify-center">Send message →</button>
-        <p class="text-xs text-slate text-center">We respond within 1 business day. We never add you to a marketing list.</p>
-      </form>
+          <button type="submit" class="btn-primary w-full justify-center shimmer">Send message →</button>
+          <p class="text-xs text-slate text-center">We respond within 1 business day. We never add you to a marketing list.</p>
+        </form>
+      </Reveal>
 
       <div class="space-y-12 mt-12">
-        <div class="bg-cream-light border-l-2 border-brass p-8">
-          <p class="eyebrow">For prospective clients</p>
-          <h2 class="font-display text-2xl text-navy mt-2 mb-3">Free GEO Audit</h2>
-          <p class="text-lg text-ink/85 mb-4">
-            The simplest first step. 5 business days, written deliverable, 60-minute
-            walkthrough call. No obligation. Free for the first 25 RI/MA firms.
-          </p>
-          <a href="/audit" class="btn-primary">Request the audit →</a>
-        </div>
+        <Reveal variant="up" delay={150}>
+          <div class="bg-cream-light border-l-2 border-brass p-8 lift ring-gradient">
+            <p class="eyebrow">For prospective clients</p>
+            <h2 class="font-display text-2xl text-navy mt-2 mb-3">Free GEO Audit</h2>
+            <p class="text-lg text-ink/85 mb-4">
+              The fastest path to knowing where you stand. Five business days, written
+              deliverable, competitive citation map, and a 60-minute walkthrough call with the
+              founder. No obligation, no pitch deck. Free for the first 25 RI/MA firms.
+            </p>
+            <a href="/audit" class="btn-primary">Request the audit →</a>
+          </div>
+        </Reveal>
 
-        <div class="bg-cream-light border-l-2 border-navy/30 p-8">
-          <p class="eyebrow">For everything else</p>
-          <h2 class="font-display text-2xl text-navy mt-2 mb-3">Direct email</h2>
-          <p class="text-lg text-ink/85 mb-2">
-            Press, partnerships, speaking, podcast invitations, anything not-quite-an-audit:
-          </p>
-          <p class="text-lg">
-            <a href={`mailto:${SITE.email}`} class="text-brass underline underline-offset-4 hover:text-brass-light">
-              {SITE.email}
-            </a>
-          </p>
-          <p class="mt-4 text-base text-slate">We respond within 1 business day.</p>
-        </div>
+        <Reveal variant="up" delay={250}>
+          <div class="bg-cream-light border-l-2 border-navy/30 p-8 lift">
+            <p class="eyebrow">For everything else</p>
+            <h2 class="font-display text-2xl text-navy mt-2 mb-3">Direct email</h2>
+            <p class="text-lg text-ink/85 mb-2">
+              Press, partnerships, speaking engagements, podcast invitations, or anything that
+              doesn't quite fit an audit request — reach us here:
+            </p>
+            <p class="text-lg">
+              <a href={`mailto:${SITE.email}`} class="text-brass underline underline-offset-4 hover:text-brass-light">
+                {SITE.email}
+              </a>
+            </p>
+            <p class="mt-4 text-base text-slate">We respond within 1 business day.</p>
+          </div>
+        </Reveal>
 
-        <div class="bg-cream-light border-l-2 border-navy/30 p-8">
-          <p class="eyebrow">Founder direct</p>
-          <h2 class="font-display text-2xl text-navy mt-2 mb-3">{SITE.founder.name}</h2>
-          <p class="text-lg">
-            <a href={`mailto:${SITE.founder.email}`} class="text-brass underline underline-offset-4 hover:text-brass-light">
-              {SITE.founder.email}
-            </a>
-          </p>
-          <p class="mt-2 text-lg">
-            <a href={SITE.social.linkedin} target="_blank" rel="noopener" class="text-brass underline underline-offset-4 hover:text-brass-light">
-              LinkedIn →
-            </a>
-          </p>
-        </div>
+        <Reveal variant="up" delay={350}>
+          <div class="bg-cream-light border-l-2 border-navy/30 p-8 lift">
+            <p class="eyebrow">Founder direct</p>
+            <h2 class="font-display text-2xl text-navy mt-2 mb-3">{SITE.founder.name}</h2>
+            <p class="text-lg text-ink/85 mb-3">
+              Questions about GEO strategy, methodology, or fit for your firm — the founder reads
+              every message personally.
+            </p>
+            <p class="text-lg">
+              <a href={`mailto:${SITE.founder.email}`} class="text-brass underline underline-offset-4 hover:text-brass-light">
+                {SITE.founder.email}
+              </a>
+            </p>
+            <p class="mt-2 text-lg">
+              <a href={SITE.social.linkedin} target="_blank" rel="noopener" class="text-brass underline underline-offset-4 hover:text-brass-light">
+                LinkedIn →
+              </a>
+            </p>
+          </div>
+        </Reveal>
 
-        <div class="text-center pt-8">
-          <p class="font-mono text-xs uppercase tracking-wider text-slate">Office</p>
-          <p class="mt-2 text-lg text-ink/85">
-            Providence, Rhode Island
-          </p>
-          <p class="text-base text-slate">By appointment</p>
-        </div>
+        <Reveal variant="fade" delay={450}>
+          <div class="text-center pt-8">
+            <p class="font-mono text-xs uppercase tracking-wider text-slate">Office</p>
+            <p class="mt-2 text-lg text-ink/85">
+              Providence, Rhode Island
+            </p>
+            <p class="text-base text-slate">By appointment — we also come to you.</p>
+          </div>
+        </Reveal>
       </div>
     </div>
   </section>

@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import CTA from '../components/CTA.astro';
 import FAQ from '../components/FAQ.astro';
+import Reveal from '../components/fx/Reveal.astro';
 
 const stages = [
   {
@@ -78,19 +79,24 @@ const processFaqs = [
 >
   <section class="section">
     <div class="container-prose">
-      <p class="eyebrow">Process</p>
-      <h1 class="font-display text-hero mt-2 mb-8">The Compass Method.</h1>
-      <p class="text-2xl text-ink/85 leading-snug max-w-3xl">
-        Six stages from invisible to cited. We have done this enough times to know exactly
-        what each stage costs you in time, what it produces, and what you should expect.
-      </p>
+      <Reveal variant="up">
+        <p class="eyebrow">Process</p>
+        <h1 class="font-display text-hero mt-2 mb-8">
+          The <span class="text-gradient-animated">Compass</span> Method.
+        </h1>
+        <p class="text-2xl text-ink/85 leading-snug max-w-3xl">
+          Six stages from invisible to cited. We have done this enough times to know exactly
+          what each stage costs you in time, what it produces, and what you should expect.
+          No ambiguity. No retainer bloat. Just a clear path to being the firm AI recommends.
+        </p>
+      </Reveal>
     </div>
   </section>
 
   <section class="bg-cream-light border-y border-navy/10">
     <div class="container-default py-12">
       {stages.map((s, i) => (
-        <div class={`grid md:grid-cols-12 gap-8 py-12 ${i !== stages.length - 1 ? 'border-b border-navy/10' : ''}`}>
+        <Reveal variant="up" delay={i * 60} class={`grid md:grid-cols-12 gap-8 py-12 ${i !== stages.length - 1 ? 'border-b border-navy/10' : ''}`}>
           <div class="md:col-span-3">
             <p class="font-mono text-sm text-brass">{s.n}</p>
             <h2 class="font-display text-3xl text-navy mt-2">{s.name}</h2>
@@ -99,7 +105,7 @@ const processFaqs = [
           <div class="md:col-span-9">
             <p class="text-lg text-ink/85 leading-relaxed">{s.desc}</p>
             <ul class="mt-6 space-y-2">
-              {s.deliverables.map((d) => (
+              {s.deliverables.map((d, j) => (
                 <li class="flex gap-3 items-start">
                   <span class="text-brass mt-1.5 flex-shrink-0" aria-hidden="true">▪</span>
                   <span class="text-ink/85">{d}</span>
@@ -107,8 +113,28 @@ const processFaqs = [
               ))}
             </ul>
           </div>
-        </div>
+        </Reveal>
       ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-prose">
+      <Reveal variant="up">
+        <h2 class="font-display text-display-md text-navy mb-6">Why this sequence matters</h2>
+      </Reveal>
+      <Reveal variant="up" delay={90}>
+        <p class="text-lg text-ink/85 leading-relaxed mb-6">
+          Most agencies jump to publishing content before they know what queries to own or
+          whether the technical foundation can carry the citation. We don't. Calibrate comes
+          first because you can't navigate without knowing where you are. Every stage after
+          that is purposeful — and measurable.
+        </p>
+        <p class="text-lg text-ink/85 leading-relaxed">
+          The Compass Method is designed to produce citation results within 90 days — with
+          the data to show it and the infrastructure to sustain it.
+        </p>
+      </Reveal>
     </div>
   </section>
 

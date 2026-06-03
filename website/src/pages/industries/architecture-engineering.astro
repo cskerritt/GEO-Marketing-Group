@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTA from '../../components/CTA.astro';
+import Reveal from '../../components/fx/Reveal.astro';
 import { service as serviceSchema, breadcrumbs } from '../../lib/schema';
 
 const faqs = [
@@ -26,11 +27,38 @@ const faqs = [
     a: 'Audit ($1,500) → Build or Foundation ($3,500–$7,500) → Growth retainer ($2,500/mo). A&E firms typically benefit from a Build because their existing sites tend to be portfolio-heavy and content-light; we restructure around discipline-specific content. Annual value: ~$39,000.',
   },
 ];
+
+const plays = [
+  {
+    title: 'Discipline-specific citable content',
+    desc: 'Every discipline your firm practices — structural, civil, architectural, MEP, landscape — gets a content layer built around the questions owners and developers ask when they\'re forming a shortlist. Published in the format AI engines cite and Google ranks.',
+  },
+  {
+    title: 'Project case studies that clear NDAs',
+    desc: 'Your portfolio is your proof. We work within your NDAs to convert project outcomes into AI-citable case studies organized by project type, scale, region, and outcome — not client name.',
+  },
+  {
+    title: 'Schema for design and engineering entities',
+    desc: 'Structured data that establishes your firm as a recognized entity: disciplines, geographic coverage, project types, principal credentials, and award history. The authority signals AI engines use to populate shortlist answers.',
+  },
+  {
+    title: 'SEO for project-type and sector queries',
+    desc: 'Owners and procurement officers searching for firms by project type ("healthcare architect Rhode Island," "bridge engineering firm New England") should find you. We build the content and technical SEO that makes that happen.',
+  },
+  {
+    title: 'Paid campaigns targeting the procurement cycle',
+    desc: 'Capital planning cycles are predictable. We run targeted paid campaigns at the right decision-makers — developers, public-sector procurement, institutional owners — when they\'re actively forming shortlists.',
+  },
+  {
+    title: 'RFP response web strategy',
+    desc: 'When a selection committee evaluates your firm, your website is the tie-breaker. We audit and improve the pages they\'ll visit so your online presence reinforces the quality of your work.',
+  },
+];
 ---
 
 <Base
-  title="GEO for Architecture & Engineering Firms"
-  description="Generative Engine Optimization for architecture and engineering firms. Win RFPs you weren't invited to. Project case studies become citable content."
+  title="Marketing for Architecture & Engineering Firms"
+  description="Full-service marketing for architecture and engineering firms — GEO, SEO, paid, and web. Win the RFPs you weren't invited to. Project work becomes citable, searchable, pipeline-building content."
   schema={[
     serviceSchema({
       name: 'GEO for Architecture & Engineering Firms',
@@ -45,32 +73,69 @@ const faqs = [
 >
   <section class="section">
     <div class="container-prose">
-      <p class="eyebrow">Industry · Architecture &amp; Engineering</p>
-      <h1 class="font-display text-hero mt-2 mb-8">Marketing for Architecture &amp; Engineering Firms</h1>
-      <p class="text-2xl text-ink/85 leading-snug">
-        Win the RFPs you weren't invited to. Project case studies become citable content.
-        Discipline-specific expertise becomes the answer when owners ask AI for the best
-        firms in your region.
-      </p>
+      <Reveal variant="up">
+        <p class="eyebrow">Industry · Architecture &amp; Engineering</p>
+        <h1 class="font-display text-hero mt-2 mb-8">
+          Marketing for <span class="text-gradient-animated">Architecture &amp; Engineering</span> Firms
+        </h1>
+        <p class="text-2xl text-ink/85 leading-snug">
+          Win the RFPs you weren't invited to. Your project work, methodology, and
+          discipline expertise are worth more than a portfolio — when they're formatted for
+          AI search, organic rankings, and the selection committees who Google you after
+          they've shortlisted you.
+        </p>
+      </Reveal>
     </div>
   </section>
 
   <section class="bg-cream-light border-y border-navy/10 section">
     <div class="container-prose prose prose-lg max-w-none">
-      <p class="eyebrow not-prose">Why now</p>
-      <h2>RFP shortlists are increasingly AI-mediated.</h2>
-      <p>
-        Owners, developers, and public-sector procurement officers are using AI to compile
-        initial shortlists of A&amp;E firms — particularly for project types they don't
-        regularly procure. Whether your firm appears in those shortlists depends almost
-        entirely on what you've published, in what format, with what schema and authority
-        signals.
-      </p>
-      <p>
-        Most A&amp;E firms have spent decades producing extraordinary project work and
-        publishing relatively little about it. GEO converts your existing project portfolio
-        into the kind of citable substance AI engines reward.
-      </p>
+      <Reveal variant="fade">
+        <p class="eyebrow not-prose">Why now</p>
+        <h2>RFP shortlists are increasingly AI-mediated.</h2>
+      </Reveal>
+      <Reveal variant="up" delay={80}>
+        <p>
+          Owners, developers, and public-sector procurement officers are using AI to compile
+          initial shortlists of A&amp;E firms — particularly for project types they don't
+          regularly procure. Whether your firm appears in those shortlists depends almost
+          entirely on what you've published, in what format, with what schema and authority
+          signals.
+        </p>
+        <p>
+          Most A&amp;E firms have spent decades producing extraordinary project work and
+          publishing relatively little about it. GEO converts your existing project portfolio
+          into the kind of citable substance AI engines reward — and we pair that with the
+          organic SEO, paid campaigns, and web strategy that capture buyers at every stage of
+          the procurement cycle.
+        </p>
+        <p>
+          The firms that publish their methodology own the conversation. We help you become
+          one of them.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <section class="bg-navy text-cream section">
+    <div class="container-default">
+      <Reveal variant="fade">
+        <p class="eyebrow text-brass-light">The A&amp;E marketing playbook</p>
+        <h2 class="font-display text-display-lg mt-2 mb-12 text-cream max-w-2xl">
+          Six plays that convert project excellence into market presence.
+        </h2>
+      </Reveal>
+      <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+        {plays.map((p, i) => (
+          <Reveal variant="up" delay={(i % 3) * 80}>
+            <div>
+              <p class="font-mono text-sm text-brass-light">Play {i + 1}</p>
+              <h3 class="font-display text-2xl text-cream mt-2">{p.title}</h3>
+              <p class="mt-3 text-cream/80 leading-relaxed">{p.desc}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -78,6 +143,7 @@ const faqs = [
 
   <CTA
     heading="Show up where the next RFP is decided."
-    primaryLabel="Get a Free GEO Audit"
+    body="A 5-day audit covering AI search visibility, organic ranking gaps, paid opportunities, and your web presence against a selection committee's eyes. No commitment."
+    primaryLabel="Get a Free Audit"
   />
 </Base>

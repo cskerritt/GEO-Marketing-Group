@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTA from '../../components/CTA.astro';
+import Reveal from '../../components/fx/Reveal.astro';
 import { service as serviceSchema } from '../../lib/schema';
 
 const faqs = [
@@ -22,6 +23,15 @@ const faqs = [
     a: 'Often, yes — especially to win high-value, high-intent searches while your organic and AI visibility compounds. We are candid when paid is not the right lever for your goals or margins, and will tell you so in the audit.',
   },
 ];
+
+const includes = [
+  { label: 'Channel strategy', desc: 'Google Search vs. LinkedIn — the right mix for your buyers and your margins.' },
+  { label: 'Audience & keyword targeting', desc: 'Intent-based keywords and firmographic audience builds, not broad sprays.' },
+  { label: 'Conversion-built landing pages', desc: 'Designed with our Web team so the message matches from click to close.' },
+  { label: 'Real-lead conversion tracking', desc: 'Wired to actual pipeline, not form fills or phone views.' },
+  { label: 'Weekly optimization & pacing', desc: 'Budget managed weekly, bids and ads adjusted on performance data.' },
+  { label: 'Pipeline reporting', desc: 'Cost per qualified lead and pipeline contribution — the numbers that matter.' },
+];
 ---
 
 <Base
@@ -34,31 +44,49 @@ const faqs = [
 >
   <section class="section">
     <div class="container-prose">
-      <p class="eyebrow">Service · Paid Ads &amp; Lead Gen</p>
-      <h1 class="font-display text-hero mt-2 mb-8">Paid Ads &amp; Lead Gen</h1>
-      <p class="text-2xl text-ink/85 leading-snug">
-        Targeted Google and LinkedIn campaigns that fill the pipeline with qualified,
-        ready-to-talk prospects — measured on cost per lead, not clicks.
-      </p>
+      <Reveal variant="up">
+        <p class="eyebrow">Service · Paid Ads &amp; Lead Gen</p>
+        <h1 class="font-display text-hero mt-2 mb-8">
+          Fill the pipeline with <span class="text-gradient-animated">qualified prospects</span> — today.
+        </h1>
+        <p class="text-2xl text-ink/85 leading-snug">
+          Targeted Google and LinkedIn campaigns that win high-intent searches now, while your
+          SEO and AI visibility compound in the background. Measured on cost per qualified lead —
+          not clicks, impressions, or reach.
+        </p>
+      </Reveal>
     </div>
   </section>
 
   <section class="bg-cream-light border-y border-navy/10 section">
-    <div class="container-prose prose prose-lg max-w-none">
-      <h2>What's included</h2>
-      <ul>
-        <li>Channel strategy across Google Search and LinkedIn</li>
-        <li>Intent-based keyword and firmographic audience targeting</li>
-        <li>Conversion-built landing pages (with our Web team)</li>
-        <li>Conversion tracking wired to real leads, not just form fills</li>
-        <li>Weekly optimization and budget pacing</li>
-        <li>Reporting on cost per qualified lead and pipeline contribution</li>
-      </ul>
-      <h2>Built to compound, not just spend</h2>
-      <p>
-        Paid wins the high-intent searches today while your SEO, content, and AI visibility build
-        durable, lower-cost demand over time. We run paid as part of that whole — not in a silo.
-      </p>
+    <div class="container-prose">
+      <Reveal variant="up">
+        <h2 class="font-display text-display-md mb-8">What's included</h2>
+      </Reveal>
+      <div class="space-y-4">
+        {includes.map((item, i) => (
+          <Reveal variant="up" delay={i * 60}>
+            <div class="bg-white border border-navy/10 rounded-xl p-5 flex gap-4 items-start lift">
+              <span class="text-brass mt-0.5 flex-shrink-0" aria-hidden="true">▪</span>
+              <div>
+                <p class="font-display text-lg text-navy">{item.label}</p>
+                <p class="text-ink/75 mt-0.5">{item.desc}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+
+      <Reveal variant="fade" delay={200}>
+        <div class="mt-12 bg-white border-l-2 border-electric p-6 rounded-r-xl">
+          <p class="eyebrow">Built to compound, not just spend</p>
+          <p class="text-lg text-ink/85 mt-2">
+            Paid wins the high-intent searches today while your SEO, content, and AI visibility
+            build durable, lower-cost demand over time. We run paid as part of the whole — not
+            as a standalone silo, and not as a crutch.
+          </p>
+        </div>
+      </Reveal>
     </div>
   </section>
 
@@ -66,7 +94,7 @@ const faqs = [
 
   <CTA
     heading="Ready to fill the pipeline?"
-    body="Start with a free audit. We'll tell you whether paid is the right next lever — honestly."
+    body="Start with a free audit. We'll tell you whether paid is the right next lever — and be straight with you if it isn't."
     primaryLabel="Get a Free GEO Audit"
     secondaryLabel="See all services"
     secondaryHref="/services"

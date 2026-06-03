@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTA from '../../components/CTA.astro';
+import Reveal from '../../components/fx/Reveal.astro';
 import { service as serviceSchema, breadcrumbs } from '../../lib/schema';
 
 const faqs = [
@@ -26,11 +27,38 @@ const faqs = [
     a: 'Audit ($1,500) → Foundation ($3,500) → Authority retainer ($4,500/mo). The Authority tier (founder ghostwriting) is the unlock for consulting firms — it converts your founder\'s thinking into citable content at the rate AI compounding requires. Annual value: ~$59,000.',
   },
 ];
+
+const plays = [
+  {
+    title: 'IP audit and publication roadmap',
+    desc: 'We inventory your existing frameworks, presentations, client-facing documents, and founder writing. Everything worth publishing gets a structured roadmap — by topic, format, and AI-citation priority.',
+  },
+  {
+    title: 'Founder ghostwriting in your voice',
+    desc: 'Your thinking. Our discipline. We write the citable articles, methodology essays, and sector analyses that AI engines reward — at the publishing cadence your compounding requires, without consuming your calendar.',
+  },
+  {
+    title: 'Anonymized case study architecture',
+    desc: 'Every engagement produces publishable proof — if it\'s formatted correctly. We work within your NDAs to convert project outcomes into AI-citable case studies by industry, scale, and discipline.',
+  },
+  {
+    title: 'Sector-specific SEO and AI targeting',
+    desc: 'Boutique consulting firms win by niche. We build the content and technical infrastructure to dominate the specific sectors you serve — in AI search and in organic rankings.',
+  },
+  {
+    title: 'Paid search to capture active buyers',
+    desc: 'Not every consulting buyer uses AI first. High-intent paid search campaigns capture the CFOs, COOs, and procurement leads who are searching right now — and route them directly to your firm.',
+  },
+  {
+    title: 'Web conversion strategy',
+    desc: 'Traffic that doesn\'t convert is wasted. We audit and improve the conversion architecture of your site so every qualified visitor — however they found you — has a clear path to a conversation.',
+  },
+];
 ---
 
 <Base
-  title="GEO for Consulting Firms"
-  description="Generative Engine Optimization for management, strategy, and IT consulting firms. Turn your frameworks, case studies, and methodology essays into citable AI-search content."
+  title="Marketing for Consulting Firms"
+  description="Full-service marketing for management, strategy, and IT consulting firms — GEO, SEO, paid, and web. Turn your frameworks and case studies into the demand engine your firm deserves."
   schema={[
     serviceSchema({
       name: 'GEO for Consulting Firms',
@@ -45,35 +73,68 @@ const faqs = [
 >
   <section class="section">
     <div class="container-prose">
-      <p class="eyebrow">Industry · Consulting</p>
-      <h1 class="font-display text-hero mt-2 mb-8">Marketing for Consulting Firms</h1>
-      <p class="text-2xl text-ink/85 leading-snug">
-        Your IP is hiding inside the firm. AI search is recommending whoever publishes theirs.
-        We turn your best frameworks, case studies, and methodology essays into the citable
-        content the next decade of new clients will find first.
-      </p>
+      <Reveal variant="up">
+        <p class="eyebrow">Industry · Consulting</p>
+        <h1 class="font-display text-hero mt-2 mb-8">
+          Marketing for <span class="text-gradient-animated">Consulting Firms</span>
+        </h1>
+        <p class="text-2xl text-ink/85 leading-snug">
+          Your IP is hiding inside the firm. AI search is recommending whoever publishes theirs.
+          We unlock your best frameworks, case studies, and methodology essays — and build the
+          full marketing stack that puts your thinking in front of the buyers ready to act on it.
+        </p>
+      </Reveal>
     </div>
   </section>
 
   <section class="bg-cream-light border-y border-navy/10 section">
     <div class="container-prose prose prose-lg max-w-none">
-      <p class="eyebrow not-prose">Why now</p>
-      <h2>Consulting buyers research differently now.</h2>
-      <p>
-        A senior operations executive considering a $200K engagement used to ask their network
-        for recommendations and Google a few candidates. Now, increasingly, they ask ChatGPT
-        for "the best operations consultancies for mid-market manufacturers in the Northeast"
-        — and the firms in that ChatGPT response get the meeting.
-      </p>
-      <p>
-        Boutique consulting firms have an unusually strong GEO opportunity because they
-        produce *thinking*, not *deliverables* — and AI engines preferentially cite original
-        thinking when it's properly structured. The constraint is not having the IP; it's
-        getting the IP out of slide decks and into the citable format AI engines reward.
-      </p>
-      <p>
-        That's the work we do. Your founder reviews the draft. We handle the discipline.
-      </p>
+      <Reveal variant="fade">
+        <p class="eyebrow not-prose">Why now</p>
+        <h2>Consulting buyers research differently now.</h2>
+      </Reveal>
+      <Reveal variant="up" delay={80}>
+        <p>
+          A senior operations executive considering a $200K engagement used to ask their
+          network for recommendations and Google a few candidates. Now, increasingly, they ask
+          ChatGPT for "the best operations consultancies for mid-market manufacturers in the
+          Northeast" — and the firms in that response get the meeting.
+        </p>
+        <p>
+          Boutique consulting firms have an unusually strong opportunity here because they
+          produce original thinking, not commodity deliverables — and AI engines preferentially
+          cite original thinking when it's properly structured. The constraint is not having
+          the IP; it's getting the IP out of slide decks and into the citable format AI engines
+          and Google both reward.
+        </p>
+        <p>
+          That's one piece of what we do. The other pieces — paid search, organic rankings,
+          web conversion — make sure you capture every buyer who's looking, however they're
+          looking.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <section class="bg-navy text-cream section">
+    <div class="container-default">
+      <Reveal variant="fade">
+        <p class="eyebrow text-brass-light">The consulting-firm playbook</p>
+        <h2 class="font-display text-display-lg mt-2 mb-12 text-cream max-w-2xl">
+          Six plays that convert your firm's thinking into demand.
+        </h2>
+      </Reveal>
+      <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+        {plays.map((p, i) => (
+          <Reveal variant="up" delay={(i % 3) * 80}>
+            <div>
+              <p class="font-mono text-sm text-brass-light">Play {i + 1}</p>
+              <h3 class="font-display text-2xl text-cream mt-2">{p.title}</h3>
+              <p class="mt-3 text-cream/80 leading-relaxed">{p.desc}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -81,6 +142,7 @@ const faqs = [
 
   <CTA
     heading="See where AI engines cite your firm — and where they don't."
-    primaryLabel="Get a Free GEO Audit"
+    body="A 5-day audit covering AI visibility, organic search gaps, and conversion opportunities. The starting point for every engagement."
+    primaryLabel="Get a Free Audit"
   />
 </Base>
