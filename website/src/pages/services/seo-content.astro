@@ -1,0 +1,75 @@
+---
+import Base from '../../layouts/Base.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import { service as serviceSchema } from '../../lib/schema';
+
+const faqs = [
+  {
+    q: 'How is your SEO different from a generic agency?',
+    a: 'We build SEO and GEO together. The same structured, question-shaped, schema-rich content that ranks in Google is what AI answer engines lift and cite. You get traditional organic rankings and a head start on AI visibility from the same work — not two disconnected programs.',
+  },
+  {
+    q: 'What does an SEO & Content engagement include?',
+    a: 'Technical SEO audit and fixes, keyword and question research grounded in how your buyers actually search, an editorial calendar, and ongoing production of authority content — practice-area pages, guides, and FAQ hubs — all optimized for both search rankings and AI citation.',
+  },
+  {
+    q: 'How long until we see results?',
+    a: 'Technical fixes and on-page improvements can move rankings within weeks. Content-driven authority compounds over 3–6 months. We report on rankings, organic traffic, and AI citation share so you can see progress across both channels.',
+  },
+  {
+    q: 'Do you write the content, or do we?',
+    a: 'We do. Every piece is researched, drafted, and optimized by us, then sent to you for review. For regulated verticals (law, financial advisory) we build in the compliance review your rules require before anything publishes.',
+  },
+];
+---
+
+<Base
+  title="SEO & Content"
+  description="SEO and content built for professional-services firms — engineered to rank in Google and earn citations in AI answer engines from the same work."
+  schema={serviceSchema({
+    name: 'SEO & Content',
+    description: 'Search engine optimization and authority content for professional-services firms, optimized for both Google rankings and AI citation.',
+  })}
+>
+  <section class="section">
+    <div class="container-prose">
+      <p class="eyebrow">Service · SEO &amp; Content</p>
+      <h1 class="font-display text-hero mt-2 mb-8">SEO &amp; Content</h1>
+      <p class="text-2xl text-ink/85 leading-snug">
+        Rank for the searches that bring qualified clients — and build the content that earns
+        the citations. We optimize for Google and AI answer engines from a single program.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-prose prose prose-lg max-w-none">
+      <h2>What's included</h2>
+      <ul>
+        <li>Technical SEO audit and remediation (Core Web Vitals, crawlability, indexation)</li>
+        <li>Keyword and buyer-question research mapped to your practice areas</li>
+        <li>On-page optimization of your highest-value pages</li>
+        <li>An editorial calendar and ongoing authority-content production</li>
+        <li>FAQ hubs and structured content engineered for AI citation (shared with GEO)</li>
+        <li>Monthly reporting on rankings, organic traffic, and AI citation share</li>
+      </ul>
+      <h2>Why it pairs with GEO</h2>
+      <p>
+        Question-shaped, schema-rich content is what ranks in Google <em>and</em> what AI engines
+        quote. Running SEO and GEO as one program means every article does double duty — no wasted
+        motion, no contradictory advice from two vendors.
+      </p>
+    </div>
+  </section>
+
+  <FAQ items={faqs} heading="Frequently asked about SEO & Content." />
+
+  <CTA
+    heading="Want to rank — and get cited?"
+    body="Start with a free audit. We'll show you where you stand in search and in AI."
+    primaryLabel="Get a Free GEO Audit"
+    secondaryLabel="See all services"
+    secondaryHref="/services"
+  />
+</Base>
