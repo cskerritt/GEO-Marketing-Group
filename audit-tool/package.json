@@ -1,0 +1,21 @@
+{
+  "name": "geo-audit-tool",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "GEO Marketing Group — OpenAI-powered GEO/AEO/SEO audit tool (per-page citability + visibility spot-check + branded report).",
+  "scripts": {
+    "audit": "tsx bin/audit.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "openai": "^4.73.0",
+    "puppeteer": "^23.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
