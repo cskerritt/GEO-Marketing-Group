@@ -1,54 +1,52 @@
-# GEO Audit Tool — Design Spec
+# GEO Audit Tool — Design Spec (OpenAI-only)
 
 **Date:** 2026-06-03
-**Status:** Awaiting approval
+**Status:** Approved direction — ready for implementation plan
 **Repo:** new package `GEO/audit-tool/` (sibling of `GEO/website/`); Phase 2 adds a function under `website/functions/`
 
 ---
 
 ## 1. Summary
 
-Build the software that lets GEO Marketing Group actually **perform and deliver the GEO Audit** the website sells. A Node/TypeScript tool takes a firm's details, tests its visibility across AI answer engines, scans its site for citability/technical signals, scores it, and produces a **branded report** (HTML → PDF) with a 30/60/90 roadmap.
+Build the software that lets GEO Marketing Group **perform and deliver the GEO Audit** the website sells, using a **single OpenAI API key**. The tool:
+
+1. **Crawls the firm's indexed pages** (from its sitemap) and has OpenAI grade each page's **AI citability/readiness** (structure, schema, FAQ/question form, extractable answers, meta) with specific fixes.
+2. **Spot-checks live visibility** by running a few buyer queries through **OpenAI's web-search tool** to see whether the firm — and which competitors — get named/cited.
+3. **Scores** the firm and produces a **branded report** (HTML → PDF) with a prioritized 30/60/90 roadmap.
 
 **Phase 1 (now):** internal CLI tool that produces the client deliverable.
-**Phase 2 (after):** a trimmed, fast **self-serve "instant mini-audit"** on the website that returns a teaser score and captures the lead.
+**Phase 2 (after):** a fast self-serve "instant mini-audit" on the website that returns a teaser score and captures the lead.
 
 ## 2. Goals / Non-Goals
 
 ### Goals
-- Run a defined query set against **Perplexity (Sonar), OpenAI, Anthropic, Google Gemini** and record whether the firm — and which competitors — are mentioned/cited, with source URLs.
-- Scan the firm's site for **GEO/AEO/SEO signals**: JSON-LD types, `llms.txt`, AI-bot access in robots, FAQ/question-structured headings, title/meta, heading hierarchy, HTTPS; plus **Core Web Vitals + Lighthouse** via Google PageSpeed Insights API.
-- Compute a transparent **visibility score** + **technical citability score**, with a competitor citation map and a prioritized 30/60/90 roadmap.
-- Output a **branded report**: HTML (brand tokens) rendered to **PDF**, plus the raw JSON for our records.
-- Strict **cost controls** and honest data (no fabricated results).
+- **One key, one vendor:** everything runs on `OPENAI_API_KEY`.
+- **Per-page audit:** discover indexed pages via `sitemap.xml`, fetch each, and score citability with concrete, page-specific recommendations.
+- **Visibility spot-check:** run a small set of buyer queries via OpenAI web-search; record firm mention/citation + competitors named, with source URLs.
+- **Transparent scoring** (page citability + site technical + visibility → overall) and a 30/60/90 roadmap.
+- **Branded report:** HTML (brand tokens) → PDF, plus raw JSON for our records.
+- **Cost controls** and honest data (no fabricated results).
 
 ### Non-Goals
-- Google AI Overviews automation (no public API) — captured manually or via optional SerpApi later; out of scope for v1.
-- Ongoing monitoring/dashboards (a later phase).
-- Storing client data in a database (v1 writes local files only).
+- Multi-engine citation testing (Perplexity/Anthropic/Gemini) — explicitly dropped for simplicity; can be added later behind the same adapter seam.
+- Google AI Overviews automation (no API).
+- Database/persistence (v1 writes local files only) and ongoing monitoring (later phase).
 
 ## 3. Architecture
 
 ```
 GEO/
 ├── website/                       # existing site
-└── audit-tool/                    # NEW Node/TypeScript package
+└── audit-tool/                    # NEW Node/TypeScript package (OpenAI-only)
     ├── package.json
-    ├── .env.example               # API keys (never committed)
+    ├── .env.example               # OPENAI_API_KEY  (PAGESPEED_API_KEY optional/free)
     ├── src/
-    │   ├── config.ts              # env + cost caps
-    │   ├── queries.ts             # buyer-question generation from {areas, location}
-    │   ├── engines/
-    │   │   ├── types.ts           # EngineResult interface
-    │   │   ├── perplexity.ts      # Sonar API (returns citations)
-    │   │   ├── openai.ts          # Responses API + web_search tool
-    │   │   ├── anthropic.ts       # Messages API + web_search tool
-    │   │   └── gemini.ts          # generateContent + Google Search grounding
-    │   ├── detect.ts              # firm/competitor mention + citation detection
-    │   ├── scan/
-    │   │   ├── site.ts            # fetch + parse: JSON-LD, llms.txt, robots, headings, meta
-    │   │   └── pagespeed.ts       # PageSpeed Insights API (CWV + Lighthouse)
-    │   ├── score.ts               # weighted scoring model
+    │   ├── config.ts              # env + cost caps + flags
+    │   ├── crawl.ts               # sitemap.xml discovery (fallback: homepage link crawl) + fetch
+    │   ├── extract.ts             # parse HTML → signals (JSON-LD, headings, FAQ, meta, llms.txt, robots) + main text
+    │   ├── auditPage.ts           # OpenAI structured scoring per page (JSON output)
+    │   ├── visibility.ts          # OpenAI web-search buyer-query spot-checks
+    │   ├── score.ts               # aggregate → page/technical/visibility/overall
     │   ├── report/
     │   │   ├── template.ts        # branded HTML report (brand tokens)
     │   │   └── pdf.ts             # HTML → PDF via Puppeteer
@@ -57,108 +55,115 @@ GEO/
     └── output/                    # generated reports (gitignored)
 ```
 
-**Phase 2 (later):** `website/functions/api/instant-audit.ts` (Cloudflare Pages Function) imports a trimmed subset of the core (site scan + PageSpeed + 1–2 Perplexity queries), returns a teaser score as JSON, and emails the lead (reusing the existing `/api/contact` email pattern). A small Astro page `/tools/geo-audit` hosts the form.
+**Phase 2 (later):** `website/functions/api/instant-audit.ts` (Cloudflare Pages Function) reuses the crawl + per-page audit on a **capped** page count, returns a teaser score as JSON, and emails the lead (existing `/api/contact` pattern). `/tools/geo-audit` Astro page hosts the form with an animated score reveal.
 
 ## 4. Core interfaces
 
 ```ts
 interface AuditInput {
-  firm: string;
-  website: string;            // https://…
-  location: string;           // "Providence, RI"
-  practiceAreas: string[];    // ["estate planning", "litigation"]
-  competitors?: string[];     // optional known competitor names
+  website: string;            // https://… (root; sitemap derived from it)
+  firm: string;               // for visibility queries + report
+  location?: string;          // "Providence, RI"
+  practiceAreas?: string[];   // seeds the visibility queries
+  competitors?: string[];     // optional known competitors
+  maxPages?: number;          // cap (default 30)
 }
 
-interface EngineResult {
-  engine: 'perplexity' | 'openai' | 'anthropic' | 'gemini';
+interface PageAudit {
+  url: string;
+  title?: string;
+  signals: {
+    schemaTypes: string[];
+    hasFaqSchema: boolean;
+    questionHeadings: number;
+    wordCount: number;
+    hasMetaDescription: boolean;
+    answerFirst: boolean;     // does it lead with a direct answer?
+  };
+  scores: { structure: number; schema: number; clarity: number; overall: number }; // 0–100
+  topFixes: string[];         // page-specific, prioritized
+}
+
+interface VisibilityResult {
   query: string;
   firmMentioned: boolean;
-  firmCited: boolean;         // firm domain appears in citations
-  citations: string[];       // source URLs
+  firmCited: boolean;         // firm domain in the web-search citations
+  citations: string[];
   competitorsMentioned: string[];
-  answerExcerpt: string;      // first ~400 chars, for the report
+  answerExcerpt: string;
 }
 
-interface SiteScan {
+interface SiteSignals {
   https: boolean;
-  schemaTypes: string[];      // JSON-LD @types found
   hasLlmsTxt: boolean;
-  aiBotsAllowed: boolean;     // robots.txt check
-  faqStructured: boolean;     // FAQPage schema or Q-shaped headings
-  headingOutline: string[];
-  titleMeta: { title?: string; description?: string };
-  pageSpeed: { performance: number; seo: number; accessibility: number; lcp: number; cls: number; inp?: number };
+  aiBotsAllowed: boolean;     // robots.txt
+  sitemapFound: boolean;
+  pageSpeed?: { performance: number; seo: number; lcp: number; cls: number }; // optional, free PSI
 }
 
 interface AuditResult {
   input: AuditInput;
   generatedAt: string;
-  engineResults: EngineResult[];
-  siteScan: SiteScan;
-  scores: { visibility: number; technical: number; overall: number }; // 0–100
+  site: SiteSignals;
+  pages: PageAudit[];
+  visibility: VisibilityResult[];
+  scores: { citability: number; technical: number; visibility: number; overall: number };
   roadmap: { horizon: '30' | '60' | '90'; items: string[] }[];
 }
 ```
 
-## 5. Engine adapters (web-grounded)
+## 5. How it works
 
-Each adapter sends the same query and normalizes to `EngineResult`. All use **web-grounded** modes so answers reflect real search behavior:
-- **Perplexity** — Sonar chat completions; read the returned `citations`. (Primary GEO signal.)
-- **OpenAI** — Responses API with the `web_search` tool; read URL annotations.
-- **Anthropic** — Messages API with the server-side `web_search` tool; read result citations.
-- **Gemini** — `generateContent` with Google Search grounding; read `groundingMetadata` sources.
+**Discovery (`crawl.ts`):** fetch `<site>/sitemap.xml` (and sitemap-index) → page URLs. Fallback: parse homepage links if no sitemap. Respect `maxPages`.
 
-`detect.ts` flags `firmMentioned` (firm name fuzzy-match in answer), `firmCited` (firm domain in citations), and extracts competitor names from answer + citation domains. Exact endpoint/model strings are confirmed against current API docs at build time.
+**Extraction (`extract.ts`):** for each page, parse HTML (lightweight regex/DOM) → JSON-LD `@type`s, heading outline, question-form headings, FAQ schema, title/meta, word count, "answer-first" heuristic. Also fetch site-level `llms.txt` and `robots.txt` once.
 
-## 6. Scoring model (transparent, tunable)
+**Per-page audit (`auditPage.ts`):** send each page's extracted signals + trimmed main text to OpenAI with a strict **JSON schema** (structured output), asking for dimension scores + 2–4 concrete fixes. One call per page.
 
-- **Visibility score (0–100):** weighted share of queries where the firm is mentioned/cited, weighted by engine (Perplexity & Google highest), with a bonus for being cited (not just mentioned) and a penalty when only competitors appear.
-- **Technical citability score (0–100):** weighted checklist — schema present, FAQ structure, `llms.txt`, AI-bot access, Lighthouse SEO, Core Web Vitals pass.
-- **Overall** = blend (e.g., 60% visibility / 40% technical). Weights live in `score.ts` constants and are documented in the report so results are explainable.
+**Visibility (`visibility.ts`):** generate ~4–6 buyer queries from `{practiceAreas, location}`; run each through OpenAI with the **web-search tool**; detect firm mention/citation + competitors from the answer and the returned source URLs.
 
-## 7. Report output
+**Scoring (`score.ts`):** citability = mean page overall; technical = site-signal checklist (+ optional PSI); visibility = weighted mention/citation rate; overall = documented blend. Weights are constants and printed in the report.
 
-A branded HTML report using the site's visual language (navy, gradient, Space Grotesk) → rendered to **PDF via Puppeteer**. Sections: cover (firm + overall score gauge), AI-visibility by engine (with the actual cited competitors), technical citability scorecard, top gaps, and a **30/60/90 roadmap**. Also writes `output/<firm>-<date>.json`.
+**Report (`report/`):** branded HTML (navy + gradient + Space Grotesk) → PDF via Puppeteer; per-page scorecard table with top fixes, a visibility section showing real competitors named, and the 30/60/90 roadmap. Also writes `output/<firm>-<date>.json`.
 
-## 8. CLI usage
+## 6. CLI usage
 
 ```
 cd audit-tool
-cp .env.example .env   # fill in API keys
+cp .env.example .env          # add OPENAI_API_KEY
 npm run audit -- \
-  --firm "Harbor & Vale LLP" \
   --site "https://harborvale.com" \
+  --firm "Harbor & Vale LLP" \
   --location "Providence, RI" \
   --areas "estate planning,probate,trusts" \
-  --competitors "Smith & Co, Doe Law"
+  --max-pages 25
 # → output/harbor-vale-llp-2026-06-03.{html,pdf,json}
 ```
 
-## 9. Config, secrets, cost control
+Flags: `--dry-run` (crawl + extract only, **no OpenAI calls**), `--max-pages N`, `--no-visibility` (skip web-search spot-check), `--no-pdf` (HTML only).
 
-- Keys via `.env` (gitignored): `PERPLEXITY_API_KEY`, `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`, `PAGESPEED_API_KEY` (optional). `.env.example` documents them.
-- **Cost caps:** default query set is bounded (8–12 queries); the tool prints an **estimated cost** and supports `--dry-run` (generate queries + site scan only, no paid engine calls) and `--max-queries N`.
-- Graceful degradation: if an engine key is missing, that engine is skipped and the report notes reduced coverage (no silent gaps).
+## 7. Config, secrets, cost control
 
-## 10. Phase 2 — self-serve instant mini-audit (after Phase 1)
+- `.env` (gitignored): `OPENAI_API_KEY` required; `PAGESPEED_API_KEY` optional (PSI works keyless at low volume).
+- **Cost:** ~1 OpenAI call per page + ~4–6 web-search calls. The tool prints an **estimated cost** before paid calls and supports `--dry-run` / `--max-pages` / `--no-visibility`.
+- Graceful degradation: no sitemap → homepage-crawl fallback with a noted limitation; web-search unavailable → visibility section marked "not run" (no silent gaps).
+- Model is a single `config.ts` constant (default a current GPT model) so it's easy to swap.
 
-- `website/functions/api/instant-audit.ts`: runs site scan + PageSpeed + up to 2 Perplexity queries (cheap), returns a teaser visibility/technical score, and emails the lead (existing email pattern). Rate-limited + honeypot.
-- `/tools/geo-audit` Astro page: a form (firm, site, location) → animated score reveal → "Get the full audit" CTA.
-- Heavy/expensive engines stay in the internal tool; the full audit remains human-reviewed.
+## 8. Phase 2 — self-serve instant mini-audit (after Phase 1)
 
-## 11. Risks / open items
+`website/functions/api/instant-audit.ts`: runs crawl + per-page audit on a small cap (e.g., 5 pages) + 1–2 visibility queries, returns a teaser score JSON, emails the lead (existing pattern, rate-limited + honeypot). `/tools/geo-audit` Astro page: form → animated score reveal → "Get the full audit" CTA. Full audit stays human-reviewed.
 
-- **API specifics drift** — exact model names/endpoints/tool schemas confirmed against live docs during implementation; adapters isolate this.
-- **Cost** — each full audit makes ~32–48 paid calls; cost caps + `--dry-run` mitigate. Owner sets a per-audit budget.
-- **Mention/competitor detection** — heuristic; v1 favors precision and shows the raw excerpt + citations so a human can verify before sending.
-- **Puppeteer dependency** — heavy, but acceptable in a separate internal package; Phase 2 self-serve avoids PDF (returns JSON/HTML).
-- **Compliance** — for regulated verticals, the report is reviewed by us before delivery (matches the "5-day, human-reviewed" promise).
+## 9. Risks / open items
 
-## 12. Success criteria
+- **OpenAI API specifics** (Responses API + `web_search` tool, structured-output schema, current model id) confirmed against live docs during implementation; isolated in `auditPage.ts`/`visibility.ts`.
+- **Readiness ≠ live citations:** the page audit grades *how citable* the site is; the web-search spot-check is a sample, not a guarantee — the report states this plainly.
+- **Crawl politeness:** cap pages, set a descriptive User-Agent, small concurrency; respect the target's robots.
+- **Puppeteer** dependency is heavy but fine in a separate internal package; `--no-pdf` avoids it; Phase 2 returns JSON (no PDF).
+- **Cost** scales with page count → `--max-pages` default 30, estimate printed first.
 
-- `npm run audit` produces a correct branded PDF + JSON for a real firm, with live data from all configured engines.
-- Missing keys degrade gracefully with a noted coverage gap.
-- `--dry-run` and `--max-queries` work; estimated cost printed before paid calls.
-- Scoring is documented and reproducible.
-- Phase 2 self-serve endpoint returns a teaser score and captures a lead (built after Phase 1 is validated).
+## 10. Success criteria
+
+- `npm run audit --site … --firm …` produces a branded PDF + JSON for a real firm: a per-page citability scorecard with concrete fixes, a visibility spot-check naming real competitors, and a 30/60/90 roadmap — all on one OpenAI key.
+- `--dry-run`, `--max-pages`, `--no-visibility`, `--no-pdf` all work; estimated cost printed before paid calls.
+- Scoring is documented and reproducible; missing sitemap / web-search degrade gracefully with noted gaps.
+- Phase 2 self-serve endpoint returns a teaser score + captures a lead (built after Phase 1 is validated).
