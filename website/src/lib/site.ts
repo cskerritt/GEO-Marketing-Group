@@ -4,18 +4,19 @@
  */
 
 export const SITE = {
-  name: 'GEO',
-  legalName: 'GEO',
-  tagline: 'GEO & AEO for Professional Services.',
-  url: 'https://geostudio.io',
+  name: 'GEO Marketing Group',
+  shortName: 'GEO',
+  legalName: 'GEO Marketing Group',
+  tagline: 'Full-service marketing for professional-services firms.',
+  url: 'https://geomarketinggroup.org',
   description:
-    'GEO is a Generative Engine Optimization and Answer Engine Optimization agency for professional services firms — law, CPA, consulting, financial advisors, and A&E. We make your firm citable to AI: ChatGPT, Claude, Perplexity, Google AI Overviews, and Gemini.',
+    'GEO Marketing Group is a full-service marketing agency for professional-services firms — law, CPA, consulting, financial advisors, and A&E. We combine Generative Engine Optimization (GEO), SEO & content, web design, and paid media to make serious firms impossible to overlook, online and in AI.',
   founder: {
     name: 'Chris Skerritt',
     role: 'Founder',
-    email: 'chris@geostudio.io',
+    email: 'chris@geomarketinggroup.org',
     bioShort:
-      'Chris Skerritt is the founder of GEO, a generative engine optimization agency for professional services firms in Providence, RI.',
+      'Chris Skerritt is the founder of GEO Marketing Group, a full-service marketing agency for professional-services firms in Providence, RI.',
   },
   address: {
     streetAddress: 'Providence, RI',
@@ -24,18 +25,18 @@ export const SITE = {
     addressCountry: 'US',
     postalCode: '02903',
   },
-  email: 'hello@geostudio.io',
+  email: 'hello@geomarketinggroup.org',
   phone: '+1-401-555-0100',
   social: {
-    linkedin: 'https://www.linkedin.com/company/geostudio',
-    twitter: 'https://twitter.com/geostudio_io',
+    linkedin: 'https://www.linkedin.com/company/geomarketinggroup',
+    twitter: 'https://twitter.com/geomktgroup',
   },
 } as const;
 
 export const NAV = [
   { label: 'Services', href: '/services' },
   { label: 'Industries', href: '/industries' },
-  { label: 'Process', href: '/process' },
+  { label: 'Work', href: '/work' },
   { label: 'Insights', href: '/insights' },
   { label: 'About', href: '/about' },
 ] as const;
@@ -89,7 +90,7 @@ export const SERVICES = [
     label: 'GEO',
     title: 'Generative Engine Optimization',
     description:
-      'Make your content citable by ChatGPT, Claude, Perplexity, and Google AI Overviews.',
+      'Get cited and recommended by ChatGPT, Claude, Perplexity, and Google AI Overviews.',
     price: 'From $1,500',
   },
   {
@@ -97,18 +98,38 @@ export const SERVICES = [
     label: 'AEO',
     title: 'Answer Engine Optimization',
     description:
-      'FAQ scaffolding, schema markup, and structured answers that AI engines lift directly.',
+      'FAQ scaffolding, schema markup, and structured answers AI engines lift directly.',
     price: 'From $1,500',
   },
   {
-    slug: 'build',
-    label: 'Build',
-    title: 'GEO-Native Website Build',
+    slug: 'seo-content',
+    label: 'SEO',
+    title: 'SEO & Content',
     description:
-      'A new site, built on a GEO/AEO foundation from day one. 12–15 pages, deployed.',
+      'Rank for the searches that bring qualified clients — and build the content that earns the citations.',
+  },
+  {
+    slug: 'web',
+    label: 'Web',
+    title: 'Web Design & Development',
+    description:
+      'Fast, credible, conversion-focused websites built on a GEO-ready foundation from day one.',
     price: 'From $7,500',
+  },
+  {
+    slug: 'paid',
+    label: 'Paid',
+    title: 'Paid Ads & Lead Gen',
+    description:
+      'Targeted Google and LinkedIn campaigns that fill the pipeline with qualified, ready-to-talk prospects.',
   },
 ] as const;
 
 export type Industry = (typeof INDUSTRIES)[number];
-export type Service = (typeof SERVICES)[number];
+export type Service = {
+  slug: string;
+  label: string;
+  title: string;
+  description: string;
+  price?: string;
+};
