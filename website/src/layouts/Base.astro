@@ -5,7 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SchemaJsonLd from '../components/SchemaJsonLd.astro';
 import { SITE } from '../lib/site';
-import { organization, localBusiness } from '../lib/schema';
+import { organization, localBusiness, website } from '../lib/schema';
 import type { Schema } from '../lib/schema';
 
 interface Props {
@@ -29,8 +29,8 @@ const {
 const url = canonical ?? new URL(Astro.url.pathname, SITE.url).toString();
 const fullTitle = title === SITE.name ? `${SITE.name} — ${SITE.tagline}` : `${title} · ${SITE.name}`;
 
-// Always include Org + LocalBusiness; merge with page-specific schema
-const allSchemas: Schema[] = [organization(), localBusiness()];
+// Always include Org + WebSite + LocalBusiness; merge with page-specific schema
+const allSchemas: Schema[] = [organization(), website(), localBusiness()];
 if (schema) {
   if (Array.isArray(schema)) {
     allSchemas.push(...schema);
@@ -51,8 +51,13 @@ if (schema) {
 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <meta name="author" content={SITE.name} />
+    <meta name="theme-color" content="#0B132B" />
     <link rel="canonical" href={url} />
-    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    {noIndex
+      ? <meta name="robots" content="noindex, nofollow" />
+      : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
 
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />

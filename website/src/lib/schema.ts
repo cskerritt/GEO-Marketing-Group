@@ -6,15 +6,43 @@ import { SITE } from './site';
 
 export type Schema = Record<string, unknown>;
 
+const AREAS_SERVED = [
+  { '@type': 'AdministrativeArea', name: 'Rhode Island' },
+  { '@type': 'AdministrativeArea', name: 'Massachusetts' },
+  { '@type': 'AdministrativeArea', name: 'Connecticut' },
+  { '@type': 'Country', name: 'United States' },
+];
+
+const KNOWS_ABOUT = [
+  'Generative Engine Optimization',
+  'Answer Engine Optimization',
+  'Search Engine Optimization',
+  'Content Marketing',
+  'Web Design',
+  'Web Development',
+  'Paid Advertising',
+  'Lead Generation',
+  'AI search visibility',
+  'Professional services marketing',
+];
+
 export function organization(): Schema {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': `${SITE.url}/#organization`,
     name: SITE.name,
     legalName: SITE.legalName,
     url: SITE.url,
+    logo: SITE.logo,
+    image: SITE.logo,
     description: SITE.description,
+    slogan: SITE.tagline,
     email: SITE.email,
+    telephone: SITE.phone,
+    foundingDate: SITE.foundingYear,
+    knowsAbout: KNOWS_ABOUT,
+    areaServed: AREAS_SERVED,
     founder: {
       '@type': 'Person',
       name: SITE.founder.name,
@@ -29,12 +57,27 @@ export function organization(): Schema {
   };
 }
 
+export function website(): Schema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${SITE.url}/#website`,
+    name: SITE.name,
+    url: SITE.url,
+    description: SITE.description,
+    inLanguage: 'en-US',
+    publisher: { '@id': `${SITE.url}/#organization` },
+  };
+}
+
 export function localBusiness(): Schema {
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
+    '@id': `${SITE.url}/#localbusiness`,
     name: SITE.name,
     url: SITE.url,
+    image: SITE.logo,
     description: SITE.description,
     email: SITE.email,
     telephone: SITE.phone,
@@ -42,13 +85,21 @@ export function localBusiness(): Schema {
       '@type': 'PostalAddress',
       ...SITE.address,
     },
-    areaServed: [
-      { '@type': 'AdministrativeArea', name: 'Rhode Island' },
-      { '@type': 'AdministrativeArea', name: 'Massachusetts' },
-      { '@type': 'AdministrativeArea', name: 'Connecticut' },
-      { '@type': 'Country', name: 'United States' },
-    ],
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: SITE.geo.latitude,
+      longitude: SITE.geo.longitude,
+    },
+    areaServed: AREAS_SERVED,
     priceRange: '$$',
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '09:00',
+        closes: '17:00',
+      },
+    ],
   };
 }
 

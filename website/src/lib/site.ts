@@ -19,12 +19,14 @@ export const SITE = {
       'Chris Skerritt is the founder of GEO Marketing Group, a full-service marketing agency for professional-services firms in Providence, RI.',
   },
   address: {
-    streetAddress: 'Providence, RI',
     addressLocality: 'Providence',
     addressRegion: 'RI',
     addressCountry: 'US',
     postalCode: '02903',
   },
+  geo: { latitude: 41.824, longitude: -71.4128 },
+  foundingYear: '2026',
+  logo: 'https://geomarketinggroup.org/og-default.png',
   email: 'hello@geomarketinggroup.org',
   phone: '+1-401-555-0100',
   social: {

@@ -5,17 +5,19 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-# Major AI engines — explicit allows for clarity
+# ── Major AI crawlers & answer engines — explicit allows ──
+# OpenAI / ChatGPT
 User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: Google-Extended
-Allow: /
-
-User-agent: PerplexityBot
+# Anthropic / Claude
+User-agent: ClaudeBot
 Allow: /
 
 User-agent: Claude-Web
@@ -24,16 +26,54 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
+# Google AI (Gemini, AI Overviews) — Google-Extended governs AI use
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Microsoft Copilot / Bing
+User-agent: bingbot
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Amazon
+User-agent: Amazonbot
+Allow: /
+
+# Common Crawl (feeds many LLM training sets)
 User-agent: CCBot
 Allow: /
 
+# Others
 User-agent: cohere-ai
 Allow: /
 
-User-agent: Bytespider
+User-agent: DuckAssistBot
 Allow: /
 
-User-agent: Applebot
+User-agent: Bytespider
 Allow: /
 
 Sitemap: https://geomarketinggroup.org/sitemap-index.xml
