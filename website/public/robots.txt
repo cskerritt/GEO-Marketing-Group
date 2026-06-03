@@ -1,4 +1,4 @@
-# https://geostudio.io
+# https://geomarketinggroup.org
 # We welcome AI crawlers. The point of this entire site is to be cited by them.
 
 User-agent: *
@@ -36,4 +36,4 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-Sitemap: https://geostudio.io/sitemap-index.xml
+Sitemap: https://geomarketinggroup.org/sitemap-index.xml
