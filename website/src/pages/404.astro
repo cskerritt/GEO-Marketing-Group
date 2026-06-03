@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import Reveal from '../components/fx/Reveal.astro';
+---
+
+<Base title="Page not found" description="That page doesn't exist — but your next client might still be asking AI about you." noIndex>
+  <section class="relative overflow-hidden bg-navy-deep text-white isolate">
+    <div class="aurora"></div>
+    <div class="absolute inset-0 bg-grid opacity-[0.12] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_30%,transparent_80%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="container-default relative py-28 md:py-36 text-center">
+      <Reveal variant="fade">
+        <p class="eyebrow !text-cyan">Error 404</p>
+      </Reveal>
+      <Reveal variant="up" delay={80}>
+        <p class="font-display font-bold leading-none text-gradient-animated" style="font-size:clamp(5rem,18vw,11rem)">404</p>
+      </Reveal>
+      <Reveal variant="up" delay={160}>
+        <h1 class="font-display text-display-md text-white mt-2 mb-5">This page isn't on the map.</h1>
+      </Reveal>
+      <Reveal variant="up" delay={240}>
+        <p class="text-lg text-white/70 max-w-xl mx-auto leading-relaxed">
+          The link may be broken or the page moved. Let's get you back to something useful.
+        </p>
+      </Reveal>
+      <Reveal variant="up" delay={340}>
+        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/" data-magnetic class="btn-brass shimmer">Back to home →</a>
+          <a href="/services" class="btn-secondary !border-white/25 !text-white hover:!bg-white/[0.06] hover:!border-white/50">Explore services</a>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+</Base>
