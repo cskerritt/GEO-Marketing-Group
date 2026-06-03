@@ -13,6 +13,7 @@ export default defineConfig({
       priority: 0.8,
       lastmod: new Date(),
       customPages: [],
+      filter: (page) => !page.includes('/services/build'),
     }),
   ],
   build: {
