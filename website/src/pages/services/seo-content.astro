@@ -1,0 +1,103 @@
+---
+import Base from '../../layouts/Base.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import Reveal from '../../components/fx/Reveal.astro';
+import { service as serviceSchema } from '../../lib/schema';
+
+const faqs = [
+  {
+    q: 'How is your SEO different from a generic agency?',
+    a: 'We build SEO and GEO together. The same structured, question-shaped, schema-rich content that ranks in Google is what AI answer engines lift and cite. You get traditional organic rankings and a head start on AI visibility from the same work — not two disconnected programs.',
+  },
+  {
+    q: 'What does an SEO & Content engagement include?',
+    a: 'Technical SEO audit and fixes, keyword and question research grounded in how your buyers actually search, an editorial calendar, and ongoing production of authority content — practice-area pages, guides, and FAQ hubs — all optimized for both search rankings and AI citation.',
+  },
+  {
+    q: 'How long until we see results?',
+    a: 'Technical fixes and on-page improvements can move rankings within weeks. Content-driven authority compounds over 3–6 months. We report on rankings, organic traffic, and AI citation share so you can see progress across both channels.',
+  },
+  {
+    q: 'Do you write the content, or do we?',
+    a: 'We do. Every piece is researched, drafted, and optimized by us, then sent to you for review. For regulated verticals (law, financial advisory) we build in the compliance review your rules require before anything publishes.',
+  },
+];
+
+const includes = [
+  { label: 'Technical SEO', desc: 'Audit and full remediation — Core Web Vitals, crawlability, indexation, and site speed.' },
+  { label: 'Keyword & question research', desc: 'Mapped to your practice areas and the actual queries your buyers use.' },
+  { label: 'On-page optimization', desc: 'Every high-value page tightened for both Google and AI rerankers.' },
+  { label: 'Editorial calendar', desc: 'A prioritized content roadmap you\'ll actually use.' },
+  { label: 'Authority content production', desc: 'Practice-area pages, guides, and FAQ hubs — written, optimized, and published.' },
+  { label: 'AI-citation engineering', desc: 'FAQ schema and answer-first structure on every piece (shared with GEO).' },
+  { label: 'Monthly reporting', desc: 'Rankings, organic traffic, and AI citation share in one dashboard.' },
+];
+---
+
+<Base
+  title="SEO & Content"
+  description="SEO and content built for professional-services firms — engineered to rank in Google and earn citations in AI answer engines from the same work."
+  schema={serviceSchema({
+    name: 'SEO & Content',
+    description: 'Search engine optimization and authority content for professional-services firms, optimized for both Google rankings and AI citation.',
+  })}
+>
+  <section class="section">
+    <div class="container-prose">
+      <Reveal variant="up">
+        <p class="eyebrow">Service · SEO &amp; Content</p>
+        <h1 class="font-display text-hero mt-2 mb-8">
+          Rank in Google. <span class="text-gradient-animated">Get cited by AI.</span> Same program.
+        </h1>
+        <p class="text-2xl text-ink/85 leading-snug">
+          Question-shaped, schema-rich, authority-backed content is what ranks in search
+          <em>and</em> what AI engines quote. We build one program that does both — so you're
+          not paying for two vendors pulling in different directions.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-prose">
+      <Reveal variant="up">
+        <h2 class="font-display text-display-md mb-8">What's included</h2>
+      </Reveal>
+      <div class="space-y-4">
+        {includes.map((item, i) => (
+          <Reveal variant="up" delay={i * 60}>
+            <div class="bg-white border border-navy/10 rounded-xl p-5 flex gap-4 items-start lift">
+              <span class="text-brass mt-0.5 flex-shrink-0" aria-hidden="true">▪</span>
+              <div>
+                <p class="font-display text-lg text-navy">{item.label}</p>
+                <p class="text-ink/75 mt-0.5">{item.desc}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+
+      <Reveal variant="fade" delay={200}>
+        <div class="mt-12 bg-white border-l-2 border-electric p-6 rounded-r-xl">
+          <p class="eyebrow">Why it pairs with GEO</p>
+          <p class="text-lg text-ink/85 mt-2">
+            Running SEO and GEO as one program means every article does double duty — no wasted
+            motion, no contradictory advice from two vendors. The content that earns a Google
+            ranking is the same content that earns a ChatGPT citation.
+          </p>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <FAQ items={faqs} heading="Frequently asked about SEO & Content." />
+
+  <CTA
+    heading="Want to rank — and get cited?"
+    body="Start with a free audit. We'll show you where you stand in search and in AI — and what to do first."
+    primaryLabel="Get a Free GEO Audit"
+    secondaryLabel="See all services"
+    secondaryHref="/services"
+  />
+</Base>

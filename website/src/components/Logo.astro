@@ -21,7 +21,7 @@ const tagColor = tone === 'navy' ? 'text-navy/55' : 'text-white/65';
 const gradientId = `geo-grad-${Math.random().toString(36).slice(2, 9)}`;
 ---
 
-<span class={`inline-flex items-center gap-3 ${className}`} aria-label="GEO — Generative Engine Optimization">
+<span class={`inline-flex items-center gap-3 ${className}`} aria-label="GEO Marketing Group">
   {(variant === 'mark' || variant === 'lockup') && (
     <svg
       width={size}
@@ -95,11 +95,12 @@ const gradientId = `geo-grad-${Math.random().toString(36).slice(2, 9)}`;
   {(variant === 'wordmark' || variant === 'lockup') && (
     <span class="flex flex-col leading-none">
       <span class={`font-display font-bold tracking-[-0.04em] ${wordColor}`} style={`font-size:${Math.round(size * 0.72)}px`}>
-        GEO
+        GEO<span class="text-electric">.</span>
+        <span class={`font-medium tracking-[-0.01em] ${tagColor}`} style={`font-size:${Math.round(size * 0.34)}px`}>&nbsp;Marketing&nbsp;Group</span>
       </span>
       {showTagline && (
         <span class={`mt-1 font-mono uppercase tracking-[0.22em] ${tagColor}`} style={`font-size:${Math.max(9, Math.round(size * 0.18))}px`}>
-          Generative&nbsp;Engine&nbsp;Optimization
+          Full-Service&nbsp;Marketing
         </span>
       )}
     </span>

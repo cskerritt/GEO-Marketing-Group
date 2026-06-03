@@ -1,116 +1,165 @@
 ---
 import Base from '../layouts/Base.astro';
 import CTA from '../components/CTA.astro';
+import Reveal from '../components/fx/Reveal.astro';
 import { person } from '../lib/schema';
 import { SITE } from '../lib/site';
 ---
 
 <Base
   title="About"
-  description="GEO is a Generative Engine Optimization agency in Providence, RI, founded by Chris Skerritt. We help professional services firms get cited and recommended by AI."
+  description="GEO Marketing Group is a full-service digital agency in Providence, RI, founded by Chris Skerritt. We help professional services firms get cited and recommended by AI."
   schema={person()}
 >
   <section class="section">
     <div class="container-prose">
-      <p class="eyebrow">About</p>
-      <h1 class="font-display text-hero mt-2 mb-8">
-        We make professional services firms citable to AI.
-      </h1>
-
-      <div class="prose prose-lg max-w-none">
+      <Reveal variant="up">
+        <p class="eyebrow">About</p>
+        <h1 class="font-display text-hero mt-2 mb-8">
+          We make professional services firms <span class="text-gradient-animated">citable</span> to AI.
+        </h1>
         <p class="lead text-2xl text-ink/85 leading-snug">
-          GEO is a Generative Engine Optimization and Answer Engine Optimization agency
-          headquartered in Providence, Rhode Island. We work exclusively with professional
-          services firms across five verticals: law, CPA, consulting, financial advisors, and
-          architecture &amp; engineering.
+          GEO Marketing Group is a full-service digital agency headquartered in Providence,
+          Rhode Island. We specialize in Generative Engine Optimization (GEO) and Answer Engine
+          Optimization (AEO) for professional services firms across five verticals: law, CPA,
+          consulting, financial advisors, and architecture &amp; engineering.
         </p>
+      </Reveal>
+    </div>
+  </section>
 
-        <h2>Why we exist</h2>
-        <p>
-          73% of B2B buyers now use AI tools in their research process. 37% consult AI before
-          Google. The buyers who used to find professional services firms through Google
-          referrals — already a thinning channel — are increasingly asking ChatGPT, Claude, and
-          Perplexity instead.
-        </p>
-        <p>
-          The firms that show up in those AI answers will earn the next decade of referrals. The
-          firms that don't will not. The discipline that determines which is which is GEO — and
-          it requires specific technical, editorial, and authority work that most firms haven't
-          encountered yet.
-        </p>
-        <p>
-          We do that work, and we do it well, for one specific kind of buyer: professional
-          services firms with $1M–$25M in revenue who care about being recommended by name.
-        </p>
-
-        <h2>How we're different</h2>
-        <ul>
-          <li>
-            <strong>Vertical-deep, not horizontal.</strong> We work in five industries. We
-            don't dabble outside them. The deeper we go in your vertical, the more citable
-            your firm becomes.
-          </li>
-          <li>
-            <strong>Productized, not "ongoing services."</strong> Our $1,500 audit is a fixed
-            deliverable in 5 days. Our builds are fixed price. Our retainers have defined
-            monthly scopes. You always know what you're paying for.
-          </li>
-          <li>
-            <strong>Northeast warmth, national reach.</strong> We meet you in your office in Year
-            1. Our content authority earns us national clients by Year 3. The firm's gravity
-            stays here.
-          </li>
-          <li>
-            <strong>Evidence over performance.</strong> We cite our claims, date our stats, show
-            our methodology. We are aggressively unflashy.
-          </li>
-        </ul>
-
-        <h2>Founder</h2>
-      </div>
-
-      <div class="not-prose mt-8 bg-cream-light border-l-2 border-brass p-8">
-        <h3 class="font-display text-2xl text-navy mb-2">Chris Skerritt</h3>
-        <p class="font-mono text-sm text-brass mb-4">Founder, GEO</p>
-        <div class="prose prose-lg max-w-none text-ink/85">
+  <section class="section bg-cream-light border-y border-navy/10">
+    <div class="container-prose">
+      <Reveal variant="up">
+        <h2 class="font-display text-display-md text-navy mb-6">Why we exist</h2>
+      </Reveal>
+      <Reveal variant="up" delay={90}>
+        <div class="prose prose-lg max-w-none">
           <p>
-            Chris Skerritt is the founder of GEO. Before launching the firm, he built and
-            optimized AI-search-ready websites for three B2B clients who specifically wanted
-            ChatGPT, Claude, and Perplexity to recommend them. The work was effective — and
-            free — for three rounds before he stopped to ask the better question: <em>what
-            does it cost to be recommended by AI?</em> GEO is the answer to that question.
+            73% of B2B buyers now use AI tools in their research process. 37% consult AI before
+            Google. The buyers who used to find professional services firms through referrals and
+            organic search — already a thinning channel — are increasingly asking ChatGPT, Claude,
+            and Perplexity instead.
           </p>
           <p>
-            Chris splits his time between client work, writing about GEO for professional
-            services audiences, and speaking at the RI Bar Association, RISCPA, and the
-            Greater Providence Chamber of Commerce.
+            The firms that show up in those AI answers will earn the next decade of referrals. The
+            firms that don't will not. The discipline that determines which is which is GEO — and
+            it requires specific technical, editorial, and authority work that most firms haven't
+            encountered yet.
           </p>
           <p>
-            <a href={`mailto:${SITE.founder.email}`}>{SITE.founder.email}</a>
-            ·
-            <a href={SITE.social.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+            We do that work, and we do it well, for one specific kind of buyer: professional
+            services firms with $1M–$25M in revenue who care about being recommended by name.
           </p>
         </div>
-      </div>
+      </Reveal>
+    </div>
+  </section>
 
-      <div class="prose prose-lg max-w-none mt-12">
-        <h2>Where we work from</h2>
-        <p>
-          We are based in Providence, RI. Our service area in Year 1 is Rhode Island and
-          Southeast Massachusetts (within driving distance for in-person meetings). Year 2 we
-          expand into the broader Northeast (Boston, Hartford, NYC). By Year 3 we serve clients
-          nationally.
-        </p>
-
-        <h2>How to engage us</h2>
-        <p>
-          The simplest first step is a <a href="/audit">free GEO Audit</a>. It is a 5-day
-          engagement that gives you a clear picture of where your firm currently stands across
-          five AI engines. There is no obligation. If we are the right partner for the
-          follow-up work, the audit fee converts into a credit. If not, you walk away with a
-          useful artifact.
-        </p>
+  <section class="section">
+    <div class="container-prose">
+      <Reveal variant="up">
+        <h2 class="font-display text-display-md text-navy mb-10">How we're different</h2>
+      </Reveal>
+      <div class="grid md:grid-cols-2 gap-8">
+        <Reveal variant="up" delay={0} class="ring-gradient bg-white p-8 lift">
+          <h3 class="font-display text-xl text-navy mb-3">Vertical-deep, not horizontal</h3>
+          <p class="text-ink/75 leading-relaxed">
+            We work in five industries and don't dabble outside them. The deeper we go in your
+            vertical, the more citable your firm becomes — because AI engines reward genuine
+            domain authority.
+          </p>
+        </Reveal>
+        <Reveal variant="up" delay={90} class="ring-gradient bg-white p-8 lift">
+          <h3 class="font-display text-xl text-navy mb-3">Productized, not "ongoing services"</h3>
+          <p class="text-ink/75 leading-relaxed">
+            Our $1,500 audit is a fixed deliverable in 5 days. Our builds are fixed price. Our
+            retainers have defined monthly scopes. You always know exactly what you're paying
+            for and what you'll get back.
+          </p>
+        </Reveal>
+        <Reveal variant="up" delay={180} class="ring-gradient bg-white p-8 lift">
+          <h3 class="font-display text-xl text-navy mb-3">Northeast warmth, national reach</h3>
+          <p class="text-ink/75 leading-relaxed">
+            We meet you in your office in Year 1. Our content authority earns us national clients
+            by Year 3. The firm's gravity stays in Providence — and so does our commitment to
+            knowing your market personally.
+          </p>
+        </Reveal>
+        <Reveal variant="up" delay={270} class="ring-gradient bg-white p-8 lift">
+          <h3 class="font-display text-xl text-navy mb-3">Evidence over performance</h3>
+          <p class="text-ink/75 leading-relaxed">
+            We cite our claims, date our stats, and show our methodology. We are aggressively
+            unflashy — because firms like yours are too, and because credibility is the product.
+          </p>
+        </Reveal>
       </div>
+    </div>
+  </section>
+
+  <section class="section bg-cream-light border-y border-navy/10">
+    <div class="container-prose">
+      <Reveal variant="up">
+        <h2 class="font-display text-display-md text-navy mb-8">Founder</h2>
+      </Reveal>
+      <Reveal variant="up" delay={90}>
+        <div class="not-prose bg-white border-l-2 border-brass p-8 ring-gradient lift">
+          <h3 class="font-display text-2xl text-navy mb-2">Chris Skerritt</h3>
+          <p class="font-mono text-sm text-brass mb-6">Founder, GEO Marketing Group</p>
+          <div class="prose prose-lg max-w-none text-ink/85">
+            <p>
+              Before launching GEO Marketing Group, Chris built and optimized AI-search-ready
+              websites for three B2B clients who specifically wanted ChatGPT, Claude, and Perplexity
+              to recommend them by name. The work was effective — and he did it free for three rounds
+              before stopping to ask the better question: <em>what does it actually cost a firm to
+              become recommended by AI?</em> GEO Marketing Group is the answer to that question —
+              built as a firm that earns clients the same outcome, at honest prices, with a
+              reproducible method.
+            </p>
+            <p>
+              Chris splits his time between client work, writing about GEO for professional-services
+              audiences, and speaking at the RI Bar Association, RISCPA, and the Greater Providence
+              Chamber of Commerce. He is transparent about where this firm is in its journey: early,
+              methodical, and confident in the work.
+            </p>
+            <p>
+              <a href={`mailto:${SITE.founder.email}`}>{SITE.founder.email}</a>
+              &nbsp;·&nbsp;
+              <a href={SITE.social.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+            </p>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-prose">
+      <Reveal variant="up">
+        <h2 class="font-display text-display-md text-navy mb-6">Where we work from</h2>
+        <div class="prose prose-lg max-w-none">
+          <p>
+            We are based in Providence, RI. Our service area in Year 1 is Rhode Island and
+            Southeast Massachusetts — close enough for in-person meetings, deep enough for real
+            vertical knowledge. Year 2 we expand into the broader Northeast (Boston, Hartford,
+            New York). By Year 3 we serve clients nationally, with the same discipline we started
+            with here.
+          </p>
+        </div>
+      </Reveal>
+      <Reveal variant="up" delay={90}>
+        <h2 class="font-display text-display-md text-navy mt-12 mb-6">How to engage us</h2>
+        <div class="prose prose-lg max-w-none">
+          <p>
+            The right first step is a <a href="/audit">GEO Audit</a> — a 5-day productized
+            engagement that gives your firm a clear, honest picture of where you currently stand
+            across five AI engines. No obligation. If we're the right partner for what comes next,
+            the audit fee converts to a credit. If not, you walk away with a useful, actionable
+            artifact. Either way, you know more about your AI visibility than 95% of your
+            competitors.
+          </p>
+        </div>
+      </Reveal>
     </div>
   </section>
 

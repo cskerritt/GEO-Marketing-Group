@@ -74,7 +74,7 @@ Avvo, Justia, Google Business Profile, Martindale-Hubbell — kept current and c
 
 ### Play 6: Compliance memo on Bar advertising rules
 
-Every state's Bar advertising rules are slightly different. The ABA Model Rules [^5] forbid false or misleading communications, and most states layer additional restrictions on testimonials, performance claims, and trade names. GEO content is generally informational — it explains topics like *"how does breach-of-contract litigation work in Rhode Island"* — and is not solicitation. But the workflow needs documentation: every state's Bar can audit, and your firm needs a clean trail.
+Every state's Bar advertising rules are slightly different. The ABA Model Rules [^4] forbid false or misleading communications, and most states layer additional restrictions on testimonials, performance claims, and trade names. GEO content is generally informational — it explains topics like *"how does breach-of-contract litigation work in Rhode Island"* — and is not solicitation. But the workflow needs documentation: every state's Bar can audit, and your firm needs a clean trail.
 
 We provide a written memo addressing your state's specific rules at engagement start. We also route content through your ethics counsel if your firm has one.
 
@@ -113,4 +113,4 @@ If you're missing — or competitors you didn't expect are showing up — the di
 [^1]: Bain (2025).
 [^2]: Ramp Top RI Law Firms Report.
 [^3]: Discovered Labs; upGrowth.
-[^5]: ABA Model Rule 7.1.
+[^4]: ABA Model Rule 7.1.

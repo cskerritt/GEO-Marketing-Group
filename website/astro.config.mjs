@@ -4,7 +4,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://geostudio.io',
+  site: 'https://geomarketinggroup.org',
   integrations: [
     tailwind({ applyBaseStyles: false }),
     mdx(),
@@ -13,6 +13,7 @@ export default defineConfig({
       priority: 0.8,
       lastmod: new Date(),
       customPages: [],
+      filter: (page) => !page.includes('/services/build'),
     }),
   ],
   build: {

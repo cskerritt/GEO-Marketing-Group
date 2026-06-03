@@ -6,8 +6,8 @@
  * (configurable). Spam protected by honeypot field.
  *
  * Environment variables (set in Cloudflare Pages dashboard):
- *   AUDIT_TO_EMAIL    — destination address (e.g., chris@geostudio.io)
- *   AUDIT_FROM_EMAIL  — sender (must be on a verified domain), e.g., audit@geostudio.io
+ *   AUDIT_TO_EMAIL    — destination address (e.g., chris@geomarketinggroup.org)
+ *   AUDIT_FROM_EMAIL  — sender (must be on a verified domain), e.g., audit@geomarketinggroup.org
  *   RESEND_API_KEY    — optional; if set, uses Resend instead of MailChannels
  */
 

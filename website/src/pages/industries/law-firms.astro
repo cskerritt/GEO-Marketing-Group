@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTA from '../../components/CTA.astro';
 import CitableStat from '../../components/CitableStat.astro';
+import Reveal from '../../components/fx/Reveal.astro';
 import { service as serviceSchema, breadcrumbs } from '../../lib/schema';
 
 const faqs = [
@@ -40,7 +41,7 @@ const faqs = [
   },
   {
     q: 'What\'s the typical engagement structure?',
-    a: 'Audit ($1,500, 5 days) → Foundation or Build ($3,500–$7,500, 4–6 weeks) → Growth retainer ($2,500/mo, ongoing). Annual value: ~$39,000. The audit converts into a credit applied to the foundation/build, so the audit is effectively free for clients we are right for.',
+    a: 'Audit ($1,500, 5 days) → Foundation or Build ($3,500–$7,500, 4–6 weeks) → Growth retainer ($2,500/mo, ongoing). Annual value: ~$39,000. The audit converts into a credit applied to the Foundation/Build, so the audit is effectively free for clients we are right for.',
   },
   {
     q: 'Can you give a concrete example of GEO work for a law firm?',
@@ -89,7 +90,7 @@ const playbook = [
 
 <Base
   title="GEO for Law Firms"
-  description="Generative Engine Optimization for law firms in Rhode Island, Massachusetts, and the Northeast. Get cited by ChatGPT, Claude, Perplexity, and Google AI Overviews — without violating Bar advertising rules."
+  description="Full-service marketing for law firms in Rhode Island, Massachusetts, and the Northeast — GEO, SEO, web, and paid. Get cited by ChatGPT, Claude, Perplexity, and Google AI Overviews without violating Bar advertising rules."
   schema={[
     serviceSchema({
       name: 'GEO for Law Firms',
@@ -105,81 +106,101 @@ const playbook = [
 >
   <section class="section">
     <div class="container-prose">
-      <p class="eyebrow">Industry · Law</p>
-      <h1 class="font-display text-hero mt-2 mb-8">GEO for Law Firms</h1>
-      <p class="text-2xl text-ink/85 leading-snug">
-        When a prospective client asks ChatGPT for a [practice area] attorney in [your city],
-        you should be the answer. Most managing partners haven't checked. Most have peers who
-        already have.
-      </p>
+      <Reveal variant="up">
+        <p class="eyebrow">Industry · Law Firms</p>
+        <h1 class="font-display text-hero mt-2 mb-8">
+          Marketing for <span class="text-gradient-animated">Law Firms</span>
+        </h1>
+        <p class="text-2xl text-ink/85 leading-snug">
+          When a prospective client asks ChatGPT for a [practice area] attorney in [your city],
+          you should be the answer. We build the full marketing stack — GEO, SEO, web, and
+          paid — that puts your firm in front of the right people, in every channel where they
+          look.
+        </p>
+      </Reveal>
     </div>
   </section>
 
   <section class="bg-cream-light border-y border-navy/10 section">
     <div class="container-default">
       <div class="grid md:grid-cols-3 gap-8">
-        <CitableStat
-          value="3,815"
-          label="licensed attorneys in Rhode Island — one of America's highest densities."
-          source="Ramp Top Law Firms RI Report"
-          sourceUrl="https://ramp.com/blog/top-law-firms-rhode-island"
-        />
-        <CitableStat
-          value="$1.3B"
-          label="annual revenue in the Rhode Island legal market."
-          source="Ramp Top Law Firms RI Report"
-          sourceUrl="https://ramp.com/blog/top-law-firms-rhode-island"
-        />
-        <CitableStat
-          value="70%"
-          label="of RI legal establishments are in Providence County — within driving distance of our office."
-          source="Ramp Top Law Firms RI Report"
-          sourceUrl="https://ramp.com/blog/top-law-firms-rhode-island"
-        />
+        <Reveal variant="up" delay={0}>
+          <CitableStat
+            value="3,815"
+            label="licensed attorneys in Rhode Island — one of America's highest densities."
+            source="Ramp Top Law Firms RI Report"
+            sourceUrl="https://ramp.com/blog/top-law-firms-rhode-island"
+          />
+        </Reveal>
+        <Reveal variant="up" delay={80}>
+          <CitableStat
+            value="$1.3B"
+            label="annual revenue in the Rhode Island legal market."
+            source="Ramp Top Law Firms RI Report"
+            sourceUrl="https://ramp.com/blog/top-law-firms-rhode-island"
+          />
+        </Reveal>
+        <Reveal variant="up" delay={160}>
+          <CitableStat
+            value="70%"
+            label="of RI legal establishments are in Providence County — within driving distance of our office."
+            source="Ramp Top Law Firms RI Report"
+            sourceUrl="https://ramp.com/blog/top-law-firms-rhode-island"
+          />
+        </Reveal>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container-prose">
-      <p class="eyebrow">Why now</p>
-      <h2 class="font-display text-display-lg mt-2 mb-6">
-        Law-firm referral economics are shifting under your feet.
-      </h2>
-      <div class="prose prose-lg max-w-none">
-        <p>
-          Law firms have always been referral-led. The good ones still are. But the *path* to
-          a referral is changing. A managing partner who used to recommend a peer firm directly
-          now sends an email saying *"check ChatGPT for the right business litigator in
-          Providence and let me know if you want me to make an intro to one of them."*
-        </p>
-        <p>
-          The firms that show up in that ChatGPT response will compound those referrals.
-          The firms that don't will see their referral pipeline thin gradually — for reasons
-          that look like "the market is just slower" — until they realize what's happened.
-        </p>
-        <p>
-          GEO is how you stay in the answer. We have built a playbook specifically for law
-          firms that respects Bar advertising rules in all 50 states and works with — not
-          against — the way conservative law-firm partners think about marketing.
-        </p>
-      </div>
+      <Reveal variant="fade">
+        <p class="eyebrow">Why now</p>
+        <h2 class="font-display text-display-lg mt-2 mb-6">
+          Law-firm referral economics are shifting under your feet.
+        </h2>
+      </Reveal>
+      <Reveal variant="up" delay={80}>
+        <div class="prose prose-lg max-w-none">
+          <p>
+            Law firms have always been referral-led. The good ones still are. But the path to
+            a referral is changing. A managing partner who used to recommend a peer firm
+            directly now sends an email saying "check ChatGPT for the right business litigator
+            in Providence and let me know if you want me to make an intro to one of them."
+          </p>
+          <p>
+            The firms that show up in that ChatGPT response compound those referrals.
+            The firms that don't watch their pipeline thin gradually — for reasons that look
+            like "the market is just slower" — until they realize what's happened.
+          </p>
+          <p>
+            GEO is one of the services we use to keep you in the answer. But it's not the
+            only one. We pair AI-search visibility with traditional SEO to own the organic
+            rankings, paid search to capture high-intent queries today, and web strategy to
+            convert every visitor who finds you. The whole machine, built for your practice.
+          </p>
+        </div>
+      </Reveal>
     </div>
   </section>
 
   <section class="bg-navy text-cream section">
     <div class="container-default">
-      <p class="eyebrow text-brass-light">The law-firm GEO playbook</p>
-      <h2 class="font-display text-display-lg mt-2 mb-12 text-cream max-w-2xl">
-        Seven plays we run on every law-firm engagement.
-      </h2>
+      <Reveal variant="fade">
+        <p class="eyebrow text-brass-light">The law-firm GEO playbook</p>
+        <h2 class="font-display text-display-lg mt-2 mb-12 text-cream max-w-2xl">
+          Seven plays we run on every law-firm engagement.
+        </h2>
+      </Reveal>
       <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
-        {playbook.map((p) => (
-          <div>
-            <p class="font-mono text-sm text-brass-light">Play {p.n}</p>
-            <h3 class="font-display text-2xl text-cream mt-2">{p.title}</h3>
-            <p class="mt-3 text-cream/80 leading-relaxed">{p.desc}</p>
-          </div>
+        {playbook.map((p, i) => (
+          <Reveal variant="up" delay={(i % 3) * 80}>
+            <div>
+              <p class="font-mono text-sm text-brass-light">Play {p.n}</p>
+              <h3 class="font-display text-2xl text-cream mt-2">{p.title}</h3>
+              <p class="mt-3 text-cream/80 leading-relaxed">{p.desc}</p>
+            </div>
+          </Reveal>
         ))}
       </div>
     </div>
@@ -189,7 +210,7 @@ const playbook = [
 
   <CTA
     heading="See where your firm shows up in AI search."
-    body="A productized GEO Audit for your firm — across all your practice areas — delivered in 5 business days. $1,500. Free for the first 25 RI/MA firms."
-    primaryLabel="Get a Free GEO Audit"
+    body="A productized audit across all your practice areas — delivered in 5 business days. Covers AI visibility, SEO gaps, and conversion-rate opportunities. $1,500. Free for the first 25 RI/MA firms."
+    primaryLabel="Get a Free Audit"
   />
 </Base>

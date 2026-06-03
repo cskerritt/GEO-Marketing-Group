@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTA from '../../components/CTA.astro';
+import Reveal from '../../components/fx/Reveal.astro';
 import { service as serviceSchema } from '../../lib/schema';
 
 const faqs = [
@@ -64,44 +65,56 @@ const includes = [
 >
   <section class="section">
     <div class="container-prose">
-      <p class="eyebrow">Service · GEO</p>
-      <h1 class="font-display text-hero mt-2 mb-8">Generative Engine Optimization</h1>
-      <p class="text-2xl text-ink/85 leading-snug">
-        Make your content citable by ChatGPT, Claude, Perplexity, and Google AI Overviews. The
-        AI-search counterpart to traditional SEO — but with a different ranking mechanism, a
-        different structural discipline, and a different success metric.
-      </p>
+      <Reveal variant="up">
+        <p class="eyebrow">Service · GEO</p>
+        <h1 class="font-display text-hero mt-2 mb-8">
+          Get your firm cited by <span class="text-gradient-animated">every AI engine</span> that matters.
+        </h1>
+        <p class="text-2xl text-ink/85 leading-snug">
+          When buyers ask ChatGPT, Claude, Perplexity, or Google AI Overviews who to hire,
+          your firm should be the answer. GEO is the discipline that makes that happen — and it's
+          mechanically different from SEO, with its own ranking logic and its own success metrics.
+        </p>
+      </Reveal>
     </div>
   </section>
 
   <section class="bg-cream-light border-y border-navy/10 section">
     <div class="container-prose">
-      <h2 class="font-display text-display-md mb-8">What's included</h2>
+      <Reveal variant="up">
+        <h2 class="font-display text-display-md mb-8">What's included</h2>
+      </Reveal>
       <ul class="space-y-3">
-        {includes.map((item) => (
-          <li class="flex gap-3 items-start">
+        {includes.map((item, i) => (
+          <Reveal variant="up" delay={i * 40} as="li" class="flex gap-3 items-start">
             <span class="text-brass mt-1.5 flex-shrink-0" aria-hidden="true">▪</span>
             <span class="text-lg text-ink/85">{item}</span>
-          </li>
+          </Reveal>
         ))}
       </ul>
 
       <div class="mt-16 grid md:grid-cols-3 gap-6">
-        <div class="bg-white border border-navy/10 p-6">
-          <p class="eyebrow">Foundation</p>
-          <p class="font-display text-3xl text-navy mt-2">$3,500</p>
-          <p class="text-sm text-ink/70 mt-2">Existing site, optimized.</p>
-        </div>
-        <div class="bg-white border border-navy/10 p-6">
-          <p class="eyebrow">Build</p>
-          <p class="font-display text-3xl text-navy mt-2">$7,500</p>
-          <p class="text-sm text-ink/70 mt-2">New 12–15 page site, GEO-native.</p>
-        </div>
-        <div class="bg-white border border-navy/10 p-6">
-          <p class="eyebrow">Retainer</p>
-          <p class="font-display text-3xl text-navy mt-2">$1.5K–$4.5K/mo</p>
-          <p class="text-sm text-ink/70 mt-2">Ongoing publication, monitoring, iteration.</p>
-        </div>
+        <Reveal variant="up" delay={0}>
+          <div class="bg-white border border-navy/10 rounded-2xl p-6 lift ring-gradient relative h-full">
+            <p class="eyebrow">Foundation</p>
+            <p class="font-display text-3xl text-navy mt-2">$3,500</p>
+            <p class="text-sm text-ink/70 mt-2">Existing site, fully optimized for AI citation.</p>
+          </div>
+        </Reveal>
+        <Reveal variant="up" delay={90}>
+          <div class="bg-white border border-navy/10 rounded-2xl p-6 lift ring-gradient relative h-full">
+            <p class="eyebrow">Build</p>
+            <p class="font-display text-3xl text-navy mt-2">$7,500</p>
+            <p class="text-sm text-ink/70 mt-2">New 12–15 page site, GEO-native from day one.</p>
+          </div>
+        </Reveal>
+        <Reveal variant="up" delay={180}>
+          <div class="bg-white border border-navy/10 rounded-2xl p-6 lift ring-gradient relative h-full">
+            <p class="eyebrow">Retainer</p>
+            <p class="font-display text-3xl text-navy mt-2">$1.5K–$4.5K/mo</p>
+            <p class="text-sm text-ink/70 mt-2">Ongoing publication, monitoring, and iteration.</p>
+          </div>
+        </Reveal>
       </div>
     </div>
   </section>
@@ -109,7 +122,8 @@ const includes = [
   <FAQ items={faqs} heading="Frequently asked about GEO." />
 
   <CTA
-    heading="See where your firm stands."
+    heading="See exactly where your firm stands."
+    body="A free GEO Audit gives you a citation baseline across 5 AI engines — and a clear read on what to do first."
     primaryLabel="Get a Free GEO Audit"
   />
 </Base>

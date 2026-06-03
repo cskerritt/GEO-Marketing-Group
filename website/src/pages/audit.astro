@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Reveal from '../components/fx/Reveal.astro';
 import { INDUSTRIES } from '../lib/site';
 ---
 
@@ -9,150 +10,194 @@ import { INDUSTRIES } from '../lib/site';
 >
   <section class="section">
     <div class="container-prose">
-      <p class="eyebrow">Free for the first 25 firms</p>
-      <h1 class="font-display text-hero mt-2 mb-8">Free GEO Audit.</h1>
-      <p class="text-2xl text-ink/85 leading-snug mb-12">
-        Five business days. We measure your firm's AI visibility across ChatGPT, Claude,
-        Perplexity, Google AI Overviews, and Gemini, deliver a written report and a 30/60/90
-        roadmap, and walk you through the findings on a 60-minute call.
-      </p>
+      <Reveal variant="fade">
+        <p class="eyebrow">Free for the first 25 firms</p>
+        <h1 class="font-display text-hero mt-2 mb-8">Free <span class="text-gradient-animated">GEO Audit.</span></h1>
+        <p class="text-2xl text-ink/85 leading-snug mb-12">
+          Five business days. We measure your firm's AI visibility across ChatGPT, Claude,
+          Perplexity, Google AI Overviews, and Gemini — then deliver a written report, a
+          30/60/90-day roadmap, and a 60-minute founder walkthrough call. No pitch. No
+          obligation. Just a clear picture of where you stand.
+        </p>
+      </Reveal>
 
       <div class="prose prose-lg max-w-none mb-16">
-        <h2>What you get</h2>
-        <ul>
-          <li>Citation baseline reading across 5 AI engines</li>
-          <li>Schema and structured-data audit (what's missing, what's broken)</li>
-          <li>Content citability scoring against the Aggarwal et al. methodology</li>
-          <li>Competitive citation map (which peer firms are getting cited)</li>
-          <li>30/60/90-day prioritized roadmap with effort and impact estimates</li>
-          <li>60-minute walkthrough call with the founder</li>
-          <li>ROI projection for visits, citations, and AI-attributed leads</li>
+        <Reveal variant="up" delay={100}>
+          <h2>What you get</h2>
+        </Reveal>
+        <ul class="not-prose space-y-3 mt-4 mb-10">
+          <Reveal variant="up" delay={150} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+            <span class="text-brass font-bold mt-0.5">→</span>
+            <span>Citation baseline reading across 5 AI engines — know exactly where you rank today</span>
+          </Reveal>
+          <Reveal variant="up" delay={200} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+            <span class="text-brass font-bold mt-0.5">→</span>
+            <span>Schema and structured-data audit — what's missing, what's broken, what to fix first</span>
+          </Reveal>
+          <Reveal variant="up" delay={250} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+            <span class="text-brass font-bold mt-0.5">→</span>
+            <span>Content citability scoring against the Aggarwal et al. methodology</span>
+          </Reveal>
+          <Reveal variant="up" delay={300} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+            <span class="text-brass font-bold mt-0.5">→</span>
+            <span>Competitive citation map — which peer firms are getting cited instead of you</span>
+          </Reveal>
+          <Reveal variant="up" delay={350} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+            <span class="text-brass font-bold mt-0.5">→</span>
+            <span>30/60/90-day prioritized roadmap with effort and impact estimates</span>
+          </Reveal>
+          <Reveal variant="up" delay={400} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+            <span class="text-brass font-bold mt-0.5">→</span>
+            <span>60-minute walkthrough call with the founder — no junior account manager, no slide deck</span>
+          </Reveal>
+          <Reveal variant="up" delay={450} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+            <span class="text-brass font-bold mt-0.5">→</span>
+            <span>ROI projection for visits, citations, and AI-attributed leads</span>
+          </Reveal>
         </ul>
 
-        <h2>Who qualifies</h2>
-        <ul>
-          <li>Professional services firms in our 5 verticals (law, CPA, consulting, financial advisors, A&amp;E)</li>
-          <li>$1M–$25M annual revenue</li>
-          <li>Located in Rhode Island or Massachusetts (priority); other Northeast states accepted</li>
-          <li>Decision-maker available for the 60-minute walkthrough</li>
+        <Reveal variant="up" delay={100}>
+          <h2>Who qualifies</h2>
+        </Reveal>
+        <ul class="not-prose space-y-3 mt-4 mb-10">
+          <Reveal variant="up" delay={150} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+            <span class="text-brass font-bold mt-0.5">✓</span>
+            <span>Professional services firms in our 5 verticals: law, CPA, consulting, financial advisors, A&amp;E</span>
+          </Reveal>
+          <Reveal variant="up" delay={200} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+            <span class="text-brass font-bold mt-0.5">✓</span>
+            <span>$1M–$25M annual revenue</span>
+          </Reveal>
+          <Reveal variant="up" delay={250} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+            <span class="text-brass font-bold mt-0.5">✓</span>
+            <span>Located in Rhode Island or Massachusetts (priority); other Northeast states accepted</span>
+          </Reveal>
+          <Reveal variant="up" delay={300} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+            <span class="text-brass font-bold mt-0.5">✓</span>
+            <span>Decision-maker available for the 60-minute walkthrough call</span>
+          </Reveal>
         </ul>
 
-        <p class="text-base text-slate italic">
-          Audit is normally $1,500 — free for the first 25 RI/MA firms. After 25, we close
-          the founding tier.
-        </p>
+        <Reveal variant="fade" delay={150}>
+          <p class="text-base text-slate italic">
+            This audit is normally $1,500 — free for the first 25 RI/MA firms as our founding
+            tier. Once we hit 25, this offer closes permanently.
+          </p>
+        </Reveal>
       </div>
     </div>
 
     <div class="container-prose">
-      <form
-        method="POST"
-        action="/api/audit"
-        class="bg-cream-light border border-navy/10 p-8 md:p-12 space-y-6"
-      >
-        <h2 class="font-display text-display-md">Request your audit.</h2>
+      <Reveal variant="up" delay={100}>
+        <form
+          method="POST"
+          action="/api/audit"
+          class="bg-cream-light border border-navy/10 p-8 md:p-12 space-y-6"
+        >
+          <h2 class="font-display text-display-md">Request your audit.</h2>
 
-        <input type="text" name="hp_field" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <input type="text" name="hp_field" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 
-        <div class="grid md:grid-cols-2 gap-6">
+          <div class="grid md:grid-cols-2 gap-6">
+            <label class="block">
+              <span class="font-mono text-xs uppercase tracking-wider text-navy">Your name</span>
+              <input
+                type="text"
+                name="name"
+                required
+                autocomplete="name"
+                class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
+              />
+            </label>
+            <label class="block">
+              <span class="font-mono text-xs uppercase tracking-wider text-navy">Email</span>
+              <input
+                type="email"
+                name="email"
+                required
+                autocomplete="email"
+                class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
+              />
+            </label>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <label class="block">
+              <span class="font-mono text-xs uppercase tracking-wider text-navy">Firm name</span>
+              <input
+                type="text"
+                name="firm"
+                required
+                autocomplete="organization"
+                class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
+              />
+            </label>
+            <label class="block">
+              <span class="font-mono text-xs uppercase tracking-wider text-navy">Firm website</span>
+              <input
+                type="url"
+                name="website"
+                required
+                placeholder="https://"
+                class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
+              />
+            </label>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <label class="block">
+              <span class="font-mono text-xs uppercase tracking-wider text-navy">Industry</span>
+              <select
+                name="industry"
+                required
+                class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
+              >
+                <option value="">Select…</option>
+                {INDUSTRIES.map((i) => (
+                  <option value={i.slug}>{i.label}</option>
+                ))}
+                <option value="other">Other (we'll review)</option>
+              </select>
+            </label>
+            <label class="block">
+              <span class="font-mono text-xs uppercase tracking-wider text-navy">Firm size</span>
+              <select
+                name="size"
+                required
+                class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
+              >
+                <option value="">Select…</option>
+                <option>1–4 people</option>
+                <option>5–15 people</option>
+                <option>16–40 people</option>
+                <option>41–75 people</option>
+                <option>76+ people</option>
+              </select>
+            </label>
+          </div>
+
           <label class="block">
-            <span class="font-mono text-xs uppercase tracking-wider text-navy">Your name</span>
-            <input
-              type="text"
-              name="name"
-              required
-              autocomplete="name"
+            <span class="font-mono text-xs uppercase tracking-wider text-navy">
+              What's making you ask now?
+            </span>
+            <textarea
+              name="context"
+              rows="4"
+              placeholder="A peer firm getting recommended? Lost referral traffic? Heard about GEO at an event?"
               class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
-            />
+            ></textarea>
           </label>
-          <label class="block">
-            <span class="font-mono text-xs uppercase tracking-wider text-navy">Email</span>
-            <input
-              type="email"
-              name="email"
-              required
-              autocomplete="email"
-              class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
-            />
-          </label>
-        </div>
 
-        <div class="grid md:grid-cols-2 gap-6">
-          <label class="block">
-            <span class="font-mono text-xs uppercase tracking-wider text-navy">Firm name</span>
-            <input
-              type="text"
-              name="firm"
-              required
-              autocomplete="organization"
-              class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
-            />
-          </label>
-          <label class="block">
-            <span class="font-mono text-xs uppercase tracking-wider text-navy">Firm website</span>
-            <input
-              type="url"
-              name="website"
-              required
-              placeholder="https://"
-              class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
-            />
-          </label>
-        </div>
+          <button type="submit" class="btn-primary w-full justify-center shimmer">
+            Request the Audit →
+          </button>
 
-        <div class="grid md:grid-cols-2 gap-6">
-          <label class="block">
-            <span class="font-mono text-xs uppercase tracking-wider text-navy">Industry</span>
-            <select
-              name="industry"
-              required
-              class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
-            >
-              <option value="">Select…</option>
-              {INDUSTRIES.map((i) => (
-                <option value={i.slug}>{i.label}</option>
-              ))}
-              <option value="other">Other (we'll review)</option>
-            </select>
-          </label>
-          <label class="block">
-            <span class="font-mono text-xs uppercase tracking-wider text-navy">Firm size</span>
-            <select
-              name="size"
-              required
-              class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
-            >
-              <option value="">Select…</option>
-              <option>1–4 people</option>
-              <option>5–15 people</option>
-              <option>16–40 people</option>
-              <option>41–75 people</option>
-              <option>76+ people</option>
-            </select>
-          </label>
-        </div>
-
-        <label class="block">
-          <span class="font-mono text-xs uppercase tracking-wider text-navy">
-            What's making you ask now?
-          </span>
-          <textarea
-            name="context"
-            rows="4"
-            placeholder="A peer firm getting recommended? Lost referral traffic? Heard about GEO at an event?"
-            class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
-          ></textarea>
-        </label>
-
-        <button type="submit" class="btn-primary w-full justify-center">
-          Request the Audit →
-        </button>
-
-        <p class="text-xs text-slate text-center">
-          By submitting, you agree to receive a one-time follow-up email from GEO. We do not
-          add you to a marketing list. We respond within 1 business day.
-        </p>
-      </form>
+          <p class="text-xs text-slate text-center">
+            By submitting, you agree to receive a one-time follow-up email from GEO. We do not
+            add you to a marketing list. We respond within 1 business day.
+          </p>
+        </form>
+      </Reveal>
     </div>
   </section>
 </Base>

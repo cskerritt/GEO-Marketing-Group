@@ -1,0 +1,18 @@
+---
+/**
+ * Scroll-reveal wrapper. Content is visible without JS; animates in when
+ * JS + motion are available. `delay` staggers siblings.
+ */
+interface Props {
+  variant?: 'up' | 'fade' | 'scale' | 'left' | 'right' | 'blur';
+  delay?: number;
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+}
+const { variant = 'up', delay = 0, as = 'div', class: className = '' } = Astro.props;
+const Tag = as as any;
+---
+
+<Tag data-reveal={variant} style={delay ? `--reveal-delay:${delay}ms` : undefined} class={className}>
+  <slot />
+</Tag>

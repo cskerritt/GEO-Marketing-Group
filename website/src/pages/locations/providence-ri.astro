@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Reveal from '../../components/fx/Reveal.astro';
 import CTA from '../../components/CTA.astro';
 import FAQ from '../../components/FAQ.astro';
 import { localBusiness, breadcrumbs } from '../../lib/schema';
@@ -34,54 +35,95 @@ const faqs = [
 >
   <section class="section">
     <div class="container-prose">
-      <p class="eyebrow">Location · Providence, RI</p>
-      <h1 class="font-display text-hero mt-2 mb-8">GEO in Providence.</h1>
-      <p class="text-2xl text-ink/85 leading-snug">
-        We are based in Providence, Rhode Island. Our Year-1 client base is RI law firms, RI
-        CPAs, RI consulting firms, RI financial advisors, and RI A&amp;E firms. We meet you
-        in your office.
-      </p>
+      <Reveal variant="fade">
+        <p class="eyebrow">Location · Providence, RI</p>
+        <h1 class="font-display text-hero mt-2 mb-8">GEO in <span class="text-gradient-animated">Providence.</span></h1>
+        <p class="text-2xl text-ink/85 leading-snug">
+          We are based in Providence, Rhode Island — not a satellite office, not a virtual
+          presence. Our Year-1 client base is RI law firms, RI CPAs, RI consulting firms, RI
+          financial advisors, and RI A&amp;E firms. We meet you in your office.
+        </p>
+      </Reveal>
     </div>
   </section>
 
   <section class="bg-cream-light border-y border-navy/10 section">
     <div class="container-prose prose prose-lg max-w-none">
-      <h2>Why Providence is the right beachhead for a national agency.</h2>
-      <p>
-        Rhode Island has the highest attorney density per capita in the United States. RI
-        professional services firms have roughly $1.3B in legal market revenue alone, plus
-        2,200+ RISCPA members, dense RIA and A&amp;E activity, and a high concentration of
-        consulting firms in the Providence/Cambridge corridor.
-      </p>
-      <p>
-        The state is small enough that the warm-network of managing partners, marketing
-        directors, and principals is essentially one room. Word travels fast. Reputation
-        compounds quickly. Driving time from our office to any RI/SE-MA client is under 60
-        minutes.
-      </p>
-      <p>
-        That density is the right launch market for a vertical-specialist GEO agency: deep
-        enough to fill a year of capacity, conservative enough to reward high-quality
-        execution, connected enough to compound referrals.
-      </p>
+      <Reveal variant="up" delay={100}>
+        <h2>Why Providence is the right beachhead for a national agency.</h2>
+        <p>
+          Rhode Island has the highest attorney density per capita in the United States. RI
+          professional services firms represent roughly $1.3B in legal market revenue alone,
+          plus 2,200+ RISCPA members, dense RIA and A&amp;E activity, and a high concentration
+          of consulting firms in the Providence/Cambridge corridor.
+        </p>
+        <p>
+          The state is small enough that the warm network of managing partners, marketing
+          directors, and principals is essentially one room. Word travels fast. Reputation
+          compounds quickly. Driving time from our office to any RI/SE-MA client is under 60
+          minutes.
+        </p>
+        <p>
+          That density is the right launch market for a vertical-specialist GEO agency: deep
+          enough to fill a year of capacity, conservative enough to reward high-quality
+          execution, connected enough to compound referrals.
+        </p>
+      </Reveal>
 
-      <h2>Our Providence partnerships</h2>
-      <ul>
-        <li><strong>Greater Providence Chamber of Commerce</strong> — member; sponsor of selected signature events</li>
-        <li><strong>Rhode Island Bar Association</strong> — CLE program participant and event sponsor</li>
-        <li><strong>RI Society of CPAs (RISCPA)</strong> — member-benefit GEO Audit program in development</li>
-        <li><strong>AIA Rhode Island</strong> — partnership in development</li>
-        <li><strong>ACEC Rhode Island</strong> — partnership in development</li>
-        <li><strong>Financial Planning Association (FPA) RI</strong> — speaker outreach in development</li>
+      <Reveal variant="up" delay={150}>
+        <h2>Our Providence partnerships</h2>
+      </Reveal>
+      <ul class="not-prose space-y-3 mt-4 mb-10">
+        <Reveal variant="up" delay={200} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+          <span class="text-brass font-bold mt-0.5">→</span>
+          <span><strong>Greater Providence Chamber of Commerce</strong> — member; sponsor of selected signature events</span>
+        </Reveal>
+        <Reveal variant="up" delay={250} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+          <span class="text-brass font-bold mt-0.5">→</span>
+          <span><strong>Rhode Island Bar Association</strong> — CLE program participant and event sponsor</span>
+        </Reveal>
+        <Reveal variant="up" delay={300} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+          <span class="text-brass font-bold mt-0.5">→</span>
+          <span><strong>RI Society of CPAs (RISCPA)</strong> — member-benefit GEO Audit program in development</span>
+        </Reveal>
+        <Reveal variant="up" delay={350} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+          <span class="text-brass font-bold mt-0.5">→</span>
+          <span><strong>AIA Rhode Island</strong> — partnership in development</span>
+        </Reveal>
+        <Reveal variant="up" delay={400} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+          <span class="text-brass font-bold mt-0.5">→</span>
+          <span><strong>ACEC Rhode Island</strong> — partnership in development</span>
+        </Reveal>
+        <Reveal variant="up" delay={450} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+          <span class="text-brass font-bold mt-0.5">→</span>
+          <span><strong>Financial Planning Association (FPA) RI</strong> — speaker outreach in development</span>
+        </Reveal>
       </ul>
 
-      <h2>Service areas from Providence</h2>
-      <ul>
-        <li>Providence, Cranston, Warwick, Pawtucket, East Providence, Cumberland, Smithfield, North Kingstown, South Kingstown, Middletown, Newport — full Rhode Island coverage</li>
-        <li>Bristol County, Plymouth County, Cape Cod, MetroWest (Framingham, Natick, Wellesley) — Southeast Massachusetts</li>
-        <li>Boston, Cambridge — selected Year-1 clients; broader expansion in Year 2</li>
-        <li>Hartford CT, NYC — Year 2 targets</li>
-        <li>National — Year 3+</li>
+      <Reveal variant="up" delay={150}>
+        <h2>Service areas from Providence</h2>
+      </Reveal>
+      <ul class="not-prose space-y-3 mt-4 mb-10">
+        <Reveal variant="up" delay={200} as="li" class="flex items-start gap-3 text-lg text-ink/85 ring-gradient lift p-4">
+          <span class="text-brass font-bold mt-0.5">→</span>
+          <span>Providence, Cranston, Warwick, Pawtucket, East Providence, Cumberland, Smithfield, North Kingstown, South Kingstown, Middletown, Newport — full Rhode Island coverage</span>
+        </Reveal>
+        <Reveal variant="up" delay={250} as="li" class="flex items-start gap-3 text-lg text-ink/85 ring-gradient lift p-4">
+          <span class="text-brass font-bold mt-0.5">→</span>
+          <span>Bristol County, Plymouth County, Cape Cod, MetroWest (Framingham, Natick, Wellesley) — Southeast Massachusetts</span>
+        </Reveal>
+        <Reveal variant="up" delay={300} as="li" class="flex items-start gap-3 text-lg text-ink/85 ring-gradient lift p-4">
+          <span class="text-brass font-bold mt-0.5">→</span>
+          <span>Boston, Cambridge — selected Year-1 clients; broader expansion in Year 2</span>
+        </Reveal>
+        <Reveal variant="up" delay={350} as="li" class="flex items-start gap-3 text-lg text-ink/85 ring-gradient lift p-4">
+          <span class="text-brass font-bold mt-0.5">→</span>
+          <span>Hartford CT, NYC — Year 2 targets</span>
+        </Reveal>
+        <Reveal variant="up" delay={400} as="li" class="flex items-start gap-3 text-lg text-ink/85 ring-gradient lift p-4">
+          <span class="text-brass font-bold mt-0.5">→</span>
+          <span>National — Year 3+</span>
+        </Reveal>
       </ul>
     </div>
   </section>

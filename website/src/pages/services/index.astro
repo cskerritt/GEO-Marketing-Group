@@ -1,58 +1,69 @@
 ---
 import Base from '../../layouts/Base.astro';
 import CTA from '../../components/CTA.astro';
+import Reveal from '../../components/fx/Reveal.astro';
 import { SERVICES } from '../../lib/site';
 ---
 
 <Base
   title="Services"
-  description="Three productized GEO/AEO services for professional services firms: GEO, AEO, and Build. Fixed price, fixed scope, predictable outcomes."
+  description="Full-service marketing for professional-services firms: GEO, AEO, SEO & Content, Web Design & Development, and Paid Ads & Lead Gen — one accountable team."
 >
   <section class="section">
     <div class="container-prose">
-      <p class="eyebrow">Services</p>
-      <h1 class="font-display text-hero mt-2 mb-8">Three services. Productized. Predictable.</h1>
-      <p class="text-2xl text-ink/85 leading-snug">
-        We sell three things, and we sell them in fixed scopes at fixed prices. No hourly
-        billing. No mystery scope. You always know what you're paying for.
-      </p>
+      <Reveal variant="up">
+        <p class="eyebrow">Services</p>
+        <h1 class="font-display text-hero mt-2 mb-8">Five disciplines. <span class="text-gradient-animated">One accountable team.</span></h1>
+        <p class="text-2xl text-ink/85 leading-snug">
+          Most firms burn budget juggling separate vendors for every channel. We bring GEO, SEO,
+          web, and paid under one roof — so every dollar pulls in the same direction, and one team
+          owns the result.
+        </p>
+      </Reveal>
     </div>
   </section>
 
   <section class="bg-cream-light border-y border-navy/10">
     <div class="container-default py-20">
-      <div class="grid md:grid-cols-3 gap-8">
-        {SERVICES.map((service) => (
-          <a href={`/services/${service.slug}`} class="group block bg-white border border-navy/10 p-8 transition-all hover:border-brass hover:-translate-y-1">
-            <p class="eyebrow">{service.label}</p>
-            <h2 class="font-display text-2xl mt-3 text-navy group-hover:text-brass transition-colors">
-              {service.title}
-            </h2>
-            <p class="mt-4 text-ink/80 leading-relaxed">{service.description}</p>
-            <p class="mt-8 font-mono text-sm text-brass">{service.price} →</p>
-          </a>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {SERVICES.map((service, i) => (
+          <Reveal variant="up" delay={(i % 3) * 90}>
+            <a
+              href={`/services/${service.slug}`}
+              class="group block bg-white border border-navy/10 rounded-2xl p-8 transition-all hover:border-electric/40 hover:shadow-glow-blue lift ring-gradient h-full relative"
+            >
+              <p class="eyebrow">{service.label}</p>
+              <h2 class="font-display text-2xl mt-3 text-navy group-hover:text-electric transition-colors">
+                {service.title}
+              </h2>
+              <p class="mt-4 text-ink/80 leading-relaxed">{service.description}</p>
+              <p class="mt-8 font-mono text-sm text-electric inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                {service.price ?? 'Request a quote'}
+                <span aria-hidden="true">→</span>
+              </p>
+            </a>
+          </Reveal>
         ))}
       </div>
 
-      <div class="mt-16 prose prose-lg max-w-prose mx-auto">
-        <h2>Most clients buy a hybrid.</h2>
-        <p>
-          The most common engagement looks like this: a $1,500 GEO Audit, followed by a $7,500
-          GEO Build (or a $3,500 Foundation if your existing site is good enough), followed by a
-          $2,500/month Growth retainer. Total Year-1 client value is about $39,000.
-        </p>
-        <p>
-          Audits convert to hybrids about 30% of the time. The audit fee credits toward the
-          hybrid if you commit within 30 days, so the audit is effectively free for the client
-          we are right for.
-        </p>
-      </div>
+      <Reveal variant="fade" delay={200}>
+        <div class="mt-16 prose prose-lg max-w-prose mx-auto">
+          <h2>Where most firms start.</h2>
+          <p>
+            The right first move is almost always a free GEO Audit — a precise read on where your
+            firm stands in AI answer engines and traditional search. From there we scope the work
+            that actually moves the needle: a faster, more credible website; an SEO and content
+            engine that compounds; paid campaigns to win high-intent demand today; or a combination.
+            No mystery scope. No channel silos. No wasted spend.
+          </p>
+        </div>
+      </Reveal>
     </div>
   </section>
 
   <CTA
-    heading="Start with a Calibrate audit."
-    body="$1,500. 5 business days. We tell you exactly where your firm stands."
+    heading="Not sure where to start?"
+    body="Start with a free GEO Audit. We'll tell you exactly where your firm stands — and what's worth doing first."
     primaryLabel="Get a Free GEO Audit"
   />
 </Base>

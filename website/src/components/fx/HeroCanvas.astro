@@ -1,0 +1,113 @@
+---
+/**
+ * Animated "citation constellation" — drifting nodes + proximity links in the
+ * brand palette, with subtle pointer parallax. Pauses when offscreen/hidden.
+ * Reduced motion → a single static frame. Absolutely fills its (relative) parent.
+ */
+interface Props { class?: string; }
+const { class: className = '' } = Astro.props;
+---
+
+<canvas class={`gm-hero-canvas ${className}`} aria-hidden="true"></canvas>
+
+<style>
+  .gm-hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  function initHeroCanvas(el: HTMLCanvasElement) {
+    const ctx = el.getContext('2d')!;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const COLORS = ['#2563eb', '#7c3aed', '#22d3ee'];
+    let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let nodes: { x: number; y: number; vx: number; vy: number; r: number; c: string }[] = [];
+    let raf = 0, running = false;
+    const pointer = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
+
+    function size() {
+      const rect = el.getBoundingClientRect();
+      w = rect.width; h = rect.height;
+      el.width = Math.floor(w * dpr);
+      el.height = Math.floor(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.max(18, Math.min(54, Math.floor((w * h) / 16000)));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        r: Math.random() * 1.8 + 0.8,
+        c: COLORS[(Math.random() * COLORS.length) | 0],
+      }));
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      pointer.x += (pointer.tx - pointer.x) * 0.05;
+      pointer.y += (pointer.ty - pointer.y) * 0.05;
+      const px = (pointer.x - 0.5) * 24;
+      const py = (pointer.y - 0.5) * 24;
+
+      for (const n of nodes) {
+        if (!reduce) { n.x += n.vx; n.y += n.vy; }
+        if (n.x < 0 || n.x > w) n.vx *= -1;
+        if (n.y < 0 || n.y > h) n.vy *= -1;
+      }
+
+      // links
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i], b = nodes[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 130) {
+            ctx.globalAlpha = (1 - dist / 130) * 0.32;
+            ctx.strokeStyle = a.c;
+            ctx.lineWidth = 0.6;
+            ctx.beginPath();
+            ctx.moveTo(a.x + px, a.y + py);
+            ctx.lineTo(b.x + px, b.y + py);
+            ctx.stroke();
+          }
+        }
+      }
+      // nodes
+      for (const n of nodes) {
+        ctx.globalAlpha = 0.9;
+        ctx.fillStyle = n.c;
+        ctx.beginPath();
+        ctx.arc(n.x + px, n.y + py, n.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      if (running && !reduce) raf = requestAnimationFrame(draw);
+    }
+
+    function start() { if (!running) { running = true; raf = requestAnimationFrame(draw); } }
+    function stop() { running = false; cancelAnimationFrame(raf); }
+
+    size();
+    if (reduce) { draw(); }
+    else {
+      start();
+      const io = new IntersectionObserver((e) => { e[0].isIntersecting ? start() : stop(); }, { threshold: 0 });
+      io.observe(el);
+      document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+      window.addEventListener('pointermove', (e) => {
+        pointer.tx = e.clientX / window.innerWidth;
+        pointer.ty = e.clientY / window.innerHeight;
+      }, { passive: true });
+    }
+    let to: number;
+    window.addEventListener('resize', () => { clearTimeout(to); to = window.setTimeout(size, 150); });
+  }
+
+  document.querySelectorAll<HTMLCanvasElement>('.gm-hero-canvas').forEach(initHeroCanvas);
+</script>
