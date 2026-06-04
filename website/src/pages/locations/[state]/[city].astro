@@ -1,0 +1,89 @@
+---
+import Base from '../../../layouts/Base.astro';
+import CTA from '../../../components/CTA.astro';
+import FAQ from '../../../components/FAQ.astro';
+import Reveal from '../../../components/fx/Reveal.astro';
+import { placeService, breadcrumbs } from '../../../lib/schema';
+import { CITIES, citiesInState, cityPath, statePath, getState, type City } from '../../../data/locations';
+
+export function getStaticPaths() {
+  return CITIES.map((c) => ({ params: { state: c.stateSlug, city: c.slug }, props: { city: c } }));
+}
+
+interface Props { city: City }
+const { city } = Astro.props;
+const state = getState(city.stateSlug)!;
+const nearby = citiesInState(city.stateSlug).filter((c) => c.slug !== city.slug).slice(0, 5);
+---
+
+<Base
+  title={`Marketing for ${city.name}, ${city.abbr} Firms`}
+  description={city.metaDescription}
+  schema={[
+    placeService(city.name, city.state),
+    breadcrumbs([
+      { label: 'Home', href: '/' },
+      { label: 'Locations', href: '/locations' },
+      { label: city.state, href: statePath(state) },
+      { label: city.name, href: cityPath(city) },
+    ]),
+  ]}
+>
+  <section class="section">
+    <div class="container-prose">
+      <Reveal variant="fade">
+        <p class="eyebrow">Location · {city.name}, {city.abbr}</p>
+        <h1 class="font-display text-hero mt-2 mb-8">Marketing for <span class="text-gradient-animated">{city.name}</span> firms.</h1>
+        <p class="text-2xl text-ink/85 leading-snug">{city.intro}</p>
+      </Reveal>
+    </div>
+  </section>
+
+  <section class="bg-cream-light border-y border-navy/10 section">
+    <div class="container-prose">
+      <Reveal variant="up">
+        <div class="prose prose-lg max-w-none">
+          {city.body.map((p) => <p>{p}</p>)}
+        </div>
+      </Reveal>
+
+      <Reveal variant="up" delay={120}>
+        <h2 class="font-display text-display-md mt-12 mb-6">The {city.name} market</h2>
+      </Reveal>
+      <ul class="not-prose space-y-3">
+        {city.highlights.map((h, i) => (
+          <Reveal variant="up" delay={150 + i * 60} as="li" class="flex items-start gap-3 text-lg text-ink/85">
+            <span class="text-electric font-bold mt-0.5">→</span>
+            <span>{h}</span>
+          </Reveal>
+        ))}
+      </ul>
+
+      <p class="mt-8 font-mono text-xs text-slate">{city.county} · pop. ~{city.population.toLocaleString('en-US')}</p>
+    </div>
+  </section>
+
+  <FAQ items={city.faqs} heading={`Common questions from ${city.name} firms.`} />
+
+  {nearby.length > 0 && (
+    <section class="section pt-0">
+      <div class="container-default">
+        <p class="eyebrow">Nearby in {city.state}</p>
+        <div class="flex flex-wrap gap-3 mt-4">
+          {nearby.map((c) => (
+            <a href={cityPath(c)} class="lift inline-block rounded-full border border-navy/15 px-4 py-2 text-sm text-navy hover:border-electric hover:text-electric transition-colors">{c.name}</a>
+          ))}
+          <a href={statePath(state)} class="lift inline-block rounded-full border border-navy/15 px-4 py-2 text-sm font-mono text-slate hover:border-electric hover:text-electric transition-colors">All of {city.state} →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CTA
+    heading={`Be the firm ${city.name} buyers — and AI — recommend.`}
+    body="Start with a free GEO Audit. We'll show you exactly where your firm stands in local and AI search."
+    primaryLabel="Get a Free GEO Audit"
+    secondaryLabel="See how we work"
+    secondaryHref="/work"
+  />
+</Base>
