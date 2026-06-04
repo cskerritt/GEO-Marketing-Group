@@ -103,6 +103,17 @@ export function localBusiness(): Schema {
   };
 }
 
+export function placeService(city: string, region: string): Schema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `Marketing for ${city} professional-services firms`,
+    serviceType: 'Marketing agency',
+    provider: { '@id': `${SITE.url}/#organization` },
+    areaServed: { '@type': 'City', name: `${city}, ${region}` },
+  };
+}
+
 export function person(): Schema {
   return {
     '@context': 'https://schema.org',

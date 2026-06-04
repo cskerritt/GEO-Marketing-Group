@@ -1,0 +1,66 @@
+---
+import Base from '../../../layouts/Base.astro';
+import CTA from '../../../components/CTA.astro';
+import Reveal from '../../../components/fx/Reveal.astro';
+import { breadcrumbs } from '../../../lib/schema';
+import { STATES, citiesInState, cityPath, statePath, type StateInfo } from '../../../data/locations';
+
+export function getStaticPaths() {
+  return STATES.map((s) => ({ params: { state: s.slug }, props: { state: s } }));
+}
+
+interface Props { state: StateInfo }
+const { state } = Astro.props;
+const cities = citiesInState(state.slug);
+---
+
+<Base
+  title={`Marketing for ${state.name} Firms`}
+  description={`Full-service marketing — GEO, SEO, web, and paid — for professional-services firms across ${state.name}. ${state.blurb}`}
+  schema={[
+    breadcrumbs([
+      { label: 'Home', href: '/' },
+      { label: 'Locations', href: '/locations' },
+      { label: state.name, href: statePath(state) },
+    ]),
+  ]}
+>
+  <section class="section">
+    <div class="container-default">
+      <Reveal>
+        <p class="eyebrow">Locations · {state.abbr}</p>
+        <h1 class="font-display text-hero mt-2 mb-6">Marketing for <span class="text-gradient-animated">{state.name}</span> firms.</h1>
+        <p class="text-xl text-ink/75 max-w-2xl leading-relaxed">{state.blurb}</p>
+      </Reveal>
+
+      {cities.length > 0 ? (
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-14">
+          {cities.map((c, i) => (
+            <Reveal variant="up" delay={(i % 3) * 70}>
+              <a href={cityPath(c)} class="group lift ring-gradient relative block h-full rounded-2xl border border-navy/10 bg-white p-6 hover:shadow-glow-blue">
+                <h2 class="font-display text-xl text-navy group-hover:text-electric transition-colors">{c.name}</h2>
+                <p class="mt-1 font-mono text-[11px] text-slate">{c.county}</p>
+                <p class="mt-4 text-xs font-mono text-electric inline-flex items-center gap-1 group-hover:gap-2 transition-all">View market <span aria-hidden="true">→</span></p>
+              </a>
+            </Reveal>
+          ))}
+        </div>
+      ) : (
+        <Reveal variant="up" delay={100}>
+          <p class="mt-12 text-lg text-ink/70 max-w-2xl">
+            We serve firms across {state.name}. City-specific pages are rolling out — in the
+            meantime, request a free GEO Audit and we'll assess your market directly.
+          </p>
+        </Reveal>
+      )}
+    </div>
+  </section>
+
+  <CTA
+    heading={`Be the firm ${state.name} buyers — and AI — recommend.`}
+    body="Start with a free GEO Audit. We'll show you exactly where your firm stands locally and in AI search."
+    primaryLabel="Get a Free GEO Audit"
+    secondaryLabel="All locations"
+    secondaryHref="/locations"
+  />
+</Base>
