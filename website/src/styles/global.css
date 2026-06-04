@@ -1,4 +1,4 @@
-/* Fonts (Space Grotesk + JetBrains Mono) are loaded via <link> in Base.astro */
+/* Fonts (Montserrat + JetBrains Mono) are loaded via <link> in Base.astro */
 
 @tailwind base;
 @tailwind components;

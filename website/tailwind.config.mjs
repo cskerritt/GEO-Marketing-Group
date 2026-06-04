@@ -40,8 +40,8 @@ export default {
         },
       },
       fontFamily: {
-        display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
-        sans: ['"Space Grotesk"', 'system-ui', '-apple-system', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
+        display: ['Montserrat', 'system-ui', 'sans-serif'],
+        sans: ['Montserrat', 'system-ui', '-apple-system', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SF Mono', 'Consolas', 'monospace'],
       },
       fontSize: {
