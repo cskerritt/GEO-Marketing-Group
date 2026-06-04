@@ -19,19 +19,21 @@ export default {
           DEFAULT: '#FFFFFF',
           light: '#F8FAFC',
         },
-        // Accent — blue/purple gradient pair.
-        // `brass` (legacy alias) now resolves to the brand blue;
-        // `brass-light` resolves to the brand violet for hover states
-        // and gradient companions.
+        // Accent — brand navy→blue family (no violet/cyan, per brand sheet).
+        // Legacy token names kept so existing markup keeps working; values
+        // are now all blue so the whole site reads on-brand.
         brass: {
           DEFAULT: '#2563EB',
-          light: '#7C3AED',
+          light: '#1D4ED8',
         },
         // Direct semantic tokens for new components
         electric: '#2563EB',
-        violet: '#7C3AED',
+        // `violet` retained as a token name but resolves to deep brand blue.
+        violet: '#1D4ED8',
+        // `cyan` retained as a token name but resolves to a light brand blue
+        // (used for eyebrows/accents on dark sections).
         cyan: {
-          DEFAULT: '#22D3EE',
+          DEFAULT: '#60A5FA',
         },
         fog: '#E5E7EB',
         ink: '#0B132B',
@@ -53,12 +55,12 @@ export default {
         'prose': '72ch',
       },
       backgroundImage: {
-        'gradient-brand': 'linear-gradient(120deg, #2563EB 0%, #7C3AED 60%, #22D3EE 100%)',
-        'gradient-mesh': 'radial-gradient(at 18% 12%, rgba(37,99,235,0.18) 0px, transparent 55%), radial-gradient(at 82% 18%, rgba(124,58,237,0.18) 0px, transparent 55%), radial-gradient(at 50% 90%, rgba(34,211,238,0.18) 0px, transparent 50%)',
+        'gradient-brand': 'linear-gradient(120deg, #1E40AF 0%, #2563EB 55%, #3B82F6 100%)',
+        'gradient-mesh': 'radial-gradient(at 18% 12%, rgba(30,64,175,0.20) 0px, transparent 55%), radial-gradient(at 82% 18%, rgba(37,99,235,0.18) 0px, transparent 55%), radial-gradient(at 50% 90%, rgba(59,130,246,0.16) 0px, transparent 50%)',
       },
       boxShadow: {
         'glow-blue': '0 12px 48px -16px rgba(37,99,235,0.55)',
-        'glow-violet': '0 12px 48px -16px rgba(124,58,237,0.55)',
+        'glow-violet': '0 12px 48px -16px rgba(30,64,175,0.5)',
       },
       typography: ({ theme }) => ({
         DEFAULT: {

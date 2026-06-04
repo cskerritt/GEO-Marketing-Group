@@ -25,7 +25,7 @@ const { class: className = '' } = Astro.props;
   function initHeroCanvas(el: HTMLCanvasElement) {
     const ctx = el.getContext('2d')!;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const COLORS = ['#2563eb', '#7c3aed', '#22d3ee'];
+    const COLORS = ['#2563eb', '#1d4ed8', '#3b82f6'];
     let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
     let nodes: { x: number; y: number; vx: number; vy: number; r: number; c: string }[] = [];
     let raf = 0, running = false;

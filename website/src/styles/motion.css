@@ -37,7 +37,7 @@
   width: 100%;
   transform-origin: 0 50%;
   transform: scaleX(var(--scroll, 0));
-  background: linear-gradient(90deg, #2563eb, #7c3aed 60%, #22d3ee);
+  background: linear-gradient(90deg, #2563eb, #1d4ed8 60%, #3b82f6);
   z-index: 60;
   pointer-events: none;
 }
@@ -55,7 +55,7 @@
 
 /* ---- Animated gradient text -------------------------------- */
 .text-gradient-animated {
-  background: linear-gradient(110deg, #2563eb, #7c3aed 30%, #22d3ee 55%, #7c3aed 75%, #2563eb);
+  background: linear-gradient(110deg, #2563eb, #1d4ed8 30%, #3b82f6 55%, #1d4ed8 75%, #2563eb);
   background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -93,7 +93,7 @@
 .aurora::after {
   width: 40vw; height: 40vw;
   right: -4vw; top: 2vw;
-  background: radial-gradient(circle at 60% 40%, rgba(124, 58, 237, 0.5), transparent 60%);
+  background: radial-gradient(circle at 60% 40%, rgba(30, 64, 175, 0.5), transparent 60%);
   animation: gm-float-b 22s ease-in-out infinite;
 }
 
@@ -160,7 +160,7 @@
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(120deg, #2563eb, #7c3aed 60%, #22d3ee);
+  background: linear-gradient(120deg, #2563eb, #1d4ed8 60%, #3b82f6);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;

@@ -2,16 +2,16 @@
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#2563EB"/>
-      <stop offset="55%" stop-color="#7C3AED"/>
-      <stop offset="100%" stop-color="#22D3EE"/>
+      <stop offset="55%" stop-color="#1D4ED8"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
     </linearGradient>
     <radialGradient id="glow1" cx="15%" cy="0%" r="60%">
       <stop offset="0%" stop-color="#2563EB" stop-opacity="0.45"/>
       <stop offset="100%" stop-color="#2563EB" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="glow2" cx="90%" cy="20%" r="55%">
-      <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#1D4ED8" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1D4ED8" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
@@ -21,7 +21,7 @@
   <rect x="0" y="0" width="1200" height="6" fill="url(#g)"/>
 
   <!-- eyebrow -->
-  <text x="90" y="150" fill="#22D3EE" font-size="26" letter-spacing="6" font-weight="500" font-family="'JetBrains Mono',monospace">FULL-SERVICE MARKETING · PROFESSIONAL SERVICES</text>
+  <text x="90" y="150" fill="#3B82F6" font-size="26" letter-spacing="6" font-weight="500" font-family="'JetBrains Mono',monospace">FULL-SERVICE MARKETING · PROFESSIONAL SERVICES</text>
 
   <!-- headline -->
   <text x="86" y="300" fill="#FFFFFF" font-size="104" font-weight="700" letter-spacing="-3">Be the firm</text>

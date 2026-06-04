@@ -9,8 +9,8 @@
     --color-navy: 11 19 43;          /* #0B132B */
     --color-navy-deep: 5 11 26;      /* #050B1A */
     --color-electric: 37 99 235;     /* #2563EB */
-    --color-violet: 124 58 237;      /* #7C3AED */
-    --color-cyan: 34 211 238;        /* #22D3EE */
+    --color-violet: 29 78 216;       /* #1D4ED8 (brand deep blue) */
+    --color-cyan: 96 165 250;        /* #60A5FA (brand light blue) */
     --color-fog: 229 231 235;        /* #E5E7EB */
     --color-cream: 255 255 255;      /* #FFFFFF (legacy alias) */
     --color-ink: 11 19 43;
