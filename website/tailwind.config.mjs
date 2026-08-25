@@ -60,26 +60,26 @@ export default {
         'glow-blue': '0 12px 48px -16px rgba(37,99,235,0.55)',
         'glow-violet': '0 12px 48px -16px rgba(124,58,237,0.55)',
       },
-      typography: ({ theme }) => ({
+      typography: () => ({
         DEFAULT: {
           css: {
-            '--tw-prose-body': theme('colors.ink'),
-            '--tw-prose-headings': theme('colors.navy.DEFAULT'),
-            '--tw-prose-links': theme('colors.brass.DEFAULT'),
-            '--tw-prose-bold': theme('colors.navy.DEFAULT'),
-            '--tw-prose-quotes': theme('colors.slate.DEFAULT'),
-            '--tw-prose-quote-borders': theme('colors.brass.DEFAULT'),
+            '--tw-prose-body': '#0B132B',
+            '--tw-prose-headings': '#0B132B',
+            '--tw-prose-links': '#2563EB',
+            '--tw-prose-bold': '#0B132B',
+            '--tw-prose-quotes': '#475569',
+            '--tw-prose-quote-borders': '#2563EB',
             'h1, h2, h3, h4': {
-              fontFamily: theme('fontFamily.display').join(', '),
+              fontFamily: '"Space Grotesk", system-ui, sans-serif',
               fontWeight: '700',
               letterSpacing: '-0.02em',
             },
             a: {
               textDecoration: 'underline',
-              textDecorationColor: theme('colors.brass.light'),
+              textDecorationColor: '#7C3AED',
               textUnderlineOffset: '0.2em',
               '&:hover': {
-                textDecorationColor: theme('colors.brass.DEFAULT'),
+                textDecorationColor: '#2563EB',
               },
             },
           },

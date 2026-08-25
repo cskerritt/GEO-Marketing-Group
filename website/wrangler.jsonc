@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "geo-marketing-group",
+  "compatibility_date": "2026-08-25",
+  "pages_build_output_dir": "./dist",
+  "secrets": {
+    "required": [
+      "AUDIT_TO_EMAIL",
+      "AUDIT_FROM_EMAIL",
+      "RESEND_API_KEY",
+      "TURNSTILE_SECRET_KEY"
+    ]
+  }
+}

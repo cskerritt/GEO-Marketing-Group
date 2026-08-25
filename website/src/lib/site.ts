@@ -86,7 +86,7 @@ export const INDUSTRIES = [
   },
 ] as const;
 
-export const SERVICES = [
+export const SERVICES: readonly Service[] = [
   {
     slug: 'geo',
     label: 'GEO',
@@ -125,7 +125,7 @@ export const SERVICES = [
     description:
       'Targeted Google and LinkedIn campaigns that fill the pipeline with qualified, ready-to-talk prospects.',
   },
-] as const;
+];
 
 export type Industry = (typeof INDUSTRIES)[number];
 export type Service = {

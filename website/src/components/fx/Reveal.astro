@@ -9,7 +9,7 @@ interface Props {
   as?: keyof HTMLElementTagNameMap;
   class?: string;
 }
-const { variant = 'up', delay = 0, as = 'div', class: className = '' } = Astro.props;
+const { variant = 'up', delay = 0, as = 'div', class: className = '' }: Props = Astro.props;
 const Tag = as as any;
 ---
 

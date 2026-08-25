@@ -1,0 +1,26 @@
+---
+interface Props {
+  action: 'audit' | 'contact';
+  siteKey: string;
+}
+
+const { action, siteKey } = Astro.props;
+---
+
+{
+  siteKey ? (
+    <>
+      <div
+        class="cf-turnstile"
+        data-sitekey={siteKey}
+        data-action={action}
+        data-theme="light"
+      ></div>
+      <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    </>
+  ) : (
+    <p class="text-sm text-red-700 text-center" role="alert">
+      This form is temporarily unavailable. Please contact us by email instead.
+    </p>
+  )
+}
