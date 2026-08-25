@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import CTA from '../../components/CTA.astro';
 import Reveal from '../../components/fx/Reveal.astro';
-import { STATES, citiesInState, statePath, cityPath } from '../../data/locations';
+import { STATES, citiesInState, statePath } from '../../data/locations';
 
 const states = STATES.map((s) => ({ ...s, cities: citiesInState(s.slug) }));
 const totalCities = states.reduce((n, s) => n + s.cities.length, 0);

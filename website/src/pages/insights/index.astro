@@ -49,11 +49,11 @@ function formatDate(d: Date): string {
                   {post.data.industry !== 'general' && ` · ${post.data.industry.toUpperCase()}`}
                 </p>
                 <h2 class="font-display text-3xl text-navy mt-2 group-hover:text-brass transition-colors">
-                  <a href={`/insights/${post.slug}`} class="lift">{post.data.title}</a>
+                  <a href={`/insights/${post.id}`} class="lift">{post.data.title}</a>
                 </h2>
                 <p class="mt-3 text-lg text-ink/80 leading-relaxed">{post.data.description}</p>
                 <p class="mt-4">
-                  <a href={`/insights/${post.slug}`} class="text-brass hover:text-brass-light underline underline-offset-4 font-medium">
+                  <a href={`/insights/${post.id}`} class="text-brass hover:text-brass-light underline underline-offset-4 font-medium">
                     Read the article →
                   </a>
                 </p>

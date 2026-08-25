@@ -1,0 +1,6 @@
+# Copy this file to .dev.vars for `npm run pages:dev`.
+# Pages Function runtime values only. Never commit the real values.
+AUDIT_TO_EMAIL=
+AUDIT_FROM_EMAIL=
+RESEND_API_KEY=
+TURNSTILE_SECRET_KEY=

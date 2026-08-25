@@ -1,5 +1,5 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import CTA from '../../components/CTA.astro';
 import Reveal from '../../components/fx/Reveal.astro';
@@ -7,9 +7,9 @@ import { article as articleSchema, breadcrumbs } from '../../lib/schema';
 import { SITE } from '../../lib/site';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('insights');
+  const posts = await getCollection('insights', ({ data }) => !data.draft);
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 }
@@ -19,7 +19,7 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 
 function formatDate(d: Date): string {
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -35,7 +35,7 @@ const isoDate = (d: Date): string => d.toISOString();
     articleSchema({
       title: post.data.title,
       description: post.data.description,
-      slug: post.slug,
+      slug: post.id,
       datePublished: isoDate(post.data.pubDate),
       dateModified: post.data.updatedDate ? isoDate(post.data.updatedDate) : isoDate(post.data.pubDate),
       authorName: post.data.author,
@@ -43,7 +43,7 @@ const isoDate = (d: Date): string => d.toISOString();
     breadcrumbs([
       { label: 'Home', href: '/' },
       { label: 'Insights', href: '/insights' },
-      { label: post.data.title, href: `/insights/${post.slug}` },
+      { label: post.data.title, href: `/insights/${post.id}` },
     ]),
   ]}
 >

@@ -10,14 +10,33 @@ firm's indexed pages, grades each page's AI **citability**, runs a live
 
 ## Setup
 
+Requirements:
+
+- Node.js 22.12 or newer (Node 22 LTS recommended)
+- npm 10.9 or newer
+- outbound HTTPS access to audited sites, OpenAI, Google PageSpeed, and Google
+  Fonts when rendering PDF reports
+
 ```bash
 cd audit-tool
-npm install
+npm ci
 cp .env.example .env      # then add your OPENAI_API_KEY
+npm run check
 ```
 
-`npm install` downloads Chromium for Puppeteer (PDF rendering). Use `--no-pdf`
-to skip PDF if you don't need it.
+`OPENAI_API_KEY` is required for a live audit. It can remain blank when using
+`--dry-run`, which makes no OpenAI calls. `OPENAI_MODEL` optionally overrides
+the default `gpt-4.1`; the selected model must support structured JSON output
+and the Responses API `web_search` tool. `PAGESPEED_API_KEY` is optional because
+PageSpeed works keyless at low volume.
+
+`npm ci` downloads Chrome for Puppeteer PDF rendering and stores it in the
+Puppeteer cache. For an HTML/JSON-only environment, skip that download with
+`PUPPETEER_SKIP_DOWNLOAD=true npm ci` and always run audits with `--no-pdf`.
+Run commands from this directory so `.env` and `output/` resolve here.
+
+`npm run check` is deterministic, makes no network or API calls, and runs the
+TypeScript check plus lightweight pipeline and local PDF-rendering smoke tests.
 
 ## Run
 
@@ -65,3 +84,5 @@ for free.
   **live** AI answers. Both are shown in the report so a human can verify before
   sending to a client.
 - Model is set in `src/config.ts` (`OPENAI_MODEL` env overrides).
+- `--dry-run` verifies crawling, extraction, and report generation, but its zero
+  AI scores are placeholders and should not be presented as a client score.

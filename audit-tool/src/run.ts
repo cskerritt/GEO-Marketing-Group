@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import OpenAI from 'openai';
-import { config } from './config.js';
+import { assertOpenAiKeyConfigured, config } from './config.js';
 import { discoverPages, fetchText } from './crawl.js';
 import { extractPage, getSiteSignals, type ExtractedPage } from './extract.js';
 import { auditPage } from './auditPage.js';
@@ -33,6 +33,8 @@ export async function runAudit(
   input: AuditInput,
   flags: AuditFlags
 ): Promise<{ result: AuditResult; files: string[] }> {
+  assertOpenAiKeyConfigured(flags.dryRun, config.openaiKey);
+
   console.log(`\n▶ Discovering pages for ${input.website} …`);
   const { origin, pages: urls, sitemapFound } = await discoverPages(input.website, input.maxPages);
   console.log(`  ${urls.length} page(s) found ${sitemapFound ? '(via sitemap)' : '(homepage crawl fallback)'}.`);
@@ -72,9 +74,6 @@ export async function runAudit(
       topFixes: ['(dry run — page not sent to OpenAI)'],
     }));
   } else {
-    if (!config.openaiKey) {
-      throw new Error('OPENAI_API_KEY is not set. Add it to audit-tool/.env (see .env.example).');
-    }
     const client = new OpenAI({ apiKey: config.openaiKey });
     console.log(`▶ Auditing ${extracted.length} pages with ${config.model} …`);
     pageAudits = await mapLimit(extracted, config.concurrency, (p) => auditPage(client, p));

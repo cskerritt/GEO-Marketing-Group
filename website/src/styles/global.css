@@ -1,8 +1,12 @@
 /* Fonts (Space Grotesk + JetBrains Mono) are loaded via <link> in Base.astro */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.mjs";
+
+/* Tailwind v4 defines `prose` at 65ch; retain the site's v3 72ch reading width. */
+@theme {
+  --max-width-prose: 72ch;
+}
 
 @layer base {
   :root {

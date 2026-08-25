@@ -1,7 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
 import Reveal from '../components/fx/Reveal.astro';
+import Turnstile from '../components/Turnstile.astro';
 import { INDUSTRIES } from '../lib/site';
+
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY?.trim() ?? '';
 ---
 
 <Base
@@ -96,7 +99,7 @@ import { INDUSTRIES } from '../lib/site';
         >
           <h2 class="font-display text-display-md">Request your audit.</h2>
 
-          <input type="text" name="hp_field" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <input type="text" name="hp_field" maxlength="200" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 
           <div class="grid md:grid-cols-2 gap-6">
             <label class="block">
@@ -105,6 +108,7 @@ import { INDUSTRIES } from '../lib/site';
                 type="text"
                 name="name"
                 required
+                maxlength="120"
                 autocomplete="name"
                 class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
               />
@@ -115,6 +119,7 @@ import { INDUSTRIES } from '../lib/site';
                 type="email"
                 name="email"
                 required
+                maxlength="254"
                 autocomplete="email"
                 class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
               />
@@ -128,6 +133,7 @@ import { INDUSTRIES } from '../lib/site';
                 type="text"
                 name="firm"
                 required
+                maxlength="200"
                 autocomplete="organization"
                 class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
               />
@@ -138,6 +144,7 @@ import { INDUSTRIES } from '../lib/site';
                 type="url"
                 name="website"
                 required
+                maxlength="2048"
                 placeholder="https://"
                 class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
               />
@@ -183,12 +190,15 @@ import { INDUSTRIES } from '../lib/site';
             <textarea
               name="context"
               rows="4"
+              maxlength="5000"
               placeholder="A peer firm getting recommended? Lost referral traffic? Heard about GEO at an event?"
               class="mt-2 w-full px-4 py-3 bg-white border border-navy/20 focus:border-brass focus:outline-none rounded-sm"
             ></textarea>
           </label>
 
-          <button type="submit" class="btn-primary w-full justify-center shimmer">
+          <Turnstile action="audit" siteKey={turnstileSiteKey} />
+
+          <button type="submit" disabled={!turnstileSiteKey} class="btn-primary w-full justify-center shimmer disabled:opacity-50 disabled:cursor-not-allowed">
             Request the Audit →
           </button>
 

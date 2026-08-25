@@ -1,12 +1,11 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://geomarketinggroup.org',
   integrations: [
-    tailwind({ applyBaseStyles: false }),
     mdx(),
     sitemap({
       changefreq: 'weekly',
@@ -20,6 +19,7 @@ export default defineConfig({
     inlineStylesheets: 'auto',
   },
   vite: {
+    plugins: [tailwindcss()],
     build: {
       cssCodeSplit: true,
     },
