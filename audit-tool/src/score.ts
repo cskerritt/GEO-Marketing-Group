@@ -33,7 +33,7 @@ export function visibilityScore(results: VisibilityResult[]): number {
   const ran = results.filter((r) => !r.error);
   if (!ran.length) return 0;
   const per = ran.map((r) => (r.firmCited ? 1 : r.firmMentioned ? 0.6 : 0));
-  return Math.round((per.reduce((a, b) => a + b, 0) / ran.length) * 100);
+  return Math.round((per.reduce<number>((a, b) => a + b, 0) / ran.length) * 100);
 }
 
 export function overallScore(

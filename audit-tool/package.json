@@ -4,14 +4,23 @@
   "private": true,
   "type": "module",
   "description": "GEO Marketing Group — OpenAI-powered GEO/AEO/SEO audit tool (per-page citability + visibility spot-check + branded report).",
+  "engines": {
+    "node": ">=22.12.0",
+    "npm": ">=10.9.0"
+  },
+  "packageManager": "npm@10.9.8",
   "scripts": {
     "audit": "tsx bin/audit.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "smoke": "tsx --test test/smoke.test.ts",
+    "smoke:pdf": "tsx --test test/pdf.test.ts",
+    "test": "npm run smoke && npm run smoke:pdf",
+    "check": "npm run typecheck && npm test"
   },
   "dependencies": {
     "cheerio": "^1.0.0",
     "openai": "^4.73.0",
-    "puppeteer": "^23.9.0"
+    "puppeteer": "^25.9.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
