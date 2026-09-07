@@ -20,11 +20,11 @@
   "dependencies": {
     "cheerio": "^1.0.0",
     "openai": "^4.73.0",
-    "puppeteer": "^25.9.0"
+    "puppeteer": "^25.10.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
-    "tsx": "^4.19.2",
+    "tsx": "^4.23.13",
     "typescript": "^5.7.2"
   }
 }
